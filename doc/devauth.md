@@ -21,7 +21,7 @@ The returned certificate is associated with the device server's owner organisati
   
 Response:
 
-[IdentitiesController.AddCertificate.Response]
+[]: [IdentitiesController.AddCertificate.Response]
 ```json
   
 {
@@ -67,7 +67,7 @@ The returned PSK is associated with the device server's owner organisation:
 
 returns:
 
-[IdentitiesController.AddPSKIdentity.Response]
+[]: [IdentitiesController.AddPSKIdentity.Response]
 ```json
 {
     "Identity": "PwjWTw_TyUaVEEGHgtnzJA",
