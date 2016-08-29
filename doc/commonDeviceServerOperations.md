@@ -81,7 +81,7 @@ Picking up the *clients* link...
 
 Notice that the request *Accept* header has the *+json* suffix? This tells the device server to respond with a JSON content type as below:  
 
-[ClientsController.GetClients.Response]
+[]: [ClientsController.GetClients.Response]
 ```json
 
 {
@@ -177,7 +177,7 @@ From the client list above we can now pick up the *objecttypes* link to see whic
  
 Response:
 
-[ClientsController.GetObjectTypes.Response]
+[]: [ClientsController.GetObjectTypes.Response]
 ```json
 {
     "PageInfo": {
@@ -301,7 +301,7 @@ We can retrieve an object definition by performing an HTTP GET request on the *o
  
 Response:
 
-[ObjectDefinitionsController.GetObjectDefinitions.Response]
+[]: [ObjectDefinitionsController.GetObjectDefinitions.Response]
 ```json 
 
 {
@@ -429,7 +429,7 @@ To get a list of instances associated with a particular object definition we use
 **GET** /clients/{id}/objecttypes/{definitionid}/instances  
 **Authorization:** Bearer 2YotnFZFEjr1zCsicMWpAA 
 
-[ClientsController.GetObjectInstances.Response]
+[]: [ClientsController.GetObjectInstances.Response]
 ```json
 {
   "Locations": {
@@ -477,7 +477,7 @@ Because multiple instances of the above object are allowed we can create a new i
 **Content-Type:** application/vnd.oma.lwm2m.locations+json
 
 Here's the body content:
-[ClientsController.AddObjectInstance.Request]
+[]: [ClientsController.AddObjectInstance.Request]
 ```json
 {
   "Locations": {
@@ -504,7 +504,7 @@ To perform an update we'll use an HTTP PUT request with the updated values in th
 
 Here's the body content:
 
-[ClientsController.UpdateObjectInstance.Request]
+[]: [ClientsController.UpdateObjectInstance.Request]
 ```json
 {
   "Locations": {
