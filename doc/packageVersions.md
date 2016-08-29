@@ -25,7 +25,7 @@ This is a read only service.
 
 Returns...
 
-[VersionsController.GetVersions.Response]
+[]: [VersionsController.GetVersions.Response]
 ```json
 {
   "Versions": {
