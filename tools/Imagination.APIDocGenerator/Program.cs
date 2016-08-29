@@ -31,7 +31,6 @@ namespace Imagination.Tools.APIDocGenerator
 {
     public class Program
     {
-        public static string ROOT_NAME = "Imagination.DeviceServer";
         public static string WEBSERVICE_NAME = "Imagination.WebService.DeviceServer";
 
         public static void Main(string[] args)
@@ -179,24 +178,35 @@ namespace Imagination.Tools.APIDocGenerator
         {
             string path = null;
             string binDir = string.Concat(GetRootDirectory(), "/src/", WEBSERVICE_NAME, "/bin");
+            string[] filenames = null;
 
             Console.WriteLine(string.Concat("Searching for DeviceServer assemblies in ", binDir, "..."));
-
-            string[] filenames = Directory.GetFiles(binDir, string.Concat("*", WEBSERVICE_NAME, ".exe"), SearchOption.AllDirectories);
-            List<FileInfo> files = filenames.Select(f => new FileInfo(f))
-                .Where(f => f.Directory.GetDirectories().Length == 0) // must be bottom level directory to include all dependencies
-                .OrderBy(f => f.LastWriteTime) // select the latest built configuration
-                .ToList();
-
-            Console.WriteLine(string.Concat("Found ", files.Count, " assemblies:"));
-            foreach (FileInfo fileInfo in files)
+            try
             {
-                Console.WriteLine(string.Concat("*", fileInfo.FullName.Substring(binDir.Length)));
+                filenames = Directory.GetFiles(binDir, string.Concat("*", WEBSERVICE_NAME, ".exe"), SearchOption.AllDirectories);
+
             }
-            if (files.Count > 0)
+            catch (DirectoryNotFoundException)
             {
-                path = files.Last().FullName;
-                Console.WriteLine("Latest assembly: " + path.Substring(binDir.Length));
+                SerialisationLog.Error("Could not find bin directory - has the Device Server been built?");
+            }
+            if (filenames != null)
+            {
+                List<FileInfo> files = filenames.Select(f => new FileInfo(f))
+                    .Where(f => f.Directory.GetDirectories().Length == 0) // must be bottom level directory to include all dependencies
+                    .OrderBy(f => f.LastWriteTime) // select the latest built configuration
+                    .ToList();
+
+                Console.WriteLine(string.Concat("Found ", files.Count, " assemblies:"));
+                foreach (FileInfo fileInfo in files)
+                {
+                    Console.WriteLine(string.Concat("*", fileInfo.FullName.Substring(binDir.Length)));
+                }
+                if (files.Count > 0)
+                {
+                    path = files.Last().FullName;
+                    Console.WriteLine("Latest assembly: " + path.Substring(binDir.Length));
+                }
             }
 
             return path;
@@ -204,9 +214,7 @@ namespace Imagination.Tools.APIDocGenerator
 
         private static string GetRootDirectory()
         {
-            string rootDir = Directory.GetCurrentDirectory();
-            rootDir = rootDir.Substring(0, rootDir.LastIndexOf(ROOT_NAME) + ROOT_NAME.Length);
-            return rootDir;
+            return new DirectoryInfo(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
         }
     }
 }
