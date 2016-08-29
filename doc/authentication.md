@@ -83,7 +83,7 @@ The above response is limited to a *versions* link, which offers information abo
 
 The access_token and refresh_token are obtained by submitting key and secret tokens via HTTP POST request to the *authenticate* link of the REST API. The device server will then return a valid access_token and a refresh_token...
 
-**POST** /authenticate  
+**POST** /oauth/token  
 **ContentType:** application/x-www-form-urlencoded  
 
 
@@ -256,7 +256,7 @@ Then extract the *authenticate* link. Note that the MIME media type associated w
  
 Generate an HTTP POST request to the *authenticate* link with a valid refresh_token in the request body:
 
-**POST** http://localhost:8080/oauth/token  
+**POST** /oauth/token  
 **Content-Type:** application/x-www-form-urlencoded  
 **Accept:** application/vnd.imgtec.com.oauthtoken+json
 
