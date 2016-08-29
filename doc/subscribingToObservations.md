@@ -102,7 +102,7 @@ Observations are subscribed to by posting a notification request, MIME type *app
 As an example, to request a notification whenever a *client* connects to the device server, a subscription is posted at the topmost level stating the type of event to be notified, in this case *ClientConnected*, and providing a web hook URL as the target for the notification...
 
 **POST** /subscriptions  
-**ContentType**: application/vnd.oma.lwm2m.subscription+json  
+**Content-Type**: application/vnd.oma.lwm2m.subscription+json  
 
 Request body content:
 
@@ -134,7 +134,7 @@ Setting up a *resource* observation subscription follows a similar pattern but i
 
 **POST** /clients/{id}/objecttypes/{definitionid}/instances/{id}/subscriptions  
 **Authorization:** Bearer 2YotnFZFEjr1zCsicMWpAA  
-**ContentType:** application/vnd.oma.lwm2m.subscription+json
+**Content-Type:** application/vnd.oma.lwm2m.subscription+json
 
 Here's the POST request body content:
 ```json 
