@@ -106,7 +106,7 @@ As an example, to request a notification whenever a *client* connects to the dev
 
 Request body content:
 
-[SubscriptionsController.AddSubscription.Request]
+[]: [SubscriptionsController.AddSubscription.Request]
 ```json
 {
     "SubscriptionType": "ClientConnected",
@@ -116,7 +116,7 @@ Request body content:
 
 The device server responds with an HTTP response code 201 (success) and a *ResourceCreated* MIME data type in the response body specifying the ID of, and a link to, the new subscription...
 
-[SubscriptionsController.AddSubscription.Response]
+[]: [SubscriptionsController.AddSubscription.Response]
 ```json
 {
     "ID": "vwAZe5UaXEij17WWAotVyw",
@@ -195,7 +195,7 @@ A subscription can be updated by sending an HTTP PUT request containing new or p
 **PUT** /subscriptions/4  
 **Authorization:** Bearer 2YotnFZFEjr1zCsicMWpAA  
 
-[SubscriptionsController.UpdateSubscription.Request]
+[]: [SubscriptionsController.UpdateSubscription.Request]
 ```json
 {
   "Url": "https://alternative_webhook-url/notification"
