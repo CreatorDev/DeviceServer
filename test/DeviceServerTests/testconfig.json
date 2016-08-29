@@ -1,0 +1,27 @@
+﻿{
+  "DeviceServerTests": {
+    "RestAPI": {
+      "URI": "http://localhost:8080",
+      "ContentType": "xml", //"json"
+      "Authentication": {
+        "MasterKey": "b3JnYW5pc2F0aW9uXzBfa2V5",
+        "MasterSecret": "b3JnYW5pc2F0aW9uXzBfa2V5",
+        "Key": "8H8QhabSbtoRy9GK776u_k7cj3J0ozy322LQQRrh_hsozgAAIQBxvylxmVuzrc90S8c2_Vf_oTrKFnM58oVoxA",
+        "Secret": "l7U2LhKfcp95LpvAmEhPSoItcf_z9_gKZd8Ew3h0OwK32K12fTzKvuTiksnqp4sHo_BOvZTuqJftKsDzZ8p0dg"
+      }
+    },
+    "LWM2MClient": {
+      "URI": "coaps://localhost"
+    },
+    
+    "Identity": {
+      "PSK": {
+        "Key": "oFIrQFrW8EWcZ5u7eGfrkw",
+        "Secret": "7CCDE14A5CF3B71C0C08C8B7F9E5"
+      },
+      "Certificate": {
+
+      }
+    }
+  }
+}

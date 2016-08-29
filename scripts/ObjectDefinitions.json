@@ -1,0 +1,4538 @@
+{
+  "Items": [
+    {
+      "ObjectID": "3",
+      "Name": "Device",
+      "MIMEType": "application/vnd.oma.lwm2m.device",
+      "SerialisationName": "Device",
+      "Singleton": true,
+      "Properties": [
+        {
+          "PropertyID": "0",
+          "Name": "Manufacturer",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "Manufacturer"
+        },
+        {
+          "PropertyID": "1",
+          "Name": "Model Number",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "ModelNumber"
+        },
+        {
+          "PropertyID": "2",
+          "Name": "Serial Number",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "SerialNumber"
+        },
+        {
+          "PropertyID": "3",
+          "Name": "Firmware Version",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "FirmwareVersion"
+        },
+        {
+          "PropertyID": "4",
+          "Name": "Reboot",
+          "DataType": "NotSet",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Execute",
+          "SerialisationName": "Reboot"
+        },
+        {
+          "PropertyID": "5",
+          "Name": "Factory Reset",
+          "DataType": "NotSet",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Execute",
+          "SerialisationName": "FactoryReset"
+        },
+        {
+          "PropertyID": "6",
+          "Name": "Available Power Sources",
+          "DataType": "Integer",
+          "DataTypeLength": 1,
+          "MinValue": "0",
+          "MaxValue": "7",
+          "IsCollection": true,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "AvailablePowerSources",
+          "CollectionItemSerialisationName": "AvailablePowerSource"
+        },
+        {
+          "PropertyID": "7",
+          "Name": "Power Source Voltage",
+          "DataType": "Integer",
+          "Units": "mV",
+          "IsCollection": true,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "PowerSourceVoltages",
+          "CollectionItemSerialisationName": "PowerSourceVoltage"
+        },
+        {
+          "PropertyID": "8",
+          "Name": "Power Source Current",
+          "DataType": "Integer",
+          "Units": "mA",
+          "IsCollection": true,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "PowerSourceCurrents",
+          "CollectionItemSerialisationName": "PowerSourceCurrent"
+        },
+        {
+          "PropertyID": "9",
+          "Name": "Battery Level",
+          "DataType": "Integer",
+          "DataTypeLength": 1,
+          "MinValue": "0",
+          "MaxValue": "100",
+          "Units": "%",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "BatteryLevel"
+        },
+        {
+          "PropertyID": "10",
+          "Name": "Memory Free",
+          "DataType": "Integer",
+          "Units": "KB",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MemoryFree"
+        },
+        {
+          "PropertyID": "11",
+          "Name": "Error Code",
+          "DataType": "Integer",
+          "IsCollection": true,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "ErrorCodes",
+          "CollectionItemSerialisationName": "ErrorCode"
+        },
+        {
+          "PropertyID": "12",
+          "Name": "Reset Error Code",
+          "DataType": "NotSet",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Execute",
+          "SerialisationName": "ResetErrorCode"
+        },
+        {
+          "PropertyID": "13",
+          "Name": "Current Time",
+          "DataType": "DateTime",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "CurrentTime"
+        },
+        {
+          "PropertyID": "14",
+          "Name": "UTC Offset",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "UTCOffset"
+        },
+        {
+          "PropertyID": "15",
+          "Name": "Timezone",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "Timezone"
+        },
+        {
+          "PropertyID": "16",
+          "Name": "Supported Binding and Modes",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "SupportedBindingandModes"
+        },
+        {
+          "PropertyID": "17",
+          "Name": "Device Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "DeviceType"
+        },
+        {
+          "PropertyID": "18",
+          "Name": "Hardware Version",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "HardwareVersion"
+        },
+        {
+          "PropertyID": "19",
+          "Name": "Software Version",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "SoftwareVersion"
+        },
+        {
+          "PropertyID": "20",
+          "Name": "Battery Status",
+          "DataType": "Integer",
+          "DataTypeLength": 1,
+          "MinValue": "0",
+          "MaxValue": "6",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "BatteryStatus"
+        },
+        {
+          "PropertyID": "21",
+          "Name": "Memory Total",
+          "DataType": "Integer",
+          "Units": "KB",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MemoryTotal"
+        }
+      ]
+    },
+    {
+      "ObjectID": "4",
+      "Name": "Connectivity Monitoring",
+      "MIMEType": "application/vnd.oma.lwm2m.connectivitymonitoring",
+      "SerialisationName": "ConnectivityMonitoring",
+      "Singleton": true,
+      "Properties": [
+        {
+          "PropertyID": "0",
+          "Name": "Network Bearer",
+          "DataType": "Integer",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "NetworkBearer"
+        },
+        {
+          "PropertyID": "1",
+          "Name": "Available Network Bearer",
+          "DataType": "Integer",
+          "IsCollection": true,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "AvailableNetworkBearers",
+          "CollectionItemSerialisationName": "AvailableNetworkBearer"
+        },
+        {
+          "PropertyID": "2",
+          "Name": "Radio Signal Strength",
+          "DataType": "Integer",
+          "Units": "dBm",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "RadioSignalStrength"
+        },
+        {
+          "PropertyID": "3",
+          "Name": "Link Quality",
+          "DataType": "Integer",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "LinkQuality"
+        },
+        {
+          "PropertyID": "4",
+          "Name": "IP Addresses",
+          "DataType": "String",
+          "IsCollection": true,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "IPAddresses",
+          "CollectionItemSerialisationName": "IPAddress"
+        },
+        {
+          "PropertyID": "5",
+          "Name": "Router IP Addresses",
+          "DataType": "String",
+          "IsCollection": true,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "RouterIPAddresses",
+          "CollectionItemSerialisationName": "RouterIPAddress"
+        },
+        {
+          "PropertyID": "6",
+          "Name": "Link Utilization",
+          "DataType": "Integer",
+          "DataTypeLength": 1,
+          "MinValue": "0",
+          "MaxValue": "100",
+          "Units": "%",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "LinkUtilization"
+        },
+        {
+          "PropertyID": "7",
+          "Name": "APN",
+          "DataType": "String",
+          "IsCollection": true,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "APNs",
+          "CollectionItemSerialisationName": "APN"
+        },
+        {
+          "PropertyID": "8",
+          "Name": "Cell ID",
+          "DataType": "Integer",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "CellID"
+        },
+        {
+          "PropertyID": "9",
+          "Name": "SMNC",
+          "DataType": "Integer",
+          "Units": "%",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "SMNC"
+        },
+        {
+          "PropertyID": "10",
+          "Name": "SMCC",
+          "DataType": "Integer",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "SMCC"
+        }
+      ]
+    },
+
+    {
+      "ObjectID": "5",
+      "Name": "Firmware Update",
+      "MIMEType": "application/vnd.oma.lwm2m.firmwareupdate",
+      "SerialisationName": "FirmwareUpdate",
+      "Singleton": true,
+      "Properties": [
+        {
+          "PropertyID": "0",
+          "Name": "Package",
+          "DataType": "Opaque",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Write",
+          "SerialisationName": "Package"
+        },
+        {
+          "PropertyID": "1",
+          "Name": "Package URI",
+          "DataType": "String",
+          "DataTypeLength": 255,
+          "MinValue": "0",
+          "MaxValue": "255",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Write",
+          "SerialisationName": "PackageURI"
+        },
+        {
+          "PropertyID": "2",
+          "Name": "Update",
+          "DataType": "NotSet",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Execute",
+          "SerialisationName": "Update"
+        },
+        {
+          "PropertyID": "3",
+          "Name": "State",
+          "DataType": "Integer",
+          "DataTypeLength": 1,
+          "MinValue": "1",
+          "MaxValue": "3",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "State"
+        },
+        {
+          "PropertyID": "4",
+          "Name": "Update Supported Objects",
+          "DataType": "Boolean",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "UpdateSupportedObjects"
+        },
+        {
+          "PropertyID": "5",
+          "Name": "Update Result",
+          "DataType": "Integer",
+          "DataTypeLength": 1,
+          "MinValue": "0",
+          "MaxValue": "6",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "UpdateResult"
+        },
+        {
+          "PropertyID": "6",
+          "Name": "Package Name",
+          "DataType": "String",
+          "DataTypeLength": 255,
+          "MinValue": "0",
+          "MaxValue": "255",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "PackageName"
+        },
+        {
+          "PropertyID": "7",
+          "Name": "Package Version",
+          "DataType": "String",
+          "DataTypeLength": 255,
+          "MinValue": "0",
+          "MaxValue": "255",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "PackageVersion"
+        }
+      ]
+    },
+    {
+      "ObjectID": "6",
+      "Name": "Location",
+      "MIMEType": "application/vnd.oma.lwm2m.location",
+      "SerialisationName": "Location",
+      "Singleton": true,
+      "Properties": [
+        {
+          "PropertyID": "0",
+          "Name": "Latitude",
+          "DataType": "String",
+          "Units": "Deg",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "Latitude"
+        },
+        {
+          "PropertyID": "1",
+          "Name": "Longitude",
+          "DataType": "String",
+          "Units": "Deg",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "Longitude"
+        },
+        {
+          "PropertyID": "2",
+          "Name": "Altitude",
+          "DataType": "String",
+          "Units": "m",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "Altitude"
+        },
+        {
+          "PropertyID": "3",
+          "Name": "Uncertainty",
+          "DataType": "String",
+          "Units": "m",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "Uncertainty"
+        },
+        {
+          "PropertyID": "4",
+          "Name": "Velocity",
+          "DataType": "Opaque",
+          "Units": "Refers to 3GPP GAD specs",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "Velocity"
+        },
+        {
+          "PropertyID": "5",
+          "Name": "Timestamp",
+          "DataType": "DateTime",
+          "DataTypeLength": 1,
+          "MinValue": "0",
+          "MaxValue": "6",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "Timestamp"
+        }
+      ]
+    },
+    {
+      "ObjectID": "7",
+      "Name": "Connectivity Statistics",
+      "MIMEType": "application/vnd.oma.lwm2m.connectivitystatistics",
+      "SerialisationName": "ConnectivityStatistics",
+      "Singleton": true,
+      "Properties": [
+        {
+          "PropertyID": "0",
+          "Name": "SMS Tx Counter",
+          "DataType": "Integer",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "SMSTxCounter"
+        },
+        {
+          "PropertyID": "1",
+          "Name": "SMS Rx Counter",
+          "DataType": "Integer",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "SMSRxCounter"
+        },
+        {
+          "PropertyID": "2",
+          "Name": "Tx Data",
+          "DataType": "Integer",
+          "Units": "Kilo-Bytes",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "TxData"
+        },
+        {
+          "PropertyID": "3",
+          "Name": "Rx Data",
+          "DataType": "Integer",
+          "Units": "Kilo-Bytes",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "RxData"
+        },
+        {
+          "PropertyID": "4",
+          "Name": "Max Message Size",
+          "DataType": "Integer",
+          "Units": "Byte",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxMessageSize"
+        },
+        {
+          "PropertyID": "5",
+          "Name": "Average Message Size",
+          "DataType": "Integer",
+          "Units": "Byte",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "AverageMessageSize"
+        },
+        {
+          "PropertyID": "6",
+          "Name": "StartOrReset",
+          "DataType": "NotSet",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Execute",
+          "SerialisationName": "StartOrReset"
+        }
+      ]
+    },
+    {
+      "ObjectID": "15",
+      "Name": "DeviceCapability",
+      "MIMEType": "application/vnd.oma.lwm2m.devicecapability",
+      "SerialisationName": "DeviceCapability",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "0",
+          "Name": "Property",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "Property"
+        },
+        {
+          "PropertyID": "1",
+          "Name": "Group",
+          "DataType": "Integer",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "Group"
+        },
+        {
+          "PropertyID": "2",
+          "Name": "Description",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "Description"
+        },
+        {
+          "PropertyID": "3",
+          "Name": "Attached",
+          "DataType": "Boolean",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "Attached"
+        },
+        {
+          "PropertyID": "4",
+          "Name": "Enabled",
+          "DataType": "Boolean",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "Enabled"
+        },
+        {
+          "PropertyID": "5",
+          "Name": "opEnable",
+          "DataType": "NotSet",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Execute",
+          "SerialisationName": "opEnable"
+        },
+        {
+          "PropertyID": "6",
+          "Name": "opDisable ",
+          "DataType": "NotSet",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Execute",
+          "SerialisationName": "opDisable"
+        },
+        {
+          "PropertyID": "7",
+          "Name": "NotifyEn",
+          "DataType": "Boolean",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "NotifyEn"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3200",
+      "Name": "Digital Input",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3200",
+      "SerialisationName": "DigitalInput",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5500",
+          "Name": "Digital Input State",
+          "DataType": "Boolean",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "DigitalInputState"
+        },
+        {
+          "PropertyID": "5501",
+          "Name": "Digital Input Counter",
+          "DataType": "Integer",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "DigitalInputCounter"
+        },
+        {
+          "PropertyID": "5502",
+          "Name": "Digital Input Polarity",
+          "DataType": "Boolean",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "DigitalInputPolarity"
+        },
+        {
+          "PropertyID": "5503",
+          "Name": "Digital Input Debounce",
+          "DataType": "Integer",
+          "Units": "ms",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "DigitalInputDebounce"
+        },
+        {
+          "PropertyID": "5504",
+          "Name": "Digital Input Edge Selection",
+          "DataType": "Integer",
+          "DataTypeLength": 1,
+          "MinValue": "1",
+          "MaxValue": "3",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "DigitalInputEdgeSelection"
+        },
+        {
+          "PropertyID": "5505",
+          "Name": "Digital Input Counter Reset",
+          "DataType": "Opaque",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Execute",
+          "SerialisationName": "DigitalInputCounterReset"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        },
+        {
+          "PropertyID": "5751",
+          "Name": "Sensor Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "SensorType"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3201",
+      "Name": "Digital Output",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3201",
+      "SerialisationName": "DigitalOutput",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5550",
+          "Name": "Digital Output State",
+          "DataType": "Boolean",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "ReadWrite",
+          "SerialisationName": "DigitalOutputState"
+        },
+        {
+          "PropertyID": "5551",
+          "Name": "Digital Output Polarity",
+          "DataType": "Boolean",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "DigitalOutputPolarity"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3202",
+      "Name": "Analog Input",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3202",
+      "SerialisationName": "AnalogInput",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5600",
+          "Name": "Analog Input Current Value",
+          "DataType": "Float",
+          "DataTypeLength": 1,
+          "MinValue": "0",
+          "MaxValue": "1",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "AnalogInputCurrentValue"
+        },
+        {
+          "PropertyID": "5601",
+          "Name": "Min Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinMeasuredValue"
+        },
+        {
+          "PropertyID": "5602",
+          "Name": "Max Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxMeasuredValue"
+        },
+        {
+          "PropertyID": "5603",
+          "Name": "Min Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinRangeValue"
+        },
+        {
+          "PropertyID": "5604",
+          "Name": "Max Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxRangeValue"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        },
+        {
+          "PropertyID": "5751",
+          "Name": "Sensor Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "SensorType"
+        },
+        {
+          "PropertyID": "5605",
+          "Name": "Reset Min and Max Measured Values",
+          "DataType": "Opaque",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Execute",
+          "SerialisationName": "ResetMinandMaxMeasuredValues"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3203",
+      "Name": "Analog Output",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3203",
+      "SerialisationName": "AnalogOutput",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5650",
+          "Name": "Analog Output Current Value",
+          "DataType": "Float",
+          "DataTypeLength": 1,
+          "MinValue": "0",
+          "MaxValue": "1",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "ReadWrite",
+          "SerialisationName": "AnalogOutputCurrentValue"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "ApplicationType"
+        },
+        {
+          "PropertyID": "5603",
+          "Name": "Min Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinRangeValue"
+        },
+        {
+          "PropertyID": "5604",
+          "Name": "Max Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxRangeValue"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3300",
+      "Name": "Generic Sensor",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3300",
+      "SerialisationName": "GenericSensor",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5700",
+          "Name": "Sensor Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "SensorValue"
+        },
+        {
+          "PropertyID": "5701",
+          "Name": "Sensor Units",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "SensorUnits"
+        },
+        {
+          "PropertyID": "5601",
+          "Name": "Min Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinMeasuredValue"
+        },
+        {
+          "PropertyID": "5602",
+          "Name": "Max Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxMeasuredValue"
+        },
+        {
+          "PropertyID": "5603",
+          "Name": "Min Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinRangeValue"
+        },
+        {
+          "PropertyID": "5604",
+          "Name": "Max Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxRangeValue"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        },
+        {
+          "PropertyID": "5751",
+          "Name": "Sensor Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "SensorType"
+        },
+        {
+          "PropertyID": "5605",
+          "Name": "Reset Min and Max Measured Values",
+          "DataType": "Opaque",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Execute",
+          "SerialisationName": "ResetMinandMaxMeasuredValues"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3301",
+      "Name": "Illuminance",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3301",
+      "SerialisationName": "Illuminance",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5700",
+          "Name": "Sensor Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "SensorValue"
+        },
+        {
+          "PropertyID": "5601",
+          "Name": "Min Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinMeasuredValue"
+        },
+        {
+          "PropertyID": "5602",
+          "Name": "Max Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxMeasuredValue"
+        },
+        {
+          "PropertyID": "5603",
+          "Name": "Min Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinRangeValue"
+        },
+        {
+          "PropertyID": "5604",
+          "Name": "Max Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxRangeValue"
+        },
+        {
+          "PropertyID": "5605",
+          "Name": "Reset Min and Max Measured Values",
+          "DataType": "Opaque",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Execute",
+          "SerialisationName": "ResetMinandMaxMeasuredValues"
+        },
+        {
+          "PropertyID": "5701",
+          "Name": "Sensor Units",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "SensorUnits"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3302",
+      "Name": "Presence",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3302",
+      "SerialisationName": "Presence",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5500",
+          "Name": "Digital Input State",
+          "DataType": "Boolean",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "DigitalInputState"
+        },
+        {
+          "PropertyID": "5501",
+          "Name": "Digital Input Counter",
+          "DataType": "Integer",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "DigitalInputCounter"
+        },
+        {
+          "PropertyID": "5505",
+          "Name": "Digital Input Counter Reset",
+          "DataType": "Opaque",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Execute",
+          "SerialisationName": "DigitalInputCounterReset"
+        },
+        {
+          "PropertyID": "5751",
+          "Name": "Sensor Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "SensorType"
+        },
+        {
+          "PropertyID": "5903",
+          "Name": "Busy to Clear delay",
+          "DataType": "Integer",
+          "Units": "ms",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "BusytoCleardelay"
+        },
+        {
+          "PropertyID": "5904",
+          "Name": "Clear to Busy delay",
+          "DataType": "Integer",
+          "Units": "ms",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "CleartoBusydelay"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3303",
+      "Name": "Temperature",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3303",
+      "SerialisationName": "Temperature",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5700",
+          "Name": "Sensor Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "SensorValue"
+        },
+        {
+          "PropertyID": "5601",
+          "Name": "Min Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinMeasuredValue"
+        },
+        {
+          "PropertyID": "5602",
+          "Name": "Max Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxMeasuredValue"
+        },
+        {
+          "PropertyID": "5603",
+          "Name": "Min Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinRangeValue"
+        },
+        {
+          "PropertyID": "5604",
+          "Name": "Max Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxRangeValue"
+        },
+        {
+          "PropertyID": "5701",
+          "Name": "Sensor Units",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "SensorUnits"
+        },
+        {
+          "PropertyID": "5605",
+          "Name": "Reset Min and Max Measured Values",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Execute",
+          "SerialisationName": "ResetMinandMaxMeasuredValues"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3304",
+      "Name": "Humidity",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3304",
+      "SerialisationName": "Humidity",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5700",
+          "Name": "Sensor Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "SensorValue"
+        },
+        {
+          "PropertyID": "5601",
+          "Name": "Min Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinMeasuredValue"
+        },
+        {
+          "PropertyID": "5602",
+          "Name": "Max Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxMeasuredValue"
+        },
+        {
+          "PropertyID": "5603",
+          "Name": "Min Range Value",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinRangeValue"
+        },
+        {
+          "PropertyID": "5604",
+          "Name": "Max Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxRangeValue"
+        },
+        {
+          "PropertyID": "5701",
+          "Name": "Sensor Units",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "SensorUnits"
+        },
+        {
+          "PropertyID": "5605",
+          "Name": "Reset Min and Max Measured Values",
+          "DataType": "Opaque",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Execute",
+          "SerialisationName": "ResetMinandMaxMeasuredValues"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3305",
+      "Name": "Power Measurement",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3305",
+      "SerialisationName": "PowerMeasurement",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5800",
+          "Name": "Instantaneous active power",
+          "DataType": "Float",
+          "Units": "W",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "Instantaneousactivepower"
+        },
+        {
+          "PropertyID": "5801",
+          "Name": "Min Measured active power",
+          "DataType": "Float",
+          "Units": "W",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinMeasuredactivepower"
+        },
+        {
+          "PropertyID": "5802",
+          "Name": "Max Measured active power",
+          "DataType": "Float",
+          "Units": "W",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxMeasuredactivepower"
+        },
+        {
+          "PropertyID": "5803",
+          "Name": "Min Range active power",
+          "DataType": "Float",
+          "Units": "W",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinRangeactivepower"
+        },
+        {
+          "PropertyID": "5804",
+          "Name": "Max Range active power",
+          "DataType": "Float",
+          "Units": "W",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxRangeactivepower"
+        },
+        {
+          "PropertyID": "5805",
+          "Name": "Cumulative active power",
+          "DataType": "Float",
+          "Units": "Wh",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "Cumulativeactivepower"
+        },
+        {
+          "PropertyID": "5806",
+          "Name": "Active Power Calibration",
+          "DataType": "Float",
+          "Units": "W",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Write",
+          "SerialisationName": "ActivePowerCalibration"
+        },
+        {
+          "PropertyID": "5810",
+          "Name": "Instantaneous reactive power",
+          "DataType": "Float",
+          "Units": "VAR",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "Instantaneousreactivepower"
+        },
+        {
+          "PropertyID": "5811",
+          "Name": "Min Measured reactive power",
+          "DataType": "Float",
+          "Units": "VAR",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinMeasuredreactivepower"
+        },
+        {
+          "PropertyID": "5812",
+          "Name": "Max Measured reactive power",
+          "DataType": "Float",
+          "Units": "VAR",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxMeasuredreactivepower"
+        },
+        {
+          "PropertyID": "5813",
+          "Name": "Min Range reactive power",
+          "DataType": "Float",
+          "Units": "VAR",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinRangereactivepower"
+        },
+        {
+          "PropertyID": "5814",
+          "Name": "Max Range reactive power",
+          "DataType": "Float",
+          "Units": "VAR",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxRangereactivepower"
+        },
+        {
+          "PropertyID": "5815",
+          "Name": "Cumulative reactive power",
+          "DataType": "Float",
+          "Units": "VARh",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "Cumulativereactivepower"
+        },
+        {
+          "PropertyID": "5816",
+          "Name": "Reactive Power Calibration",
+          "DataType": "Float",
+          "Units": "VAR",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Write",
+          "SerialisationName": "ReactivePowerCalibration"
+        },
+        {
+          "PropertyID": "5820",
+          "Name": "Power factor",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "Powerfactor"
+        },
+        {
+          "PropertyID": "5821",
+          "Name": "Current Calibration",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "CurrentCalibration"
+        },
+        {
+          "PropertyID": "5822",
+          "Name": "Reset Cumulative energy",
+          "DataType": "Opaque",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Execute",
+          "SerialisationName": "ResetCumulativeenergy"
+        },
+        {
+          "PropertyID": "5605",
+          "Name": "Reset Min and Max Measured Values",
+          "DataType": "Opaque",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Execute",
+          "SerialisationName": "ResetMinandMaxMeasuredValues"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3306",
+      "Name": "Actuation",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3306",
+      "SerialisationName": "Actuation",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5850",
+          "Name": "On/Off",
+          "DataType": "Boolean",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "ReadWrite",
+          "SerialisationName": "On"
+        },
+        {
+          "PropertyID": "5851",
+          "Name": "Dimmer",
+          "DataType": "Integer",
+          "DataTypeLength": 1,
+          "MinValue": "0",
+          "MaxValue": "100",
+          "Units": "%",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "Dimmer"
+        },
+        {
+          "PropertyID": "5852",
+          "Name": "On Time",
+          "DataType": "Integer",
+          "Units": "sec",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "OnTime"
+        },
+        {
+          "PropertyID": "5853",
+          "Name": "Muti-state Output",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "Muti-stateOutput"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3308",
+      "Name": "Set Point",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3308",
+      "SerialisationName": "SetPoint",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5900",
+          "Name": "Set Point Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "ReadWrite",
+          "SerialisationName": "SetPointValue"
+        },
+        {
+          "PropertyID": "5701",
+          "Name": "Units",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "Units"
+        },
+        {
+          "PropertyID": "5706",
+          "Name": "Colour",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "Colour"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3310",
+      "Name": "Load Control",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3310",
+      "SerialisationName": "LoadControl",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5823",
+          "Name": "Event Identifier",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "ReadWrite",
+          "SerialisationName": "EventIdentifier"
+        },
+        {
+          "PropertyID": "5824",
+          "Name": "Start Time",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "ReadWrite",
+          "SerialisationName": "StartTime"
+        },
+        {
+          "PropertyID": "5825",
+          "Name": "Duration In Min",
+          "DataType": "String",
+          "Units": "Min",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "ReadWrite",
+          "SerialisationName": "DurationInMin"
+        },
+        {
+          "PropertyID": "5826",
+          "Name": "Criticality Level",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "CriticalityLevel"
+        },
+        {
+          "PropertyID": "5827",
+          "Name": "Avg Load Adj Pct",
+          "DataType": "String",
+          "DataTypeLength": 1,
+          "MinValue": "0",
+          "MaxValue": "100",
+          "Units": "%",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "AvgLoadAdjPct"
+        },
+        {
+          "PropertyID": "5828",
+          "Name": "Duty Cycle",
+          "DataType": "String",
+          "DataTypeLength": 1,
+          "MinValue": "0",
+          "MaxValue": "100",
+          "Units": "%",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "DutyCycle"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3311",
+      "Name": "Light Control",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3311",
+      "SerialisationName": "LightControl",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5850",
+          "Name": "On/Off",
+          "DataType": "Boolean",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "ReadWrite",
+          "SerialisationName": "On"
+        },
+        {
+          "PropertyID": "5851",
+          "Name": "Dimmer",
+          "DataType": "Integer",
+          "DataTypeLength": 1,
+          "MinValue": "0",
+          "MaxValue": "100",
+          "Units": "%",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "Dimmer"
+        },
+        {
+          "PropertyID": "5852",
+          "Name": "On Time",
+          "DataType": "Integer",
+          "Units": "sec",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "OnTime"
+        },
+        {
+          "PropertyID": "5805",
+          "Name": "Cumulative active power",
+          "DataType": "Float",
+          "Units": "Wh",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "Cumulativeactivepower"
+        },
+        {
+          "PropertyID": "5820",
+          "Name": "Power factor",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "Powerfactor"
+        },
+        {
+          "PropertyID": "5706",
+          "Name": "Colour",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "Colour"
+        },
+        {
+          "PropertyID": "5701",
+          "Name": "Sensor Units",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "SensorUnits"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3312",
+      "Name": "Power Control",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3312",
+      "SerialisationName": "PowerControl",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5850",
+          "Name": "On/Off",
+          "DataType": "Boolean",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "ReadWrite",
+          "SerialisationName": "On"
+        },
+        {
+          "PropertyID": "5851",
+          "Name": "Dimmer",
+          "DataType": "Integer",
+          "DataTypeLength": 1,
+          "MinValue": "0",
+          "MaxValue": "100",
+          "Units": "%",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Write",
+          "SerialisationName": "Dimmer"
+        },
+        {
+          "PropertyID": "5852",
+          "Name": "On Time",
+          "DataType": "Integer",
+          "Units": "sec",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "OnTime"
+        },
+        {
+          "PropertyID": "5805",
+          "Name": "Cumulative active power",
+          "DataType": "Float",
+          "Units": "Wh",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "Cumulativeactivepower"
+        },
+        {
+          "PropertyID": "5820",
+          "Name": "Power factor",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "Powerfactor"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3313",
+      "Name": "Accelerometer",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3313",
+      "SerialisationName": "Accelerometer",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5702",
+          "Name": "X Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "XValue"
+        },
+        {
+          "PropertyID": "5703",
+          "Name": "Y Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "YValue"
+        },
+        {
+          "PropertyID": "5704",
+          "Name": "Z Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "ZValue"
+        },
+        {
+          "PropertyID": "5701",
+          "Name": "Sensor Units",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "SensorUnits"
+        },
+        {
+          "PropertyID": "5603",
+          "Name": "Min Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinRangeValue"
+        },
+        {
+          "PropertyID": "5604",
+          "Name": "Max Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxRangeValue"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3314",
+      "Name": "Magnetometer",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3314",
+      "SerialisationName": "Magnetometer",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5702",
+          "Name": "X Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "XValue"
+        },
+        {
+          "PropertyID": "5703",
+          "Name": "Y Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "YValue"
+        },
+        {
+          "PropertyID": "5704",
+          "Name": "Z Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "ZValue"
+        },
+        {
+          "PropertyID": "5705",
+          "Name": "Compass Direction",
+          "DataType": "Float",
+          "DataTypeLength": 2,
+          "MinValue": "0",
+          "MaxValue": "360",
+          "Units": "Deg",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "CompassDirection"
+        },
+        {
+          "PropertyID": "5701",
+          "Name": "Sensor Units",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "SensorUnits"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3315",
+      "Name": "Barometer",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3315",
+      "SerialisationName": "Barometer",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5700",
+          "Name": "Sensor Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "SensorValue"
+        },
+        {
+          "PropertyID": "5601",
+          "Name": "Min Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinMeasuredValue"
+        },
+        {
+          "PropertyID": "5602",
+          "Name": "Max Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxMeasuredValue"
+        },
+        {
+          "PropertyID": "5603",
+          "Name": "Min Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinRangeValue"
+        },
+        {
+          "PropertyID": "5604",
+          "Name": "Max Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxRangeValue"
+        },
+        {
+          "PropertyID": "5701",
+          "Name": "Sensor Units",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "SensorUnits"
+        },
+        {
+          "PropertyID": "5605",
+          "Name": "Reset Min and Max Measured Values",
+          "DataType": "Opaque",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Execute",
+          "SerialisationName": "ResetMinandMaxMeasuredValues"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3316",
+      "Name": "Voltage",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3316",
+      "SerialisationName": "Voltage",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5700",
+          "Name": "Sensor Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "SensorValue"
+        },
+        {
+          "PropertyID": "5701",
+          "Name": "Sensor Units",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "SensorUnits"
+        },
+        {
+          "PropertyID": "5601",
+          "Name": "Min Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinMeasuredValue"
+        },
+        {
+          "PropertyID": "5602",
+          "Name": "Max Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxMeasuredValue"
+        },
+        {
+          "PropertyID": "5603",
+          "Name": "Min Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinRangeValue"
+        },
+        {
+          "PropertyID": "5604",
+          "Name": "Max Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxRangeValue"
+        },
+        {
+          "PropertyID": "5605",
+          "Name": "Reset Min and Max Measured Values",
+          "DataType": "Opaque",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Execute",
+          "SerialisationName": "ResetMinandMaxMeasuredValues"
+        },
+        {
+          "PropertyID": "5821",
+          "Name": "Current Calibration",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "CurrentCalibration"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3317",
+      "Name": "Current",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3317",
+      "SerialisationName": "Current",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5700",
+          "Name": "Sensor Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "SensorValue"
+        },
+        {
+          "PropertyID": "5701",
+          "Name": "Sensor Units",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "SensorUnits"
+        },
+        {
+          "PropertyID": "5601",
+          "Name": "Min Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinMeasuredValue"
+        },
+        {
+          "PropertyID": "5602",
+          "Name": "Max Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxMeasuredValue"
+        },
+        {
+          "PropertyID": "5603",
+          "Name": "Min Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinRangeValue"
+        },
+        {
+          "PropertyID": "5604",
+          "Name": "Max Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxRangeValue"
+        },
+        {
+          "PropertyID": "5605",
+          "Name": "Reset Min and Max Measured Values",
+          "DataType": "Opaque",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Execute",
+          "SerialisationName": "ResetMinandMaxMeasuredValues"
+        },
+        {
+          "PropertyID": "5821",
+          "Name": "Current Calibration",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "CurrentCalibration"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3318",
+      "Name": "Frequency",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3318",
+      "SerialisationName": "Frequency",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5700",
+          "Name": "Sensor Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "SensorValue"
+        },
+        {
+          "PropertyID": "5701",
+          "Name": "Sensor Units",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "SensorUnits"
+        },
+        {
+          "PropertyID": "5601",
+          "Name": "Min Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinMeasuredValue"
+        },
+        {
+          "PropertyID": "5602",
+          "Name": "Max Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxMeasuredValue"
+        },
+        {
+          "PropertyID": "5603",
+          "Name": "Min Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinRangeValue"
+        },
+        {
+          "PropertyID": "5604",
+          "Name": "Max Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxRangeValue"
+        },
+        {
+          "PropertyID": "5605",
+          "Name": "Reset Min and Max Measured Values",
+          "DataType": "Opaque",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Execute",
+          "SerialisationName": "ResetMinandMaxMeasuredValues"
+        },
+        {
+          "PropertyID": "5821",
+          "Name": "Current Calibration",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "CurrentCalibration"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3319",
+      "Name": "Depth",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3319",
+      "SerialisationName": "Depth",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5700",
+          "Name": "Sensor Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "SensorValue"
+        },
+        {
+          "PropertyID": "5701",
+          "Name": "Sensor Units",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "SensorUnits"
+        },
+        {
+          "PropertyID": "5601",
+          "Name": "Min Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinMeasuredValue"
+        },
+        {
+          "PropertyID": "5602",
+          "Name": "Max Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxMeasuredValue"
+        },
+        {
+          "PropertyID": "5603",
+          "Name": "Min Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinRangeValue"
+        },
+        {
+          "PropertyID": "5604",
+          "Name": "Max Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxRangeValue"
+        },
+        {
+          "PropertyID": "5605",
+          "Name": "Reset Min and Max Measured Values",
+          "DataType": "Opaque",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Execute",
+          "SerialisationName": "ResetMinandMaxMeasuredValues"
+        },
+        {
+          "PropertyID": "5821",
+          "Name": "Current Calibration",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "CurrentCalibration"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3320",
+      "Name": "Percentage",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3320",
+      "SerialisationName": "Percentage",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5700",
+          "Name": "Sensor Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "SensorValue"
+        },
+        {
+          "PropertyID": "5701",
+          "Name": "Sensor Units",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "SensorUnits"
+        },
+        {
+          "PropertyID": "5601",
+          "Name": "Min Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinMeasuredValue"
+        },
+        {
+          "PropertyID": "5602",
+          "Name": "Max Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxMeasuredValue"
+        },
+        {
+          "PropertyID": "5603",
+          "Name": "Min Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinRangeValue"
+        },
+        {
+          "PropertyID": "5604",
+          "Name": "Max Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxRangeValue"
+        },
+        {
+          "PropertyID": "5605",
+          "Name": "Reset Min and Max Measured Values",
+          "DataType": "Opaque",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Execute",
+          "SerialisationName": "ResetMinandMaxMeasuredValues"
+        },
+        {
+          "PropertyID": "5821",
+          "Name": "Current Calibration",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "CurrentCalibration"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3321",
+      "Name": "Altitude",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3321",
+      "SerialisationName": "Altitude",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5700",
+          "Name": "Sensor Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "SensorValue"
+        },
+        {
+          "PropertyID": "5701",
+          "Name": "Sensor Units",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "SensorUnits"
+        },
+        {
+          "PropertyID": "5601",
+          "Name": "Min Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinMeasuredValue"
+        },
+        {
+          "PropertyID": "5602",
+          "Name": "Max Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxMeasuredValue"
+        },
+        {
+          "PropertyID": "5603",
+          "Name": "Min Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinRangeValue"
+        },
+        {
+          "PropertyID": "5604",
+          "Name": "Max Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxRangeValue"
+        },
+        {
+          "PropertyID": "5605",
+          "Name": "Reset Min and Max Measured Values",
+          "DataType": "Opaque",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Execute",
+          "SerialisationName": "ResetMinandMaxMeasuredValues"
+        },
+        {
+          "PropertyID": "5821",
+          "Name": "Current Calibration",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "CurrentCalibration"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3322",
+      "Name": "Load",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3322",
+      "SerialisationName": "Load",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5700",
+          "Name": "Sensor Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "SensorValue"
+        },
+        {
+          "PropertyID": "5701",
+          "Name": "Sensor Units",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "SensorUnits"
+        },
+        {
+          "PropertyID": "5601",
+          "Name": "Min Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinMeasuredValue"
+        },
+        {
+          "PropertyID": "5602",
+          "Name": "Max Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxMeasuredValue"
+        },
+        {
+          "PropertyID": "5603",
+          "Name": "Min Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinRangeValue"
+        },
+        {
+          "PropertyID": "5604",
+          "Name": "Max Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxRangeValue"
+        },
+        {
+          "PropertyID": "5605",
+          "Name": "Reset Min and Max Measured Values",
+          "DataType": "Opaque",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Execute",
+          "SerialisationName": "ResetMinandMaxMeasuredValues"
+        },
+        {
+          "PropertyID": "5821",
+          "Name": "Current Calibration",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "CurrentCalibration"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3323",
+      "Name": "Pressure",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3323",
+      "SerialisationName": "Pressure",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5700",
+          "Name": "Sensor Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "SensorValue"
+        },
+        {
+          "PropertyID": "5701",
+          "Name": "Sensor Units",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "SensorUnits"
+        },
+        {
+          "PropertyID": "5601",
+          "Name": "Min Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinMeasuredValue"
+        },
+        {
+          "PropertyID": "5602",
+          "Name": "Max Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxMeasuredValue"
+        },
+        {
+          "PropertyID": "5603",
+          "Name": "Min Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinRangeValue"
+        },
+        {
+          "PropertyID": "5604",
+          "Name": "Max Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxRangeValue"
+        },
+        {
+          "PropertyID": "5605",
+          "Name": "Reset Min and Max Measured Values",
+          "DataType": "Opaque",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Execute",
+          "SerialisationName": "ResetMinandMaxMeasuredValues"
+        },
+        {
+          "PropertyID": "5821",
+          "Name": "Current Calibration",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "CurrentCalibration"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3324",
+      "Name": "Loudness",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3324",
+      "SerialisationName": "Loudness",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5700",
+          "Name": "Sensor Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "SensorValue"
+        },
+        {
+          "PropertyID": "5701",
+          "Name": "Sensor Units",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "SensorUnits"
+        },
+        {
+          "PropertyID": "5601",
+          "Name": "Min Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinMeasuredValue"
+        },
+        {
+          "PropertyID": "5602",
+          "Name": "Max Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxMeasuredValue"
+        },
+        {
+          "PropertyID": "5603",
+          "Name": "Min Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinRangeValue"
+        },
+        {
+          "PropertyID": "5604",
+          "Name": "Max Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxRangeValue"
+        },
+        {
+          "PropertyID": "5605",
+          "Name": "Reset Min and Max Measured Values",
+          "DataType": "Opaque",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Execute",
+          "SerialisationName": "ResetMinandMaxMeasuredValues"
+        },
+        {
+          "PropertyID": "5821",
+          "Name": "Current Calibration",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "CurrentCalibration"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3325",
+      "Name": "Concentration",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3325",
+      "SerialisationName": "Concentration",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5700",
+          "Name": "Sensor Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "SensorValue"
+        },
+        {
+          "PropertyID": "5701",
+          "Name": "Sensor Units",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "SensorUnits"
+        },
+        {
+          "PropertyID": "5601",
+          "Name": "Min Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinMeasuredValue"
+        },
+        {
+          "PropertyID": "5602",
+          "Name": "Max Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxMeasuredValue"
+        },
+        {
+          "PropertyID": "5603",
+          "Name": "Min Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinRangeValue"
+        },
+        {
+          "PropertyID": "5604",
+          "Name": "Max Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxRangeValue"
+        },
+        {
+          "PropertyID": "5605",
+          "Name": "Reset Min and Max Measured Values",
+          "DataType": "Opaque",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Execute",
+          "SerialisationName": "ResetMinandMaxMeasuredValues"
+        },
+        {
+          "PropertyID": "5821",
+          "Name": "Current Calibration",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "CurrentCalibration"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3326",
+      "Name": "Acidity",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3326",
+      "SerialisationName": "Acidity",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5700",
+          "Name": "Sensor Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "SensorValue"
+        },
+        {
+          "PropertyID": "5701",
+          "Name": "Sensor Units",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "SensorUnits"
+        },
+        {
+          "PropertyID": "5601",
+          "Name": "Min Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinMeasuredValue"
+        },
+        {
+          "PropertyID": "5602",
+          "Name": "Max Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxMeasuredValue"
+        },
+        {
+          "PropertyID": "5603",
+          "Name": "Min Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinRangeValue"
+        },
+        {
+          "PropertyID": "5604",
+          "Name": "Max Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxRangeValue"
+        },
+        {
+          "PropertyID": "5605",
+          "Name": "Reset Min and Max Measured Values",
+          "DataType": "Opaque",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Execute",
+          "SerialisationName": "ResetMinandMaxMeasuredValues"
+        },
+        {
+          "PropertyID": "5821",
+          "Name": "Current Calibration",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "CurrentCalibration"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3327",
+      "Name": "Conductivity",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3327",
+      "SerialisationName": "Conductivity",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5700",
+          "Name": "Sensor Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "SensorValue"
+        },
+        {
+          "PropertyID": "5701",
+          "Name": "Sensor Units",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "SensorUnits"
+        },
+        {
+          "PropertyID": "5601",
+          "Name": "Min Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinMeasuredValue"
+        },
+        {
+          "PropertyID": "5602",
+          "Name": "Max Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxMeasuredValue"
+        },
+        {
+          "PropertyID": "5603",
+          "Name": "Min Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinRangeValue"
+        },
+        {
+          "PropertyID": "5604",
+          "Name": "Max Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxRangeValue"
+        },
+        {
+          "PropertyID": "5605",
+          "Name": "Reset Min and Max Measured Values",
+          "DataType": "Opaque",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Execute",
+          "SerialisationName": "ResetMinandMaxMeasuredValues"
+        },
+        {
+          "PropertyID": "5821",
+          "Name": "Current Calibration",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "CurrentCalibration"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3328",
+      "Name": "Power",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3328",
+      "SerialisationName": "Power",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5700",
+          "Name": "Sensor Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "SensorValue"
+        },
+        {
+          "PropertyID": "5701",
+          "Name": "Sensor Units",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "SensorUnits"
+        },
+        {
+          "PropertyID": "5601",
+          "Name": "Min Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinMeasuredValue"
+        },
+        {
+          "PropertyID": "5602",
+          "Name": "Max Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxMeasuredValue"
+        },
+        {
+          "PropertyID": "5603",
+          "Name": "Min Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinRangeValue"
+        },
+        {
+          "PropertyID": "5604",
+          "Name": "Max Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxRangeValue"
+        },
+        {
+          "PropertyID": "5605",
+          "Name": "Reset Min and Max Measured Values",
+          "DataType": "Opaque",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Execute",
+          "SerialisationName": "ResetMinandMaxMeasuredValues"
+        },
+        {
+          "PropertyID": "5821",
+          "Name": "Current Calibration",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "CurrentCalibration"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3329",
+      "Name": "Power Factor",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3329",
+      "SerialisationName": "PowerFactor",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5700",
+          "Name": "Sensor Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "SensorValue"
+        },
+        {
+          "PropertyID": "5701",
+          "Name": "Sensor Units",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "SensorUnits"
+        },
+        {
+          "PropertyID": "5601",
+          "Name": "Min Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinMeasuredValue"
+        },
+        {
+          "PropertyID": "5602",
+          "Name": "Max Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxMeasuredValue"
+        },
+        {
+          "PropertyID": "5603",
+          "Name": "Min Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinRangeValue"
+        },
+        {
+          "PropertyID": "5604",
+          "Name": "Max Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxRangeValue"
+        },
+        {
+          "PropertyID": "5605",
+          "Name": "Reset Min and Max Measured Values",
+          "DataType": "Opaque",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Execute",
+          "SerialisationName": "ResetMinandMaxMeasuredValues"
+        },
+        {
+          "PropertyID": "5821",
+          "Name": "Current Calibration",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "CurrentCalibration"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3330",
+      "Name": "Distance",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3330",
+      "SerialisationName": "Distance",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5700",
+          "Name": "Sensor Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "SensorValue"
+        },
+        {
+          "PropertyID": "5701",
+          "Name": "Sensor Units",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "SensorUnits"
+        },
+        {
+          "PropertyID": "5601",
+          "Name": "Min Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinMeasuredValue"
+        },
+        {
+          "PropertyID": "5602",
+          "Name": "Max Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxMeasuredValue"
+        },
+        {
+          "PropertyID": "5603",
+          "Name": "Min Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinRangeValue"
+        },
+        {
+          "PropertyID": "5604",
+          "Name": "Max Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxRangeValue"
+        },
+        {
+          "PropertyID": "5605",
+          "Name": "Reset Min and Max Measured Values",
+          "DataType": "Opaque",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Execute",
+          "SerialisationName": "ResetMinandMaxMeasuredValues"
+        },
+        {
+          "PropertyID": "5821",
+          "Name": "Current Calibration",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "CurrentCalibration"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3331",
+      "Name": "Energy",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3331",
+      "SerialisationName": "Energy",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5805",
+          "Name": "Sensor Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "SensorValue"
+        },
+        {
+          "PropertyID": "5701",
+          "Name": "Units",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "Units"
+        },
+        {
+          "PropertyID": "5822",
+          "Name": "Reset Cumulative Energy",
+          "DataType": "NotSet",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Execute",
+          "SerialisationName": "ResetCumulativeEnergy"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3332",
+      "Name": "Direction",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3332",
+      "SerialisationName": "Direction",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5705",
+          "Name": "Compass Direction",
+          "DataType": "Float",
+          "DataTypeLength": 2,
+          "MinValue": "0",
+          "MaxValue": "360",
+          "Units": "deg",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "CompassDirection"
+        },
+        {
+          "PropertyID": "5601",
+          "Name": "Min Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinMeasuredValue"
+        },
+        {
+          "PropertyID": "5602",
+          "Name": "Max Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxMeasuredValue"
+        },
+        {
+          "PropertyID": "5605",
+          "Name": "Reset Min and Max Measured Values",
+          "DataType": "NotSet",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Execute",
+          "SerialisationName": "ResetMinandMaxMeasuredValues"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3333",
+      "Name": "Time",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3333",
+      "SerialisationName": "Time",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5506",
+          "Name": "Current Time",
+          "DataType": "DateTime",
+          "Units": "s",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "ReadWrite",
+          "SerialisationName": "CurrentTime"
+        },
+        {
+          "PropertyID": "5507",
+          "Name": "Fractional Time",
+          "DataType": "Float",
+          "DataTypeLength": 1,
+          "MinValue": "0",
+          "MaxValue": "1",
+          "Units": "seconds",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "FractionalTime"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3334",
+      "Name": "Gyrometer",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3334",
+      "SerialisationName": "Gyrometer",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5702",
+          "Name": "X Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "XValue"
+        },
+        {
+          "PropertyID": "5703",
+          "Name": "Y Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "YValue"
+        },
+        {
+          "PropertyID": "5704",
+          "Name": "Z Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "ZValue"
+        },
+        {
+          "PropertyID": "5701",
+          "Name": "Sensor Units",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "SensorUnits"
+        },
+        {
+          "PropertyID": "5508",
+          "Name": "Min X Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinXValue"
+        },
+        {
+          "PropertyID": "5509",
+          "Name": "Max X Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxXValue"
+        },
+        {
+          "PropertyID": "5510",
+          "Name": "Min Y Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinYValue"
+        },
+        {
+          "PropertyID": "5511",
+          "Name": "Max Y Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxYValue"
+        },
+        {
+          "PropertyID": "5512",
+          "Name": "Min Z Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinZValue"
+        },
+        {
+          "PropertyID": "5513",
+          "Name": "Max Z Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxZValue"
+        },
+        {
+          "PropertyID": "5605",
+          "Name": "Reset Min and Max Measured Values",
+          "DataType": "NotSet",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Execute",
+          "SerialisationName": "ResetMinandMaxMeasuredValues"
+        },
+        {
+          "PropertyID": "5603",
+          "Name": "Min Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinRangeValue"
+        },
+        {
+          "PropertyID": "5604",
+          "Name": "Max Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxRangeValue"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3335",
+      "Name": "Colour",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3335",
+      "SerialisationName": "Colour",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5706",
+          "Name": "Colour",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "ReadWrite",
+          "SerialisationName": "Colour"
+        },
+        {
+          "PropertyID": "5701",
+          "Name": "Units",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "Units"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3336",
+      "Name": "Location",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3336",
+      "SerialisationName": "Location",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5513",
+          "Name": "Latitude",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "Latitude"
+        },
+        {
+          "PropertyID": "5514",
+          "Name": "Longitude",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "Longitude"
+        },
+        {
+          "PropertyID": "5516",
+          "Name": "Uncertainty",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "Uncertainty"
+        },
+        {
+          "PropertyID": "5705",
+          "Name": "Compass Direction",
+          "DataType": "Float",
+          "DataTypeLength": 2,
+          "MinValue": "0",
+          "MaxValue": "360",
+          "Units": "Degrees",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "CompassDirection"
+        },
+        {
+          "PropertyID": "5517",
+          "Name": "Velocity",
+          "DataType": "Opaque",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "Velocity"
+        },
+        {
+          "PropertyID": "5518",
+          "Name": "Timestamp",
+          "DataType": "DateTime",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "Timestamp"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3337",
+      "Name": "Positioner",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3337",
+      "SerialisationName": "Positioner",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5536",
+          "Name": "Current Position",
+          "DataType": "Float",
+          "DataTypeLength": 1,
+          "MinValue": "0",
+          "MaxValue": "100",
+          "Units": "%",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "ReadWrite",
+          "SerialisationName": "CurrentPosition"
+        },
+        {
+          "PropertyID": "5537",
+          "Name": "Transition Time",
+          "DataType": "Float",
+          "Units": "s",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "TransitionTime"
+        },
+        {
+          "PropertyID": "5538",
+          "Name": "Remaining Time",
+          "DataType": "Float",
+          "Units": "s",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "RemainingTime"
+        },
+        {
+          "PropertyID": "5601",
+          "Name": "Min Measured Value",
+          "DataType": "Float",
+          "Units": "Same as Measured Value",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinMeasuredValue"
+        },
+        {
+          "PropertyID": "5602",
+          "Name": "Max Measured Value",
+          "DataType": "Float",
+          "Units": "Same as Measured Value",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxMeasuredValue"
+        },
+        {
+          "PropertyID": "5605",
+          "Name": "Reset Min and Max Measured Value",
+          "DataType": "NotSet",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Execute",
+          "SerialisationName": "ResetMinandMaxMeasuredValue"
+        },
+        {
+          "PropertyID": "5519",
+          "Name": "Min Limit",
+          "DataType": "Float",
+          "Units": "Same as Measured Value",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinLimit"
+        },
+        {
+          "PropertyID": "5520",
+          "Name": "Max Limit",
+          "DataType": "Float",
+          "Units": "Same as Measured Value",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxLimit"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3338",
+      "Name": "Buzzer",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3338",
+      "SerialisationName": "Buzzer",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5850",
+          "Name": "On/Off",
+          "DataType": "Boolean",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "ReadWrite",
+          "SerialisationName": "On"
+        },
+        {
+          "PropertyID": "5851",
+          "Name": "Dimmer",
+          "DataType": "Integer",
+          "DataTypeLength": 1,
+          "MinValue": "0",
+          "MaxValue": "100",
+          "Units": "%",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "Dimmer"
+        },
+        {
+          "PropertyID": "5521",
+          "Name": "Duration",
+          "DataType": "Float",
+          "Units": "s",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "Duration"
+        },
+        {
+          "PropertyID": "5525",
+          "Name": "Minimum Off-time",
+          "DataType": "Float",
+          "Units": "s",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "ReadWrite",
+          "SerialisationName": "MinimumOff-time"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3339",
+      "Name": "Audio Clip",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3339",
+      "SerialisationName": "AudioClip",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5522",
+          "Name": "Clip",
+          "DataType": "Opaque",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "ReadWrite",
+          "SerialisationName": "Clip"
+        },
+        {
+          "PropertyID": "5523",
+          "Name": "Trigger",
+          "DataType": "Opaque",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Execute",
+          "SerialisationName": "Trigger"
+        },
+        {
+          "PropertyID": "5851",
+          "Name": "Dimmer",
+          "DataType": "Integer",
+          "DataTypeLength": 1,
+          "MinValue": "0",
+          "MaxValue": "100",
+          "Units": "%",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "Dimmer"
+        },
+        {
+          "PropertyID": "5524",
+          "Name": "Duration",
+          "DataType": "Float",
+          "Units": "seconds",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "Duration"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3340",
+      "Name": "Timer",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3340",
+      "SerialisationName": "Timer",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5521",
+          "Name": "Duration",
+          "DataType": "Float",
+          "Units": "s",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "ReadWrite",
+          "SerialisationName": "Duration"
+        },
+        {
+          "PropertyID": "5538",
+          "Name": "Remaining Time",
+          "DataType": "Float",
+          "Units": "s",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "RemainingTime"
+        },
+        {
+          "PropertyID": "5525",
+          "Name": "Minimum Off-time",
+          "DataType": "Float",
+          "Units": "s",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "MinimumOff-time"
+        },
+        {
+          "PropertyID": "5523",
+          "Name": "Trigger",
+          "DataType": "Opaque",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Execute",
+          "SerialisationName": "Trigger"
+        },
+        {
+          "PropertyID": "5850",
+          "Name": "On/Off",
+          "DataType": "Boolean",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "On"
+        },
+        {
+          "PropertyID": "5501",
+          "Name": "Digital Input Counter",
+          "DataType": "Integer",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "DigitalInputCounter"
+        },
+        {
+          "PropertyID": "5544",
+          "Name": "Cumulative Time",
+          "DataType": "Float",
+          "Units": "s",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "CumulativeTime"
+        },
+        {
+          "PropertyID": "5543",
+          "Name": "Digital State",
+          "DataType": "Boolean",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "DigitalState"
+        },
+        {
+          "PropertyID": "5534",
+          "Name": "Counter",
+          "DataType": "Integer",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "Counter"
+        },
+        {
+          "PropertyID": "5526",
+          "Name": "Mode",
+          "DataType": "Integer",
+          "DataTypeLength": 1,
+          "MinValue": "0",
+          "MaxValue": "4",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "Mode"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3341",
+      "Name": "Addressable Text Display",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3341",
+      "SerialisationName": "AddressableTextDisplay",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5527",
+          "Name": "Text",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "ReadWrite",
+          "SerialisationName": "Text"
+        },
+        {
+          "PropertyID": "5528",
+          "Name": "X Coordinate",
+          "DataType": "Integer",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "XCoordinate"
+        },
+        {
+          "PropertyID": "5529",
+          "Name": "Y Coordinate",
+          "DataType": "Integer",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "YCoordinate"
+        },
+        {
+          "PropertyID": "5545",
+          "Name": "Max X Coordinate",
+          "DataType": "Integer",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxXCoordinate"
+        },
+        {
+          "PropertyID": "5546",
+          "Name": "Max Y Coordinate",
+          "DataType": "Integer",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxYCoordinate"
+        },
+        {
+          "PropertyID": "5530",
+          "Name": "Clear Display",
+          "DataType": "NotSet",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Execute",
+          "SerialisationName": "ClearDisplay"
+        },
+        {
+          "PropertyID": "5851",
+          "Name": "Dimmer",
+          "DataType": "Float",
+          "DataTypeLength": 1,
+          "MinValue": "0",
+          "MaxValue": "100",
+          "Units": "%",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "Dimmer"
+        },
+        {
+          "PropertyID": "5531",
+          "Name": "Contrast",
+          "DataType": "Float",
+          "DataTypeLength": 1,
+          "MinValue": "0",
+          "MaxValue": "100",
+          "Units": "%",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "Contrast"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3342",
+      "Name": "On/Off switch",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3342",
+      "SerialisationName": "OnOffswitch",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5500",
+          "Name": "Digital Input State",
+          "DataType": "Boolean",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "DigitalInputState"
+        },
+        {
+          "PropertyID": "5501",
+          "Name": "Digital Input State",
+          "DataType": "Integer",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "DigitalInputState"
+        },
+        {
+          "PropertyID": "5852",
+          "Name": "On Time",
+          "DataType": "Integer",
+          "Units": "s",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "OnTime"
+        },
+        {
+          "PropertyID": "5853",
+          "Name": "Off Time",
+          "DataType": "Integer",
+          "Units": "s",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "OffTime"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3343",
+      "Name": "Dimmer",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3343",
+      "SerialisationName": "Dimmer",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5851",
+          "Name": "Dimmer",
+          "DataType": "Float",
+          "DataTypeLength": 1,
+          "MinValue": "0",
+          "MaxValue": "100",
+          "Units": "%",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "ReadWrite",
+          "SerialisationName": "Dimmer"
+        },
+        {
+          "PropertyID": "5852",
+          "Name": "On Time",
+          "DataType": "Integer",
+          "Units": "s",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "OnTime"
+        },
+        {
+          "PropertyID": "5853",
+          "Name": "Off Time",
+          "DataType": "Integer",
+          "Units": "s",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "OffTime"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3344",
+      "Name": "Up/Down Control",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3344",
+      "SerialisationName": "UpDownControl",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5532",
+          "Name": "Increase input State",
+          "DataType": "Boolean",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "IncreaseinputState"
+        },
+        {
+          "PropertyID": "5533",
+          "Name": "Decrease Input State",
+          "DataType": "Boolean",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "DecreaseInputState"
+        },
+        {
+          "PropertyID": "5541",
+          "Name": "Up Counter",
+          "DataType": "Integer",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "UpCounter"
+        },
+        {
+          "PropertyID": "5542",
+          "Name": "Down Counter",
+          "DataType": "Integer",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "DownCounter"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3345",
+      "Name": "Multiple Axis Joystick",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3345",
+      "SerialisationName": "MultipleAxisJoystick",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5500",
+          "Name": "Digital Input State",
+          "DataType": "Boolean",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "DigitalInputState"
+        },
+        {
+          "PropertyID": "5501",
+          "Name": "Digital Input Counter",
+          "DataType": "Integer",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "DigitalInputCounter"
+        },
+        {
+          "PropertyID": "5702",
+          "Name": "X Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "XValue"
+        },
+        {
+          "PropertyID": "5703",
+          "Name": "Y Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "YValue"
+        },
+        {
+          "PropertyID": "5704",
+          "Name": "Z Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "ZValue"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3346",
+      "Name": "Rate",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3346",
+      "SerialisationName": "Rate",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5700",
+          "Name": "Sensor Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "SensorValue"
+        },
+        {
+          "PropertyID": "5701",
+          "Name": "Sensor Units",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "SensorUnits"
+        },
+        {
+          "PropertyID": "5601",
+          "Name": "Min Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinMeasuredValue"
+        },
+        {
+          "PropertyID": "5602",
+          "Name": "Max Measured Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxMeasuredValue"
+        },
+        {
+          "PropertyID": "5603",
+          "Name": "Min Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MinRangeValue"
+        },
+        {
+          "PropertyID": "5604",
+          "Name": "Max Range Value",
+          "DataType": "Float",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "MaxRangeValue"
+        },
+        {
+          "PropertyID": "5605",
+          "Name": "Reset Min and Max Measured Values",
+          "DataType": "Opaque",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Execute",
+          "SerialisationName": "ResetMinandMaxMeasuredValues"
+        },
+        {
+          "PropertyID": "5821",
+          "Name": "Current Calibration",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "CurrentCalibration"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3347",
+      "Name": "Push button",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3347",
+      "SerialisationName": "Pushbutton",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5500",
+          "Name": "Digital Input State",
+          "DataType": "Boolean",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "DigitalInputState"
+        },
+        {
+          "PropertyID": "5501",
+          "Name": "Digital Input State",
+          "DataType": "Integer",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "DigitalInputState"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        }
+      ]
+    },
+    {
+      "ObjectID": "3348",
+      "Name": "Multistate Selector",
+      "MIMEType": "application/vnd.oma.lwm2m.ext:3348",
+      "SerialisationName": "MultistateSelector",
+      "Singleton": false,
+      "Properties": [
+        {
+          "PropertyID": "5547",
+          "Name": "Multistate input",
+          "DataType": "Integer",
+          "IsCollection": false,
+          "IsMandatory": true,
+          "Access": "Read",
+          "SerialisationName": "Multistateinput"
+        },
+        {
+          "PropertyID": "5750",
+          "Name": "Application Type",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "ReadWrite",
+          "SerialisationName": "ApplicationType"
+        }
+      ]
+    }
+  ]
+}

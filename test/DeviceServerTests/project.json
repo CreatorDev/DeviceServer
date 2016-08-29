@@ -1,0 +1,31 @@
+{
+  "version": "1.0.0-*",
+  "description": "DeviceServer Functional Tests",
+  "authors": [ "Imagination Technologies" ],
+  "testRunner": "xunit",
+  "dependencies": {
+    "dotnet-test-xunit": "1.0.0-*",
+    "Imagination.WebService.Common": "1.0.3-*",
+    "Imagination.WebService.DeviceServer": "1.0.3-*",
+    "LWM2MTestClient": "1.0.0-*",
+    "Microsoft.AspNetCore.TestHost": "1.0.0-rc2-final",
+    "Microsoft.Extensions.Configuration.Binder": "1.0.0-rc2-final",
+    "System.Net.Http": "4.0.0.0",
+    "System.Text.RegularExpressions": "4.0.10",
+    "TestWebApplication": "1.0.0-*",
+    "xunit": "2.1.0",
+    "xunit.runner.console": "2.1.0"
+  },
+  "frameworks": {
+    "net451": {
+      "imports": "netstandard1.5",
+      "frameworkAssemblies": {
+      }
+    }
+  },
+  "buildOptions": {
+    "copyToOutput": {
+      "include": [ "xunit.runner.json", "testconfig.json" ]
+    }
+  }
+}

@@ -1,0 +1,30 @@
+﻿{
+  "version": "1.0.0-*",
+
+  "description": "Imagination.Service.Common Class Library",
+  "authors": [ "Imagination Technologies" ],
+  "packOptions": {
+    "tags": [ "" ],
+    "projectUrl": "",
+    "licenseUrl": ""
+  },
+
+  "frameworks": {
+    "net451": {
+      "imports": "netstandard1.5"
+    }
+  },
+
+  "dependencies": {
+    "Imagination.Common": "1.0.4-*",
+    "Imagination.Model": "1.0.3-*",
+    "Microsoft.AspNetCore.Http.Abstractions": "1.0.0-rc2-final",
+    "Microsoft.AspNetCore.Mvc.Formatters.Json": "1.0.0-rc2-final",
+    "Microsoft.AspNetCore.Mvc.Formatters.Xml": "1.0.0-rc2-final",
+    "Microsoft.IdentityModel.Tokens": "5.0.0-rc2-305061149",
+    "Newtonsoft.Json": "8.0.3",
+    "System.Buffers": "4.0.0-rc2-24027",
+    "System.IdentityModel.Tokens.Jwt": "5.0.0-rc2-305061149"
+  }
+
+}

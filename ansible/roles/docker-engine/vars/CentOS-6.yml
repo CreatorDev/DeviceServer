@@ -1,0 +1,9 @@
+---
+dependencies:
+  - ca-certificates
+
+# Valid Versions
+#docker-engine-1.7.1-1.el6.centos
+#docker-engine-1.7.0-1.el6.centos
+docker_engine_package_name: docker-engine-1.7.1-1.el6.centos
+docker_engine_user: centos

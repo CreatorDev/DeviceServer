@@ -1,0 +1,9 @@
+.gitignore
+.git
+.vs
+.vagrant
+src/*/project.lock.json
+src/*/bin
+src/*/obj
+src/artifacts
+artifacts

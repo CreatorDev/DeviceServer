@@ -1,0 +1,25 @@
+﻿{
+  "version": "1.0.5-*",
+  "description": "Imagination.LWM2M.Common Class Library",
+  "authors": [ "Imagination Technologies" ],
+  "packOptions": {
+    "tags": [ "" ],
+    "projectUrl": "",
+    "licenseUrl": ""
+  },
+
+  "frameworks": {
+    "net451": {
+      "imports": "netstandard1.5"
+    }
+  },
+
+  "dependencies": {
+    "CoAP": "1.1.0",
+    "DTLS.Net": "1.0.18",
+    "Imagination.Common": "1.0.4-*",
+    "Imagination.Service.Common": "1.0.0-*",
+    "Imagination.Model": "1.0.3-*"
+  }
+
+}

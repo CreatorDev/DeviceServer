@@ -1,0 +1,13 @@
+FROM registry-hh.flowcloud.systems:5000/flowm2m/dotnet-mono-base
+
+COPY . /app
+
+WORKDIR /app
+
+RUN dotnet restore && \
+  dotnet build --configuration=Debug src/* && \
+  dotnet build --configuration=Debug test/*
+
+
+
+

@@ -1,0 +1,40 @@
+{
+  "version": "1.0.3-*",
+  "description": "Imagination.LWM2M.Bootstrap Console Application",
+  "authors": [ "Imagination Technologies" ],
+  "packOptions": {
+    "tags": [ "" ],
+    "projectUrl": "",
+    "licenseUrl": ""
+  },
+
+  "buildOptions": {
+    "emitEntryPoint": true
+  },
+
+
+  "dependencies": {
+    "Imagination.Common": "1.0.4-*",
+    "Imagination.Model": "1.0.3-*",
+    "CoAP": "1.1.0",
+    "Imagination.LWM2M.Common": "1.0.5-*",
+    "Microsoft.Extensions.Configuration": "1.0.0-rc2-final",
+    "Microsoft.Extensions.Configuration.CommandLine": "1.0.0-rc2-final",
+    "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.0.0-rc2-final",
+    "Microsoft.Extensions.Configuration.FileExtensions": "1.0.0-rc2-final",
+    "Microsoft.Extensions.Configuration.Json": "1.0.0-rc2-final"
+  },
+
+  "commands": {
+    "Imagination.LWM2M.Bootstrap": "Imagination.LWM2M.Bootstrap"
+  },
+
+  "frameworks": {
+    "net451": {
+      "frameworkAssemblies": {
+        "System.ServiceModel": "4.0.0.0"
+      },
+      "imports": "netstandard1.5"
+    }
+  }
+}

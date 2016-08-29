@@ -1,0 +1,79 @@
+---
+- include_vars: "{{ item }}"
+  with_first_found:
+    - "../vars/{{ ansible_distribution }}-{{ ansible_distribution_version }}.yml"
+    - "../vars/{{ ansible_distribution }}.yml"
+    - "../vars/{{ ansible_os_family }}.yml"
+    - "../vars/default.yml"
+  when: dependencies is not defined or docker_engine_package_name is not defined
+
+- name: Install Dependencies
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ dependencies }}"
+
+# Add repositories as needed per OS
+- name: Add Docker yum repository
+  when: ansible_distribution == "CentOS"
+  yum_repository:
+    file: docker
+    name: Docker Repository
+    description: The yum docker repository
+    baseurl: 'https://yum.dockerproject.org/repo/main/centos/$releasever/'
+    enabled: yes
+    gpgcheck: yes
+    gpgkey: 'https://yum.dockerproject.org/gpg'
+
+- name: Add Docker GPG key
+  when: ansible_distribution == "Ubuntu"
+  apt_key:
+    id: "{{ docker_engine_gpg_key }}"
+    keyserver: "{{ docker_engine_key_server }}"
+    state: present
+
+- name: Add Docker apt repository
+  when: ansible_distribution == "Ubuntu"
+  apt_repository:
+    filename: docker
+    repo: "deb https://apt.dockerproject.org/repo ubuntu-{{ ansible_distribution_release }} main"
+    state: present
+
+- name: Purge old repo if it exists
+  package:
+    name: lxc-docker
+    state: absent
+
+- name: Install docker-engine
+  package:
+    name: "{{ docker_engine_package_name }}"
+    state: present
+
+- name: Enable Docker daemon
+  service:
+    name: docker
+    enabled: yes
+
+- name: Start Docker daemon
+  service:
+    name: docker
+    state: started
+
+# Oddity with potential client/server API mismatch if docker already installed
+- name: Restart Docker daemon
+  service:
+    name: docker
+    state: restarted
+
+- name: Create Docker group
+  group:
+    name: docker
+    state: present
+
+- name: Create User
+  user:
+    append: yes
+    comment: "Default user"
+    groups: docker
+    name: "{{ docker_engine_user }}"
+    state: present

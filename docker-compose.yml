@@ -1,0 +1,322 @@
+version: '2'
+# This creates a development environment for working with the device server
+# requirements:
+#   - docker-engine==1.10+
+#   - docker-compose==1.6+
+
+# ============================================================================
+# Data volumes
+volumes:
+  mongo: {}
+
+# ============================================================================
+# Network Settings
+networks:
+  DeviceServerNet:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.10.0.0/24
+          ip_range: 172.10.0.0/24
+          gateway: 172.10.0.254
+# ----------------------------------------------------------------------------
+
+services:
+# ============================================================================
+# Base docker images
+  dotnet-mono-base:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.base
+    command: /bin/true
+    image: 'registry-hh.flowcloud.systems:5000/flowm2m/dotnet-mono-base:latest'
+    networks:
+      - DeviceServerNet
+
+  deviceserver-build:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.DeviceServerBuild
+    command: /bin/true
+    image: 'registry-hh.flowcloud.systems:5000/flowm2m/deviceserver-build:latest'
+    networks:
+      - DeviceServerNet
+# ----------------------------------------------------------------------------
+
+# ============================================================================
+# Service Discovery and routing
+  consul:
+    command: agent -dev -bind=172.10.0.10 -client=0.0.0.0
+    image: 'registry-hh.flowcloud.systems:5000/flowops/dockerconsul:latest'
+    depends_on:
+      # force docker-compose to build base images first
+      - dotnet-mono-base
+      - deviceserver-build
+    dns:
+      - 127.0.0.1
+    dns_search: .
+    expose:
+      - "53"
+      - "53/udp"
+      - 8500
+    ports:
+      - "8500:8500"
+    networks:
+      DeviceServerNet:
+        ipv4_address: 172.10.0.10
+
+  registrator:
+    command: -internal consul://consul.service.consul:8500
+    depends_on:
+      - consul
+    image: gliderlabs/registrator:latest
+    dns:
+      - 172.10.0.10
+    dns_search: .
+    networks:
+      - DeviceServerNet
+    restart: always
+    volumes:
+      - "/var/run/docker.sock:/tmp/docker.sock"
+
+  fabio:
+    depends_on:
+      - consul
+      - registrator
+    dns: 172.10.0.10
+    dns_search: .
+    environment:
+      # Registrator required ENVs
+      SERVICE_8443_NAME: "webservice-deviceserver-fabio" # internal load balancer
+    image: registry-hh.flowcloud.systems:5000/flowops/dockerfabio:latest
+    networks:
+      - DeviceServerNet
+    ports:
+      - "80:9999"
+      - "443:8443"
+      - "81:9998"
+    restart: always
+    volumes:
+      - ./docker/fabio:/etc/fabio
+      # Make sure the certs to be mapped in are named cert.pem and key.pem
+      # Otherwise fabio will not work
+      - ./docker/ssl:/ssl
+# ----------------------------------------------------------------------------
+
+# ============================================================================
+# Required Services
+  mongo:
+    depends_on:
+      - fabio
+    dns: 172.10.0.10
+    dns_search: .
+    environment:
+      # Registrator required ENVs
+      SERVICE_27017_NAME: "mongo"
+      SERVICE_27017_CHECK_TCP: "true"
+      SERVICE_27017_CHECK_INTERVAL: "2s"
+    image: mongo
+    networks:
+      - DeviceServerNet
+    ports:
+      - "27017:27017"
+    restart: always
+    volumes:
+      - mongo:/data/db"
+
+  rabbitmq:
+    depends_on:
+      - fabio
+    dns: consul
+    environment:
+      # Registrator required ENVs
+      SERVICE_5672_NAME: "rabbitmq"
+      # RabbitMQ Settings
+      RABBITMQ_DEFAULT_USER: 'FlowAppUser'
+      RABBITMQ_DEFAULT_PASS: 'Fl0wAppUser!'
+    image: rabbitmq:management
+    networks:
+      - DeviceServerNet
+    restart: always
+# ----------------------------------------------------------------------------
+
+# ============================================================================
+# Device Server Microservices
+  service-subscription:
+    depends_on:
+      - fabio
+      - mongo
+      - rabbitmq
+      - service-changenotification
+      - webservice-deviceserver
+    dns: 172.10.0.10
+    dns_search: .
+    entrypoint: ["dotnet", "run", "--configuration=Release"]
+    environment:
+      # links
+      'ServiceConfiguration:MongoConnection': "mongodb://mongo.service.consul:27017"
+      'ServiceConfiguration:RabbitMQConnections:0:Uri': "amqp://rabbitmq.service.consul:5672"
+      'ServiceConfiguration:ChangeNotificationServers:0': "tcp://service-changenotification.service.consul:14050"
+      'ServiceConfiguration:Hostname': "lwm2m-bootstrap.service.consul"
+      'ServiceConfiguration:ExternalUri': "coaps://${DEVICESERVER_HOSTNAME}:15684"
+    env_file:
+      - ./appsettings.env
+    image: 'registry-hh.flowcloud.systems:5000/flowm2m/deviceserver-build:latest'
+    networks:
+      - DeviceServerNet
+    tty: true
+    working_dir: /app/src/Imagination.Service.Subscription
+    
+  service-webhook:
+    depends_on:
+      - fabio
+      - mongo
+      - rabbitmq
+      - service-changenotification
+      - webservice-deviceserver
+    dns: 172.10.0.10
+    dns_search: .
+    entrypoint: ["dotnet", "run", "--configuration=Release"]
+    environment:
+      # links
+      'ServiceConfiguration:MongoConnection': "mongodb://mongo.service.consul:27017"
+      'ServiceConfiguration:RabbitMQConnections:0:Uri': "amqp://rabbitmq.service.consul:5672"
+      'ServiceConfiguration:ChangeNotificationServers:0': "tcp://service-changenotification.service.consul:14050"
+      'ServiceConfiguration:Hostname': "lwm2m-bootstrap.service.consul"
+      'ServiceConfiguration:ExternalUri': "coaps://${DEVICESERVER_HOSTNAME}:15684"
+    env_file:
+      - ./appsettings.env
+    image: 'registry-hh.flowcloud.systems:5000/flowm2m/deviceserver-build:latest'
+    networks:
+      - DeviceServerNet
+    tty: true
+    working_dir: /app/src/Imagination.Service.Webhook
+
+  lwm2m-bootstrap:
+    depends_on:
+      - fabio
+      - mongo
+      - rabbitmq
+      - service-changenotification
+      - webservice-deviceserver
+    dns: 172.10.0.10
+    dns_search: .
+    entrypoint: ["dotnet", "run", "--configuration=Release"]
+    environment:
+      # Registrator required ENVs
+      SERVICE_15683_NAME: "lwm2m-bootstrap-15683/udp"
+      SERVICE_15684_NAME: "lwm2m-bootstrap-15684/udp"
+      # links
+      'ServiceConfiguration:MongoConnection': "mongodb://mongo.service.consul:27017"
+      'ServiceConfiguration:RabbitMQConnections:0:Uri': "amqp://rabbitmq.service.consul:5672"
+      'ServiceConfiguration:ChangeNotificationServers:0': "tcp://service-changenotification.service.consul:14050"
+      'ServiceConfiguration:Hostname': "lwm2m-bootstrap.service.consul"
+      'ServiceConfiguration:ExternalUri': "coaps://${DEVICESERVER_HOSTNAME}:15684"
+    env_file:
+      - ./appsettings.env
+    expose:
+     - 15683/udp
+     - 15684/udp
+    image: 'registry-hh.flowcloud.systems:5000/flowm2m/deviceserver-build:latest'
+    networks:
+      - DeviceServerNet
+    ports:
+      - "15683:15683/udp"
+      - "15684:15684/udp"
+    tty: true
+    working_dir: /app/src/Imagination.LWM2M.Bootstrap
+
+  lwm2m-server:
+    depends_on:
+      - fabio
+      - mongo
+      - rabbitmq
+      - service-changenotification
+      - lwm2m-bootstrap
+    dns: 172.10.0.10
+    dns_search: .
+    entrypoint: ["dotnet", "run", "--configuration=Release"]
+    environment:
+      # Registrator required ENVs
+      SERVICE_5683_NAME: "lwm2m-server-5683/udp"
+      SERVICE_5684_NAME: "lwm2m-server-5684/udp"
+      SERVICE_14080_NAME: "lwm2m-server"
+      SERVICE_14080_CHECK_TCP: "true"
+      SERVICE_14080_CHECK_INTERVAL: "2s"
+      # links
+      'ServiceConfiguration:MongoConnection': "mongodb://mongo.service.consul:27017"
+      'ServiceConfiguration:RabbitMQConnections:0:Uri': "amqp://rabbitmq.service.consul:5672"
+      'ServiceConfiguration:ChangeNotificationServers:0': "tcp://service-changenotification.service.consul:14050"
+      'ServiceConfiguration:Hostname': "lwm2m-server.service.consul"
+      'ServiceConfiguration:ExternalUri': "coaps://${DEVICESERVER_HOSTNAME}:5684"
+    env_file:
+      - ./appsettings.env
+    expose:
+     - 5683/udp
+     - 5684/udp
+     - 14080 
+    image: 'registry-hh.flowcloud.systems:5000/flowm2m/deviceserver-build:latest'
+    networks:
+      - DeviceServerNet
+    ports:
+      - "5683:5683/udp"
+      - "5684:5684/udp"
+    tty: true
+    working_dir: /app/src/Imagination.LWM2M.Server
+
+  service-changenotification:
+    depends_on:
+      - fabio
+      - mongo
+      - rabbitmq
+    dns: 172.10.0.10
+    dns_search: .
+    entrypoint: ["dotnet", "run", "--configuration=Release"]
+    environment:
+      # Registrator required ENVs
+      SERVICE_14050_NAME: "service-changenotification"
+      # DotNet blows out with the TCP check currently...
+      #SERVICE_14050_CHECK_TCP: "true"
+      #SERVICE_14050_CHECK_INTERVAL: "2s"
+    env_file:
+      - ./appsettings.env
+    expose:
+     - 14050
+    image: 'registry-hh.flowcloud.systems:5000/flowm2m/deviceserver-build:latest'
+    networks:
+      - DeviceServerNet
+    #restart: always
+    tty: true
+    working_dir: /app/src/Imagination.Service.ChangeNotification
+
+  webservice-deviceserver:
+    depends_on:
+      - mongo
+      - rabbitmq
+      - fabio
+      - service-changenotification
+    dns: 172.10.0.10
+    dns_search: .
+    entrypoint: ["dotnet", "run", "--configuration=Release"]
+    environment:
+      # Registrator required ENVs
+      SERVICE_8080_NAME: "webservice-deviceserver"
+      SERVICE_8080_TAGS: "urlprefix-webservice-deviceserver.service.consul/,urlprefix-/,urlprefix-${DEVICESERVER_HOSTNAME}/,urlprefix-webservice-deviceserver-fabio.service.consul/"
+      SERVICE_8080_CHECK_HTTP: "/"
+      SERVICE_8080_CHECK_INTERVAL: "2s"
+      # links
+      'ServiceConfiguration:MongoConnection': "mongodb://mongo.service.consul:27017"
+      'ServiceConfiguration:RabbitMQConnections:0:Uri': "amqp://rabbitmq.service.consul:5672"
+      'ServiceConfiguration:ChangeNotificationServers:0': "tcp://service-changenotification.service.consul:14050"
+      'ServiceConfiguration:ExternalUri': "https://${DEVICESERVER_HOSTNAME}"
+      lwm2m-server: lwm2m-server.service.consul
+    env_file:
+      - ./appsettings.env
+    expose:
+     - 8080
+    image: 'registry-hh.flowcloud.systems:5000/flowm2m/deviceserver-build:latest'
+    networks:
+      - DeviceServerNet
+    #restart: always
+    tty: true
+    working_dir: /app/src/Imagination.WebService.DeviceServer

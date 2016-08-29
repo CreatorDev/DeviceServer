@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Identities>
+  <Identity name="key1" key="EE87462BCF7A71147DF09B8B72305385" />
+  <Identity name="key2" key="07CFF749594381EA3C1CF2963885E74C" />
+  <Identity name="key3" key="1B7F4957384971D37E3EDCB235255965" />
+  <Identity name="key4" key="9A474623148D99752B658FB3E8D33310" /> 
+  <Identity name="key5" key="64883E912D3632517F1533D5573FB233" />
+  <Identity name="key6" key="82558F7B1639F2F6B0A7A53E7E55AFE4" />
+  <Identity name="key7" key="064D0A847D8C43E3C3850C89D7CEC29F" />
+  <Identity name="key8" key="3EFEA99537D55307E5E8C36DD4E71418" />
+  <Identity name="key9" key="71736158EA37EE7C6CE27E3160F8BD59" />
+  <Identity name="key0" key="C8AD8C45C3B9EA1701E148057589B920" />
+</Identities>

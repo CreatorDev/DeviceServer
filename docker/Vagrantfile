@@ -1,0 +1,41 @@
+$script = <<SCRIPT
+echo install docker
+apt-get update
+apt-get install -y apt-transport-https ca-certificates curl
+apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+echo "deb https://apt.dockerproject.org/repo ubuntu-xenial main" | sudo tee /etc/apt/sources.list.d/docker.list
+apt-get update
+apt-get install -y linux-image-extra-$(uname -r) docker-engine
+service docker start
+usermod -aG docker $(whoami)
+curl -s -L https://github.com/docker/compose/releases/download/1.7.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+chmod a+x /usr/local/bin/docker-compose
+SCRIPT
+
+Vagrant.configure(2) do |config|
+  config.vm.box = "bento/ubuntu-16.04"
+  
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 4048
+    v.cpus = 4
+  end
+
+  config.vm.synced_folder "../", "/mnt/DeviceServer"
+  
+  config.vm.provision "shell", inline: $script
+
+  # A host-only private network gives access to the containers without port forwarding
+  # The use of 'auto_config: false' is a workaround for:
+  # mesg: ttyname failed: Inappropriate ioctl for device
+  config.vm.network "private_network", ip: "10.0.0.51", auto_config: false
+  config.vm.provision "shell",
+    inline: 'echo "
+      auto enp0s8
+        iface enp0s8 inet manual
+        pre-up sleep 2" > /etc/network/interfaces.d/enp0s8.cfg; ifup enp0s8;ifconfig enp0s8 10.0.0.51 netmask 255.255.255.0'
+
+   
+   config.vm.provision "shell",
+     inline: 'cd /mnt/DeviceServer && docker-compose pull && docker-compose up --force-recreate -d'
+
+end

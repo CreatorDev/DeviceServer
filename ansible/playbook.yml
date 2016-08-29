@@ -1,0 +1,8 @@
+---
+- hosts: local
+  become: true
+  become_user: root
+  become_method: sudo
+  roles:
+    - docker-engine
+    - docker-compose

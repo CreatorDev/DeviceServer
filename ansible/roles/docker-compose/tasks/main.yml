@@ -1,0 +1,20 @@
+---
+- include_vars: "{{ item }}"
+  with_first_found:
+    - "../vars/{{ ansible_distribution }}-{{ ansible_distribution_version }}.yml"
+    - "../vars/{{ ansible_distribution }}.yml"
+    - "../vars/{{ ansible_os_family }}.yml"
+    - "../vars/default.yml"
+  when: dependencies is not defined or pip_package_name is not defined
+
+- name: Install Dependencies
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ dependencies }}"
+
+- name: Install docker-compose
+  pip:
+    name: "{{ docker_compose_package_name }}"
+    version: "{{ docker_compose_version }}"
+

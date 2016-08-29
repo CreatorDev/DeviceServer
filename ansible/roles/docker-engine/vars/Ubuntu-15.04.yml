@@ -1,0 +1,30 @@
+---
+dependencies:
+  - apt-transport-https
+  - ca-certificates
+  - apparmor
+  - linux-image-extra-{{ ansible_kernel }}
+
+# Valid Versions
+#docker-engine=1.11.2-0~wily
+#docker-engine=1.11.1-0~wily
+#docker-engine=1.11.0-0~wily
+#docker-engine=1.10.3-0~wily
+#docker-engine=1.10.1-0~wily
+#docker-engine=1.10.2-0~wily
+#docker-engine=1.10.0-0~wily
+#docker-engine=1.9.1-0~wily
+#docker-engine=1.9.0-0~wily
+#docker-engine=1.8.3-0~wily
+#docker-engine=1.8.2-0~wily
+#docker-engine=1.8.1-0~wily
+#docker-engine=1.8.0-0~wily
+#docker-engine=1.7.1-0~wily
+#docker-engine=1.6.2-0~wily
+#docker-engine=1.6.1-0~wily
+#docker-engine=1.6.0-0~wily
+#docker-engine=1.5.0-0~wily
+docker_engine_package_name: docker-engine=1.11.2-0~wily
+docker_engine_key_server: "hkp://p80.pool.sks-keyservers.net:80"
+docker_engine_gpg_key: "58118E89F3A912897C070ADBF76221572C52609D"
+docker_engine_user: ubuntu

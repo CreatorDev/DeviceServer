@@ -1,0 +1,22 @@
+---
+dependencies:
+  - ca-certificates
+
+# Valid Versions
+#docker-engine-1.11.2-1.el7.centos
+#docker-engine-1.11.1-1.el7.centos
+#docker-engine-1.11.0-1.el7.centos
+#docker-engine-1.10.3-1.el7.centos
+#docker-engine-1.10.2-1.el7.centos
+#docker-engine-1.10.1-1.el7.centos
+#docker-engine-1.10.0-1.el7.centos
+#docker-engine-1.9.1-1.el7.centos
+#docker-engine-1.9.0-1.el7.centos
+#docker-engine-1.8.3-1.el7.centos
+#docker-engine-1.8.2-1.el7.centos
+#docker-engine-1.8.1-1.el7.centos
+#docker-engine-1.8.0-1.el7.centos
+#docker-engine-1.7.1-1.el7.centos
+#docker-engine-1.7.0-1.el7.centos
+docker_engine_package_name: docker-engine-1.9.1-1.el7.centos
+docker_engine_user: centos

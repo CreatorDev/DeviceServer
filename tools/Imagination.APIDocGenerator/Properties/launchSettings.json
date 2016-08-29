@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Imagination.APIDocGenerator": {
+      "commandName": "Project",
+      "commandLineArgs": "output.raml"
+    }
+  }
+}

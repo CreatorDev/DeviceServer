@@ -1,0 +1,19 @@
+﻿{
+  "version": "1.0.3-*",
+  "description": "Imagination.Model Class Library",
+  "authors": [ "Imagination Technologies" ],
+  "packOptions": {
+    "tags": [ "" ],
+    "projectUrl": "",
+    "licenseUrl": ""
+  },
+  "frameworks": {
+    "net451": {
+        "imports": "netstandard1.5"
+    }
+  },
+  "dependencies": {
+    "Imagination.Common": "1.0.4-*"
+  }
+
+}
