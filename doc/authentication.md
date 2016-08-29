@@ -35,7 +35,7 @@ Having logged into the device server, the desired organisation name can be poste
 
 **POST** /accesskeys
 
-[AccessKeysController.AddAccessKey.Request]
+[]: [AccessKeysController.AddAccessKey.Request]
 ```json  
 {
     "Name":"My Organisation Name"
@@ -43,7 +43,7 @@ Having logged into the device server, the desired organisation name can be poste
 ```
 The device server returns a user level key and secret which is associated with the named organisation:  
 
-[AccessKeysController.AddAccessKey.Response]
+[]: [AccessKeysController.AddAccessKey.Response]
 ```json
 {
   "Links" : [
@@ -89,14 +89,14 @@ The access_token and refresh_token are obtained by submitting key and secret tok
 
 The key and secret tokens are passed as request body content:  
 
-[AuthenticationController.CreateAccessToken.Request]
+[]: [AuthenticationController.CreateAccessToken.Request]
 ```form
 grant_type=password&username={key}&password={secret}
 ```
 
 The device server returns...
 
-[AuthenticationController.CreateAccessToken.Response]
+[]: [AuthenticationController.CreateAccessToken.Response]
 ```json
 {
   "oAuthToken": {
@@ -132,7 +132,7 @@ In most cases the token type will be *Bearer*.
 
 Here's a typical response from the device server root API with the correct authentication, now containing information relevant to the authenticated client:  
 
-[APIEntryController.GetEntryPoint.Response]
+[]: [APIEntryController.GetEntryPoint.Response]
 ```json
 
 {
@@ -262,14 +262,14 @@ Generate an HTTP POST request to the *authenticate* link with a valid refresh_to
 
 Here's the POST request body content:
 
-[AuthenticationController.CreateAccessToken.Request.2]
+[]: [AuthenticationController.CreateAccessToken.Request.2]
 ```body
 grant_type=refresh_token&refresh_token={refresh_token}
 ``` 
 
 The device server returns:
 
-[AuthenticationController.CreateAccessToken.Response.2]
+[]: [AuthenticationController.CreateAccessToken.Response.2]
 ```json
 
 Response: 201 OK
