@@ -84,7 +84,7 @@ The above response is limited to a *versions* link, which offers information abo
 The access_token and refresh_token are obtained by submitting key and secret tokens via HTTP POST request to the *authenticate* link of the REST API. The device server will then return a valid access_token and a refresh_token...
 
 **POST** /oauth/token  
-**ContentType:** application/x-www-form-urlencoded  
+**Content-Type:** application/x-www-form-urlencoded  
 
 
 The key and secret tokens are passed as request body content:  
@@ -273,7 +273,7 @@ The device server returns:
 ```json
 
 Response: 201 OK
-ContentType: application/vnd.imgtec.com.oauthtoken+json
+Content-Type: application/vnd.imgtec.com.oauthtoken+json
  
 {
        "access_token":"2YotnFZFEjr1zCsicMWpAA",
