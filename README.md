@@ -52,7 +52,7 @@ We would like to thank all of our current [contributors](CONTRIBUTORS).
 
 ## Development tasks
 
-A list of ongoing development tasks can be seen [here]().
+A list of ongoing development tasks can be seen [here](tasks.md).
 
 
 ----
