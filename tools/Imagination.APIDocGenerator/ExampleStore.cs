@@ -35,7 +35,7 @@ namespace Imagination.Tools.APIDocGenerator
 {
     public class ExampleStore
     {
-        private static readonly Regex EXAMPLE_NAME_REGEX = new Regex(@"\[[a-zA-Z]+\.[a-zA-Z]+\.[a-zA-Z]+\]", RegexOptions.IgnoreCase);
+        private static readonly Regex EXAMPLE_NAME_REGEX = new Regex(@"\[\]: \[[a-zA-Z]+\.[a-zA-Z]+\.[a-zA-Z]+\]", RegexOptions.IgnoreCase);
         private const string FORM_EXAMPLE = "form";
         private Dictionary<string, Example> _Examples;
 
@@ -49,25 +49,7 @@ namespace Imagination.Tools.APIDocGenerator
                 ReadExamples(baseDirectory, filename, resourceTree);
             }
 
-            PrintExamples(baseDirectory);
-        }
-
-        private void PrintExamples(string baseDirectory)
-        {
             Console.WriteLine(string.Concat("Read ", _Examples.Count, " examples from ", baseDirectory, "."));
-            /*foreach (KeyValuePair<string, Example> pair in _Examples)
-            {
-                Console.WriteLine(pair.Key);
-                foreach (KeyValuePair<TDataExchangeFormat, string> content in pair.Value.Content)
-                {
-                    Console.WriteLine(content.Key.ToString(), ":");
-                    List<string> lines = SerialisationUtils.SplitLines(content.Value);
-                    foreach (string line in lines)
-                    {
-                        Console.WriteLine(string.Concat("\t", line));
-                    }
-                }
-            }*/
         }
 
         public void ReadExamples(string baseDirectory, string filename, ResourceNode resourceTree)
@@ -131,7 +113,9 @@ namespace Imagination.Tools.APIDocGenerator
                         if (matches.Count == 1)
                         {
                             string fullExampleName = matches[0].Value;
-                            string withoutSquareBrackets = fullExampleName.Substring(1, matches[0].Value.Length - 2);
+                            string prefix = "[]: [";
+                            string suffix = "]";
+                            string withoutSquareBrackets = fullExampleName.Substring(prefix.Length, matches[0].Value.Length - prefix.Length - suffix.Length);
                             string[] parts = withoutSquareBrackets.Split(new []{ '.' }, StringSplitOptions.RemoveEmptyEntries);
                             currentExample = new Example(filename.Substring(baseDirectory.Length), lastHeading, parts[0], parts[1], (TMessageType)Enum.Parse(typeof(TMessageType), parts[2]));
                             currentExampleBody = new StringBuilder();
