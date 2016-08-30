@@ -216,6 +216,7 @@ From the client list above we can now pick up the *objecttypes* link to see whic
 
 **GET** /clients/e-nAl7UHV0GkN9bkMLohfw/objecttypes  
 **Authorization:** Bearer 2YotnFZFEjr1zCsicMWpAA  
+**Accept:** application/vnd.imgtec.objecttypes+json  
  
 Response:
 
@@ -319,7 +320,38 @@ Response:
 
 ```
 
-The above response offers a list of object types associated with a particular client. Object types are identified by an ObjectTypeID and links are provided to retrieve the object definition and a list of any instances of the object. We'll take a look at object definitions before moving on to managing object instances.
+The above response offers a list of object types associated with a particular client.  
+
+Object types are identified by an ObjectTypeID and may be retrieved individually by stating the ObjectTypeID in the request:  
+
+**GET** /clients/e-nAl7UHV0GkN9bkMLohfw/objecttypes/qvwis3pLWECc9oe3tWW_ng  
+**Authorization:** Bearer 2YotnFZFEjr1zCsicMWpAA  
+**Accept:** application/vnd.imgtec.objecttype+json  
+
+[]: [ClientsController.GetObjectType.Response]
+```json
+{
+    "ObjectTypeID": "15",
+    "Links": [
+        {
+            "rel": "self",
+            "href": "http://localhost:8080/clients/oFIrQFrW8EWcZ5u7eGfrkw/objecttypes/qvwis3pLWECc9oe3tWW_ng"
+        },
+        {
+            "rel": "definition",
+            "href": "http://localhost:8080/objecttypes/definitions/qvwis3pLWECc9oe3tWW_ng",
+            "type": "application/vnd.imgtec.objectdefinition+json"
+        },
+        {
+            "rel": "instances",
+            "href": "http://localhost:8080/clients/oFIrQFrW8EWcZ5u7eGfrkw/objecttypes/qvwis3pLWECc9oe3tWW_ng/instances",
+            "type": "application/vnd.oma.lwm2m.devicecapability+json"
+        }
+    ]
+}
+```
+
+ You can see from the above that links are provided to retrieve the object definition and a list of any instances of the object. We'll take a look at object definitions before moving on to managing object instances.
 
 ### Managing object definitions
 Object definitions can be created, retrieved, updated and deleted using HTTP POST, GET, PUT and DELETE requests respectively.
