@@ -8,7 +8,7 @@
 # LWM2M device management server
 ----
 
-The device server is a LWM2M management server designed to be implemented alongside third party cloud services to integrate M2M capability into an IoT application. The device server exposes two secure interfaces; REST API/HTTPs and LWM2M/CoAP.  
+The device server is a LWM2M management server designed to be implemented alongside third party cloud services to integrate M2M capability into an IoT application. The device server exposes two secure interfaces; REST API/HTTPs and LWM2M/CoAP, and implements DTLS.  
 
 ![](doc/images/Awa_LWM2M_device_server_positioning_150dpi.png)
 
@@ -48,7 +48,9 @@ Find out more in the [contributor guide](CONTRIBUTING.md).
 
 ## Credits
 
-We would like to thank all of our current [contributors](CONTRIBUTORS). 
+We would like to thank all of our current [contributors](CONTRIBUTORS).  
+
+Special thanks to the [DTLS.Net](https://github.com/CreatorDev/DTLS.Net) team.  
 
 ## Development tasks
 
