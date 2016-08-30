@@ -21,6 +21,7 @@
 ***********************************************************************************************************************/
 
 using Imagination.Documentation;
+using Imagination.ServiceModels;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -59,6 +60,7 @@ namespace Imagination.Tools.APIDocGenerator
             TDataExchangeFormat currentExampleFormat = TDataExchangeFormat.None;
             bool inExample = false;
             string lastHeading = null;
+            bool generateXml = true;
             
             foreach (string line in File.ReadLines(filename))
             {
@@ -66,6 +68,10 @@ namespace Imagination.Tools.APIDocGenerator
                 if (trimmed.StartsWith("#"))
                 {
                     lastHeading = trimmed.Replace("#", "").Trim().Replace(" ", "-").ToLower();
+                }
+                else if (trimmed.StartsWith("[]: [!generateXml]"))
+                {
+                    generateXml = false;
                 }
                 if (trimmed.StartsWith("```"))
                 {
@@ -91,10 +97,12 @@ namespace Imagination.Tools.APIDocGenerator
                             else
                             {
                                 currentExample.Content.Add(TDataExchangeFormat.Json, currentExampleBody.ToString());
-                                currentExample.Content.Add(TDataExchangeFormat.Xml, JsonToXml(currentExample, resourceTree, currentExampleBody.ToString()));
+                                if (generateXml)
+                                    currentExample.Content.Add(TDataExchangeFormat.Xml, JsonToXml(currentExample, resourceTree, currentExampleBody.ToString()));
                             }
                             currentExample = null;
                             inExample = false;
+                            generateXml = true;
                         }
                     }
                 }
@@ -116,11 +124,29 @@ namespace Imagination.Tools.APIDocGenerator
                             string prefix = "[]: [";
                             string suffix = "]";
                             string withoutSquareBrackets = fullExampleName.Substring(prefix.Length, matches[0].Value.Length - prefix.Length - suffix.Length);
-                            string[] parts = withoutSquareBrackets.Split(new []{ '.' }, StringSplitOptions.RemoveEmptyEntries);
-                            currentExample = new Example(filename.Substring(baseDirectory.Length), lastHeading, parts[0], parts[1], (TMessageType)Enum.Parse(typeof(TMessageType), parts[2]));
+                            string[] parts = withoutSquareBrackets.Split(new[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
+                            string className = parts[0];
+                            string methodName = parts[1];
+                            string mimeType = trimmed.Substring(fullExampleName.Length);
+                            if (mimeType.Length > 0)
+                            {
+                                if (mimeType.StartsWith("[") && mimeType.EndsWith("]"))
+                                {
+                                    mimeType = mimeType.Substring(1, mimeType.Length - 2);
+                                }
+                                else
+                                {
+                                    SerialisationLog.Warning(string.Concat("Invalid mimetype on example tag: ", trimmed, " in ", filename));
+                                    mimeType = "";
+                                }
+                            }
+
+                            TMessageType messageType = (TMessageType)Enum.Parse(typeof(TMessageType), parts[2]);
+                            string exampleFilename = filename.Substring(baseDirectory.Length);
+                            currentExample = new Example(exampleFilename, lastHeading, className, methodName, messageType, mimeType);
                             currentExampleBody = new StringBuilder();
 
-                            string key = string.Concat(currentExample.ClassName, currentExample.MethodName, currentExample.ExampleType.ToString());
+                            string key = string.Concat(currentExample.ClassName, currentExample.MethodName, currentExample.ExampleType.ToString(), mimeType);
                             if (!_Examples.ContainsKey(key))
                             {
                                 _Examples.Add(key, currentExample);
@@ -148,11 +174,11 @@ namespace Imagination.Tools.APIDocGenerator
 
                 if (currentExample.ExampleType == TMessageType.Request)
                 {
-                    objectType = GetObjectType(attribute.RequestTypes);
+                    objectType = GetObjectType(attribute.RequestTypes, currentExample);
                 }
                 else
                 {
-                    objectType = GetObjectType(attribute.ResponseTypes);
+                    objectType = GetObjectType(attribute.ResponseTypes, currentExample);
                 }
 
                 if (objectType != null)
@@ -202,7 +228,7 @@ namespace Imagination.Tools.APIDocGenerator
             return xml;
         }
 
-        private Type GetObjectType(Type[] types)
+        private Type GetObjectType(Type[] types, Example example)
         {
             Type matchingType = null;
             if (types != null)
@@ -213,34 +239,57 @@ namespace Imagination.Tools.APIDocGenerator
                 }
                 else
                 {
-                    throw new NotSupportedException("There are multiple request or response types for this method!");
+                    if (example.MimeType != null)
+                    {
+                        foreach (Type type in types)
+                        {
+                            if (type.GetCustomAttributes<ContentTypeAttribute>().Any(a => a.ContentType.Equals(example.MimeType)))
+                            {
+                                matchingType = type;
+                                break;
+                            }
+                        }
+                    }
+                    
+                    if (matchingType == null)
+                    {
+                        SerialisationLog.Warning(string.Concat("There are multiple request or response types for ", example.ClassName, ".", example.MethodName, " ", example.ExampleType, " but no mimetype specified in the example tag in ", example.DocFilename));
+                    }
                 }
             }
             return matchingType;
         }
 
-        public Example GetExample(Type classType, MethodInfo methodInfo, TMessageType exampleType)
+        public Example GetExample(Type classType, MethodInfo methodInfo, TMessageType exampleType, string mimeType)
         {
-            Example example = null;
-            string key = string.Concat(classType.Name, methodInfo.Name, exampleType);
-            _Examples.TryGetValue(key, out example);
-            return example;
-        }
-
-        public Example GetExample(Type classType, MethodInfo method)
-        {
-            Example example = GetExample(classType, method, TMessageType.Request);
-            if (example == null)
+            if (mimeType.Contains("+"))
             {
-                example = GetExample(classType, method, TMessageType.Response);
+                mimeType = mimeType.Substring(0, mimeType.IndexOf('+'));
+            }
+            Example example = null;
+            string key = string.Concat(classType.Name, methodInfo.Name, exampleType, mimeType);
+            _Examples.TryGetValue(key, out example);
+            if (mimeType.Length > 0 && example == null)
+            {
+                example = GetExample(classType, methodInfo, exampleType, "");
             }
             return example;
         }
 
-        public string GetExampleContent(Type classType, MethodInfo methodInfo, TMessageType exampleType, TDataExchangeFormat dataExchangeFormat)
+        public Example GetExample(Type classType, MethodInfo method, string mimeType)
+        {
+            Example example = GetExample(classType, method, TMessageType.Request, mimeType);
+            if (example == null)
+            {
+                example = GetExample(classType, method, TMessageType.Response, mimeType);
+            }
+            return example;
+        }
+
+        public string GetExampleContent(Type classType, MethodInfo methodInfo, TMessageType exampleType, string mimeType, TDataExchangeFormat dataExchangeFormat)
         {
             string content = null;
-            Example example = GetExample(classType, methodInfo, exampleType);
+            Example example = GetExample(classType, methodInfo, exampleType, mimeType);
             if (example != null)
             {
                 example.Content.TryGetValue(dataExchangeFormat, out content);

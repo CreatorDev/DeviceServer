@@ -1,6 +1,7 @@
 # Further Examples
 
 []: [AccessKeysController.GetAccessKeys.Response]
+[]: [!generateXml]
 ```json
 {
     "PageInfo": {
@@ -74,6 +75,7 @@
 ```
 
 []: [AccessKeysController.GetAccessKey.Response]
+[]: [!generateXml]
 ```json
 {
     "Name": "Test Key",
@@ -240,6 +242,7 @@
 ```
 
 []: [SubscriptionsController.GetSubscriptions.Response]
+[]: [!generateXml]
 ```json
 {
     "PageInfo": {
@@ -373,6 +376,7 @@
 ```
 
 []: [SubscriptionsController.GetSubscription.Response]
+[]: [!generateXml]
 ```json
 {
     "SubscriptionType": "Observation",
@@ -416,7 +420,6 @@
 ```
 
 []: [IdentitiesController.GetIdentities.Response]
-
 ```json
 {
     "Links": [
@@ -447,6 +450,7 @@
 ```
 
 []: [IdentitiesController.GetPSKIdentities.Response]
+[]: [!generateXml]
 ```json
 {
     "PageInfo": {
@@ -496,6 +500,7 @@
 ```
 
 []: [ObjectDefinitionsController.AddObjectDefinitions.Request][application/vnd.imgtec.objectdefinition]
+[]: [!generateXml]
 ```json
 {
     "ObjectID": "50234",
@@ -531,6 +536,7 @@
 ```
 
 []: [ObjectDefinitionsController.AddObjectDefinitions.Request][application/vnd.imgtec.objectdefinitions]
+[]: [!generateXml]
 ```json
 {
   "Items": [
@@ -556,7 +562,6 @@
 }
 ```
 
-
 []: [ObjectDefinitionsController.AddObjectDefinitions.Response][application/vnd.imgtec.resourcescreated]
 ```json
 {
@@ -575,6 +580,7 @@
 ```
 
 []: [ObjectDefinitionsController.GetObjectDefinition.Response]
+[]: [!generateXml]
 ```json
 {
     "ObjectDefinitionID": "Nws4ePaG2U-CewSxDEZT0A",
@@ -613,6 +619,7 @@
 ```
 
 []: [ObjectDefinitionsController.UpdateObjectDefinition.Request]
+[]: [!generateXml]
 ```json
 {
     "ObjectID": "50234",

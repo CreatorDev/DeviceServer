@@ -30,17 +30,19 @@ namespace Imagination.Tools.APIDocGenerator
         public string DocHeading { get; private set; }
         public string ClassName { get; private set; }
         public string MethodName { get; private set; }
+        public string MimeType { get; private set; }
 
         public TMessageType ExampleType { get; private set; }
         public Dictionary<TDataExchangeFormat, string> Content { get; private set; }
 
-        public Example(string docFilename, string docHeading, string className, string methodName, TMessageType exampleType)
+        public Example(string docFilename, string docHeading, string className, string methodName, TMessageType exampleType, string mimeType)
         {
             DocFilename = docFilename;
             DocHeading = docHeading;
             ClassName = className;
             MethodName = methodName;
             ExampleType = exampleType;
+            MimeType = mimeType;
             Content = new Dictionary<TDataExchangeFormat, string>();
         }
     }

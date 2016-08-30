@@ -29,6 +29,11 @@ namespace Imagination.ServiceModels
 
         public long Value { get; set; }
 
+        public Metric()
+        {
+
+        }
+
         public Metric(Model.MetricBase metric)
         {
             Name = metric.Name;
