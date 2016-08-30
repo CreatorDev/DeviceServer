@@ -245,7 +245,7 @@ namespace Imagination.Controllers
                 for (int index = response.PageInfo.StartIndex; index < endIndex; index++)
                 {
                     ServiceModels.Subscription subscription = new ServiceModels.Subscription(subscriptions[index]);
-                    subscription.AddSelfLink(string.Concat(rootUrl, "/subscriptions/", StringUtils.GuidEncode(subscriptions[index].SubscriptionID)), true, true);
+                    subscription.AddSelfLink(string.Concat(Request.GetRootUrl(), "/subscriptions/", StringUtils.GuidEncode(subscriptions[index].SubscriptionID)), true, true);
                     response.Add(subscription);
                 }
                 result = Request.GetObjectResult(response);
