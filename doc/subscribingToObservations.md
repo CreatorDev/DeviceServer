@@ -91,6 +91,104 @@ A typical resource observation notification identifies the object instance, the 
 }
 ```
 
+## Retrieving a list of current subscriptions
+
+A list of the current subscriptions can be retrieved using an HTTP GET request:
+
+**GET** /subscriptions  
+**Authorization:** Bearer 2YotnFZFEjr1zCsicMWpAA  
+**Accept:** application/vnd.imgtec.subscriptions+json  
+
+Response:  
+[]: [SubscriptionsController.GetSubscriptions.Response]
+
+```json
+{
+    "PageInfo": {
+        "TotalCount": 2,
+        "ItemsCount": 2,
+        "StartIndex": 0
+    },
+    "Items": [
+        {
+            "SubscriptionType": "ClientConnected",
+            "Url": "https://webhook-url/notification",
+            "AcceptContentType": "application/json",
+            "Links": [
+                {
+                    "rel": "self",
+                    "href": "http://localhost:8080/subscriptions/R1X6PD8sMEiS8bfzmGk4dA"
+                },
+                {
+                    "rel": "update",
+                    "href": "http://localhost:8080/subscriptions/R1X6PD8sMEiS8bfzmGk4dA"
+                },
+                {
+                    "rel": "remove",
+                    "href": "http://localhost:8080/subscriptions/R1X6PD8sMEiS8bfzmGk4dA"
+                }
+            ]
+        },
+        {
+            "SubscriptionType": "Observation",
+            "Url": "http://localhost:8000",
+            "AcceptContentType": "application/xml",
+            "Links": [
+                {
+                    "rel": "self",
+                    "href": "http://localhost:8080/subscriptions/sqKdHWw5UUadn6t5KvrD_g"
+                },
+                {
+                    "rel": "update",
+                    "href": "http://localhost:8080/subscriptions/sqKdHWw5UUadn6t5KvrD_g"
+                },
+                {
+                    "rel": "remove",
+                    "href": "http://localhost:8080/subscriptions/sqKdHWw5UUadn6t5KvrD_g"
+                }
+            ]
+        }
+    ],
+    "Links": [
+        {
+            "rel": "add",
+            "href": "http://localhost:8080/subscriptions"
+        }
+    ]
+}
+```
+
+A single subscription can also be retrieved using the subscription identifier:  
+
+**GET** /subscriptions/sqKdHWw5UUadn6t5KvrD_g  
+**Authorization:** Bearer 2YotnFZFEjr1zCsicMWpAA  
+**Accept:** application/vnd.imgtec.subscription+json  
+
+Response:  
+[]: [SubscriptionsController.GetSubscription.Response]
+
+```json
+{
+    "SubscriptionType": "Observation",
+    "Url": "http://localhost:8000",
+    "AcceptContentType": "application/xml",
+    "Links": [
+        {
+            "rel": "self",
+            "href": "http://localhost:8080/subscriptions/sqKdHWw5UUadn6t5KvrD_g"
+        },
+        {
+            "rel": "update",
+            "href": "http://localhost:8080/subscriptions/sqKdHWw5UUadn6t5KvrD_g"
+        },
+        {
+            "rel": "remove",
+            "href": "http://localhost:8080/subscriptions/sqKdHWw5UUadn6t5KvrD_g"
+        }
+    ]
+}
+```
+
 ## Setting up an observation subscription  
 
 Observations are subscribed to by posting a notification request, MIME type *application/vnd.oma.lwm2m.subscription*, to the *subscriptions* link of the observed property. Subscriptions can be registered at several levels depending on the event that's being observed:  
