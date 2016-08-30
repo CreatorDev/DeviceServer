@@ -128,7 +128,9 @@ To retrieve a client metric, the clientID must be known. We'll start with a requ
 **Authorization:** Bearer 2YotnFZFEjr1zCsicMWpAA  
 **Accept:** application/vnd.imgtec.metrics+json  
 
-Response:  
+Response:
+
+[]: [MetricsController.GetMetrics.Response]
 ```json
 {
     "PageInfo": {
@@ -178,6 +180,8 @@ As with organisation metrics, client metrics can also be retrieved individually.
 **Accept:** application/vnd.imgtec.metric+json  
 
 Response:
+
+[]: [MetricsController.GetMetric.Response]
 ```json
 {
     "Name": "TransactionCount",

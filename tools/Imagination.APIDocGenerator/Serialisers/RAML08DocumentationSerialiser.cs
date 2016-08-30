@@ -195,7 +195,7 @@ namespace Imagination.Tools.APIDocGenerator.Serialisers
                 {
                     writer.WriteLine(string.Concat(GetIndentString(indent + 1), "description: |"));
                     writer.WriteLine(string.Concat(GetIndentString(indent + 2), attribute.Summary));
-                    Example example = exampleStore.GetExample(node.Class, node.Method);
+                    Example example = exampleStore.GetExample(node.Class, node.Method, "");
                     if (example != null)
                     {
                         writer.WriteLine(GetIndentString(indent + 2));
@@ -328,7 +328,7 @@ namespace Imagination.Tools.APIDocGenerator.Serialisers
             {
                 writer.WriteLine(string.Concat(GetIndentString(indent + 1), "schema: ", GetSchemaKey(bodyObjectType, dataExchangeFormat)));
             }
-            WriteExample(writer, exampleStore, node.Class, node.Method, messageType, dataExchangeFormat, indent + 1);
+            WriteExample(writer, exampleStore, node.Class, node.Method, contentType, messageType, dataExchangeFormat, indent + 1);
         }
 
         private object GetSchemaKey(Type objectType, TDataExchangeFormat dataExchangeFormat)
@@ -352,9 +352,9 @@ namespace Imagination.Tools.APIDocGenerator.Serialisers
             }
         }
 
-        private void WriteExample(StreamWriter writer, ExampleStore exampleStore, Type classType, MethodInfo methodInfo, TMessageType exampleType, TDataExchangeFormat dataExchangeFormat, int indent)
+        private void WriteExample(StreamWriter writer, ExampleStore exampleStore, Type classType, MethodInfo methodInfo, string contentType, TMessageType exampleType, TDataExchangeFormat dataExchangeFormat, int indent)
         {
-            string exampleText = exampleStore.GetExampleContent(classType, methodInfo, exampleType, dataExchangeFormat);
+            string exampleText = exampleStore.GetExampleContent(classType, methodInfo, exampleType, contentType, dataExchangeFormat);
             if (exampleText != null)
             {
                 writer.WriteLine(string.Concat(GetIndentString(indent), "example: |"));
