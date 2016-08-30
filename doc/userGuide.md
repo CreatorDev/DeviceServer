@@ -19,6 +19,7 @@ The device server acts as a bridge between CoAP/LWM2M on the device network side
 	* [Response optimisation](ResponseOptimization.md)  
 	* [Common operations](commonDeviceServerOperations.md)  
 	* [Subscribing to CoAP observations](subscribingToObservations.md)  
+	* [Metrics](metrics.md)  
 	* [Package versions](packageVersions.md)  
 
 ----

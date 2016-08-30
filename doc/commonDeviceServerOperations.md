@@ -168,12 +168,55 @@ Alternatively an XML content type can be specified with a *+xml* suffix on the *
 
 The above response contains a list of the currently connected clients with some paging information added in cases where the list is long enough to prove unwieldy. For more information on paging, see [*Introduction to the Device Server REST API*](DSRESTindex.md#paging-information).
 
+### Retrieving details of an individual client
+
+Clients may be retrieved individually by supplying the clientID:  
+
+**GET** /clients/e-nAl7UHV0GkN9bkMLohfw  
+**Authorization:** Bearer 2YotnFZFEjr1zCsicMWpAA  
+**Accept:** application/vnd.imgtec.com.client+json  
+
+Response:
+
+[]: [ClientsController.GetClient.Response]
+```json
+{
+    "Name": "testClient1",
+    "Links": [
+        {
+            "rel": "self",
+            "href": "http://localhost:8080/clients/e-nAl7UHV0GkN9bkMLohfw"
+        },
+        {
+            "rel": "remove",
+            "href": "http://localhost:8080/clients/e-nAl7UHV0GkN9bkMLohfw"
+        },
+        {
+            "rel": "objecttypes",
+            "href": "http://localhost:8080/clients/e-nAl7UHV0GkN9bkMLohfw/objecttypes",
+            "type": "application/vnd.imgtec.objecttypes+json"
+        },
+        {
+            "rel": "subscriptions",
+            "href": "http://localhost:8080/clients/e-nAl7UHV0GkN9bkMLohfw/subscriptions",
+            "type": "application/vnd.imgtec.subscriptions+json"
+        },
+        {
+            "rel": "metrics",
+            "href": "http://localhost:8080/clients/e-nAl7UHV0GkN9bkMLohfw/metrics",
+            "type": "application/vnd.imgtec.metrics+json"
+        }
+    ]
+}
+```
+
 ### Retrieving a list of a client's supported object types
 
 From the client list above we can now pick up the *objecttypes* link to see which object types are supported by (defined for) a particular client...
 
 **GET** /clients/e-nAl7UHV0GkN9bkMLohfw/objecttypes  
 **Authorization:** Bearer 2YotnFZFEjr1zCsicMWpAA  
+**Accept:** application/vnd.imgtec.objecttypes+json  
  
 Response:
 
@@ -277,7 +320,38 @@ Response:
 
 ```
 
-The above response offers a list of object types associated with a particular client. Object types are identified by an ObjectTypeID and links are provided to retrieve the object definition and a list of any instances of the object. We'll take a look at object definitions before moving on to managing object instances.
+The above response offers a list of object types associated with a particular client.  
+
+Object types are identified by an ObjectTypeID and may be retrieved individually by stating the ObjectTypeID in the request:  
+
+**GET** /clients/e-nAl7UHV0GkN9bkMLohfw/objecttypes/qvwis3pLWECc9oe3tWW_ng  
+**Authorization:** Bearer 2YotnFZFEjr1zCsicMWpAA  
+**Accept:** application/vnd.imgtec.objecttype+json  
+
+[]: [ClientsController.GetObjectType.Response]
+```json
+{
+    "ObjectTypeID": "15",
+    "Links": [
+        {
+            "rel": "self",
+            "href": "http://localhost:8080/clients/oFIrQFrW8EWcZ5u7eGfrkw/objecttypes/qvwis3pLWECc9oe3tWW_ng"
+        },
+        {
+            "rel": "definition",
+            "href": "http://localhost:8080/objecttypes/definitions/qvwis3pLWECc9oe3tWW_ng",
+            "type": "application/vnd.imgtec.objectdefinition+json"
+        },
+        {
+            "rel": "instances",
+            "href": "http://localhost:8080/clients/oFIrQFrW8EWcZ5u7eGfrkw/objecttypes/qvwis3pLWECc9oe3tWW_ng/instances",
+            "type": "application/vnd.oma.lwm2m.devicecapability+json"
+        }
+    ]
+}
+```
+
+ You can see from the above that links are provided to retrieve the object definition and a list of any instances of the object. We'll take a look at object definitions before moving on to managing object instances.
 
 ### Managing object definitions
 Object definitions can be created, retrieved, updated and deleted using HTTP POST, GET, PUT and DELETE requests respectively.
