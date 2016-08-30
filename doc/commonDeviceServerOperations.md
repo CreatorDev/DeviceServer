@@ -168,6 +168,48 @@ Alternatively an XML content type can be specified with a *+xml* suffix on the *
 
 The above response contains a list of the currently connected clients with some paging information added in cases where the list is long enough to prove unwieldy. For more information on paging, see [*Introduction to the Device Server REST API*](DSRESTindex.md#paging-information).
 
+### Retrieving details of an individual client
+
+Clients may be retrieved individually by supplying the clientID:  
+
+**GET** /clients/e-nAl7UHV0GkN9bkMLohfw  
+**Authorization:** Bearer 2YotnFZFEjr1zCsicMWpAA  
+**Accept:** application/vnd.imgtec.com.client+json  
+
+Response:
+
+[]: [ClientsController.GetClient.Response]
+```json
+{
+    "Name": "testClient1",
+    "Links": [
+        {
+            "rel": "self",
+            "href": "http://localhost:8080/clients/e-nAl7UHV0GkN9bkMLohfw"
+        },
+        {
+            "rel": "remove",
+            "href": "http://localhost:8080/clients/e-nAl7UHV0GkN9bkMLohfw"
+        },
+        {
+            "rel": "objecttypes",
+            "href": "http://localhost:8080/clients/e-nAl7UHV0GkN9bkMLohfw/objecttypes",
+            "type": "application/vnd.imgtec.objecttypes+json"
+        },
+        {
+            "rel": "subscriptions",
+            "href": "http://localhost:8080/clients/e-nAl7UHV0GkN9bkMLohfw/subscriptions",
+            "type": "application/vnd.imgtec.subscriptions+json"
+        },
+        {
+            "rel": "metrics",
+            "href": "http://localhost:8080/clients/e-nAl7UHV0GkN9bkMLohfw/metrics",
+            "type": "application/vnd.imgtec.metrics+json"
+        }
+    ]
+}
+```
+
 ### Retrieving a list of a client's supported object types
 
 From the client list above we can now pick up the *objecttypes* link to see which object types are supported by (defined for) a particular client...
