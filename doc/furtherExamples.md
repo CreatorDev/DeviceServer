@@ -1,6 +1,6 @@
+# Further Examples
 
-AccessKeysController.GetAccessKeys Json response []
------------------------------------------------------  
+[]: [AccessKeysController.GetAccessKeys.Response]
 ```json
 {
     "PageInfo": {
@@ -73,8 +73,7 @@ AccessKeysController.GetAccessKeys Json response []
 }
 ```
 
-AccessKeysController.GetAccessKey Json response []
------------------------------------------------------  
+[]: [AccessKeysController.GetAccessKey.Response]
 ```json
 {
     "Name": "Test Key",
@@ -96,16 +95,14 @@ AccessKeysController.GetAccessKey Json response []
 }
 ```
 
-AccessKeysController.UpdateAccessKey Json request []
------------------------------------------------------
+[]: [AccessKeysController.UpdateAccessKey.Request]
 ```json
 {
     "Name": "NewName"
 }
 ```
 
-ClientsController.GetClient Json response []
------------------------------------------------------
+[]: [ClientsController.GetClient.Response]
 ```json
 {
     "Name": "testROLANDB-HP",
@@ -137,8 +134,7 @@ ClientsController.GetClient Json response []
 }
 ```
 
-ClientsController.GetObjectType Json response []
------------------------------------------------------
+[]: [ClientsController.GetObjectType.Response]
 ```json
 {
     "ObjectTypeID": "15",
@@ -161,8 +157,7 @@ ClientsController.GetObjectType Json response []
 }
 ```
 
-ClientsController.AddObjectInstance Json response []
------------------------------------------------------
+[]: [ClientsController.AddObjectInstance.Response]
 ```json
 {
   "Links" : [
@@ -191,8 +186,7 @@ ClientsController.AddObjectInstance Json response []
 }
 ```
 
-ClientsController.GetObjectInstance Json response []
------------------------------------------------------
+[]: [ClientsController.GetObjectInstance.Response]
 ```json
 {
     "Links": [
@@ -245,8 +239,7 @@ ClientsController.GetObjectInstance Json response []
 }
 ```
 
-SubscriptionsController.GetSubscriptions Json response [] (/subscriptions)
------------------------------------------------------
+[]: [SubscriptionsController.GetSubscriptions.Response]
 ```json
 {
     "PageInfo": {
@@ -303,8 +296,7 @@ SubscriptionsController.GetSubscriptions Json response [] (/subscriptions)
 }
 ```
 
-SubscriptionsController.GetSubscriptions Json response [] (/clients/{clientID}/subscriptions)
------------------------------------------------------
+[]: [SubscriptionsController.GetSubscriptions.Response.2]
 ```json
 {
     "PageInfo": {
@@ -342,8 +334,7 @@ SubscriptionsController.GetSubscriptions Json response [] (/clients/{clientID}/s
 }
 ```
 
-SubscriptionsController.GetSubscriptions Json response [] (/clients/{clientID}/objectTypes/{objectTypeID}/instances/{instanceID}/subscriptions)
------------------------------------------------------
+[]: [SubscriptionsController.GetSubscriptions.Response.3]
 ```json
 {
     "PageInfo": {
@@ -381,8 +372,7 @@ SubscriptionsController.GetSubscriptions Json response [] (/clients/{clientID}/o
 }
 ```
 
-SubscriptionsController.GetSubscription Json response []
------------------------------------------------------
+[]: [SubscriptionsController.GetSubscription.Response]
 ```json
 {
     "SubscriptionType": "Observation",
@@ -405,8 +395,7 @@ SubscriptionsController.GetSubscription Json response []
 }
 ```
 
-ConfigurationController.GetConfiguration Json response []
------------------------------------------------------
+[]: [ConfigurationController.GetConfiguration.Response]
 ```json
 {
     "Links": [
@@ -419,16 +408,15 @@ ConfigurationController.GetConfiguration Json response []
 }
 ```
 
-ConfigurationController.GetBootstrapConfiguration Json response []
------------------------------------------------------
+[]: [ConfigurationController.GetBootstrapConfiguration.Response]
 ```json
 {
     "Url": "coaps://localhost:15684/"
 }
 ```
 
-IdentitiesController.GetIdentities Json response []
------------------------------------------------------
+[]: [IdentitiesController.GetIdentities.Response]
+
 ```json
 {
     "Links": [
@@ -446,8 +434,7 @@ IdentitiesController.GetIdentities Json response []
 }
 ```
 
-IdentitiesController.GetCertificates Json response []
------------------------------------------------------
+[]: [IdentitiesController.GetCertificates.Response]
 ```json
 {
     "Links": [
@@ -459,8 +446,7 @@ IdentitiesController.GetCertificates Json response []
 }
 ```
 
-IdentitiesController.GetPSKIdentities Json response []
------------------------------------------------------
+[]: [IdentitiesController.GetPSKIdentities.Response]
 ```json
 {
     "PageInfo": {
@@ -492,8 +478,7 @@ IdentitiesController.GetPSKIdentities Json response []
 }
 ```
 
-IdentitiesController.GetPSKIdentity Json response []
------------------------------------------------------
+[]: [IdentitiesController.GetPSKIdentity.Response]
 ```json
 {
     "Identity": "oFIrQFrW8EWcZ5u7eGfrkw",
@@ -510,136 +495,7 @@ IdentitiesController.GetPSKIdentity Json response []
 }
 ```
 
-MetricsController.GetMetrics Json response []   (/metrics)
------------------------------------------------------
-```json
-{
-    "PageInfo": {
-        "TotalCount": 4,
-        "ItemsCount": 4,
-        "StartIndex": 0
-    },
-    "Items": [
-        {
-            "Name": "BytesSent",
-            "Value": 7820,
-            "Links": [
-                {
-                    "rel": "self",
-                    "href": "http://localhost:8080/metrics/BytesSent"
-                }
-            ]
-        },
-        {
-            "Name": "TransactionCount",
-            "Value": 470,
-            "Links": [
-                {
-                    "rel": "self",
-                    "href": "http://localhost:8080/metrics/TransactionCount"
-                }
-            ]
-        },
-        {
-            "Name": "BytesReceived",
-            "Value": 22970,
-            "Links": [
-                {
-                    "rel": "self",
-                    "href": "http://localhost:8080/metrics/BytesReceived"
-                }
-            ]
-        },
-        {
-            "Name": "NumberClients",
-            "Value": 1,
-            "Links": [
-                {
-                    "rel": "self",
-                    "href": "http://localhost:8080/metrics/NumberClients"
-                }
-            ]
-        }
-    ]
-}
-```
-
-MetricsController.GetMetric Json response []   (/metrics/{metricID})
------------------------------------------------------
-```json
-{
-    "Name": "BytesSent",
-    "Value": 7820,
-    "Links": [
-        {
-            "rel": "self",
-            "href": "http://localhost:8080/metrics/BytesSent"
-        }
-    ]
-}
-```
-
-MetricsController.GetMetrics Json response  [] (/clients/{clientID}/metrics)
------------------------------------------------------
-```json
-{
-    "PageInfo": {
-        "TotalCount": 3,
-        "ItemsCount": 3,
-        "StartIndex": 0
-    },
-    "Items": [
-        {
-            "Name": "BytesSent",
-            "Value": 1334,
-            "Links": [
-                {
-                    "rel": "self",
-                    "href": "http://localhost:8080/clients/oFIrQFrW8EWcZ5u7eGfrkw/metrics/BytesSent"
-                }
-            ]
-        },
-        {
-            "Name": "TransactionCount",
-            "Value": 81,
-            "Links": [
-                {
-                    "rel": "self",
-                    "href": "http://localhost:8080/clients/oFIrQFrW8EWcZ5u7eGfrkw/metrics/TransactionCount"
-                }
-            ]
-        },
-        {
-            "Name": "BytesReceived",
-            "Value": 8336,
-            "Links": [
-                {
-                    "rel": "self",
-                    "href": "http://localhost:8080/clients/oFIrQFrW8EWcZ5u7eGfrkw/metrics/BytesReceived"
-                }
-            ]
-        }
-    ]
-}
-```
-
-MetricsController.GetMetric Json response [] (/clients/{clientID}/metrics/metricID)
------------------------------------------------------
-```json
-{
-    "Name": "TransactionCount",
-    "Value": 81,
-    "Links": [
-        {
-            "rel": "self",
-            "href": "http://localhost:8080/clients/oFIrQFrW8EWcZ5u7eGfrkw/metrics/TransactionCount"
-        }
-    ]
-}
-```
-
-ObjectDefinitionsController.AddObjectDefinitions Json request [] (Single definition)  NB application/vnd.imgtec.objectdefinition+json
------------------------------------------------------
+[]: [ObjectDefinitionsController.AddObjectDefinitions.Request][application/vnd.imgtec.objectdefinition]
 ```json
 {
     "ObjectID": "50234",
@@ -660,8 +516,8 @@ ObjectDefinitionsController.AddObjectDefinitions Json request [] (Single definit
     ]
 }
 ```
-ObjectDefinitionsController.AddObjectDefinitions Json response [] (Single definition)
------------------------------------------------------
+
+[]: [ObjectDefinitionsController.AddObjectDefinitions.Response][application/vnd.imgtec.resourcecreated]
 ```json
 {
     "ID": "Nws4ePaG2U-CewSxDEZT0A",
@@ -673,12 +529,52 @@ ObjectDefinitionsController.AddObjectDefinitions Json response [] (Single defini
     ]
 }
 ```
-ObjectDefinitionsController.AddObjectDefinitions Json request [] (collection)  NB application/vnd.imgtec.objectdefinitions+json
------------------------------------------------------
-ObjectDefinitionsController.AddObjectDefinitions Json response [] (collection)
------------------------------------------------------
-ObjectDefinitionsController.GetObjectDefinition Json response []
------------------------------------------------------
+
+[]: [ObjectDefinitionsController.AddObjectDefinitions.Request][application/vnd.imgtec.objectdefinitions]
+```json
+{
+  "Items": [
+    {
+      "ObjectID": "30397",
+      "Name": "Device123",
+      "MIMEType": "application/vnd.oma.lwm2m.device",
+      "SerialisationName": "Device123",
+      "Singleton": true,
+      "Properties": [
+        {
+          "PropertyID": "0",
+          "Name": "Manufacturer",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "Manufacturer"
+        }
+      ]
+    }
+  ]
+}
+```
+
+
+[]: [ObjectDefinitionsController.AddObjectDefinitions.Response][application/vnd.imgtec.resourcescreated]
+```json
+{
+    "Items": [
+        {
+            "ID": "srQux22fuEiyyjJd3Md30w",
+            "Links": [
+                {
+                    "rel": "self",
+                    "href": "http://localhost:8080/objecttypes/definitions/srQux22fuEiyyjJd3Md30w"
+                }
+            ]
+        }
+    ]
+}
+```
+
+[]: [ObjectDefinitionsController.GetObjectDefinition.Response]
 ```json
 {
     "ObjectDefinitionID": "Nws4ePaG2U-CewSxDEZT0A",
@@ -715,8 +611,8 @@ ObjectDefinitionsController.GetObjectDefinition Json response []
     ]
 }
 ```
-ObjectDefinitionsController.UpdateObjectDefinition Json request []
------------------------------------------------------
+
+[]: [ObjectDefinitionsController.UpdateObjectDefinition.Request]
 ```json
 {
     "ObjectID": "50234",
