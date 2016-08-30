@@ -104,61 +104,6 @@
 }
 ```
 
-[]: [ClientsController.GetClient.Response]
-```json
-{
-    "Name": "testROLANDB-HP",
-    "Links": [
-        {
-            "rel": "self",
-            "href": "http://localhost:8080/clients/oFIrQFrW8EWcZ5u7eGfrkw"
-        },
-        {
-            "rel": "remove",
-            "href": "http://localhost:8080/clients/oFIrQFrW8EWcZ5u7eGfrkw"
-        },
-        {
-            "rel": "objecttypes",
-            "href": "http://localhost:8080/clients/oFIrQFrW8EWcZ5u7eGfrkw/objecttypes",
-            "type": "application/vnd.imgtec.objecttypes+json"
-        },
-        {
-            "rel": "subscriptions",
-            "href": "http://localhost:8080/clients/oFIrQFrW8EWcZ5u7eGfrkw/subscriptions",
-            "type": "application/vnd.imgtec.subscriptions+json"
-        },
-        {
-            "rel": "metrics",
-            "href": "http://localhost:8080/clients/oFIrQFrW8EWcZ5u7eGfrkw/metrics",
-            "type": "application/vnd.imgtec.metrics+json"
-        }
-    ]
-}
-```
-
-[]: [ClientsController.GetObjectType.Response]
-```json
-{
-    "ObjectTypeID": "15",
-    "Links": [
-        {
-            "rel": "self",
-            "href": "http://localhost:8080/clients/oFIrQFrW8EWcZ5u7eGfrkw/objecttypes/qvwis3pLWECc9oe3tWW_ng"
-        },
-        {
-            "rel": "definition",
-            "href": "http://localhost:8080/objecttypes/definitions/qvwis3pLWECc9oe3tWW_ng",
-            "type": "application/vnd.imgtec.objectdefinition+json"
-        },
-        {
-            "rel": "instances",
-            "href": "http://localhost:8080/clients/oFIrQFrW8EWcZ5u7eGfrkw/objecttypes/qvwis3pLWECc9oe3tWW_ng/instances",
-            "type": "application/vnd.oma.lwm2m.devicecapability+json"
-        }
-    ]
-}
-```
-
 []: [ClientsController.AddObjectInstance.Response]
 ```json
 {
@@ -499,6 +444,7 @@
 }
 ```
 
+[]: [ObjectDefinitionsController.AddObjectDefinitions.Request]
 []: [ObjectDefinitionsController.AddObjectDefinitions.Request][application/vnd.imgtec.objectdefinition]
 []: [!generateXml]
 ```json
@@ -522,6 +468,7 @@
 }
 ```
 
+[]: [ObjectDefinitionsController.AddObjectDefinitions.Response]
 []: [ObjectDefinitionsController.AddObjectDefinitions.Response][application/vnd.imgtec.resourcecreated]
 ```json
 {
