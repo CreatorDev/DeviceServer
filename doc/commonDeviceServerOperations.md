@@ -540,8 +540,68 @@ To get a list of instances associated with a particular object definition we use
   }
 }
 ```
-You can see that the above instance of a *location* object holds real resource data and has its own instance identifier. Note that in this object instance there are several single instance  resources (InstanceID, Latitude, Longitude and Timestamp). Since the location object can have multiple instances it has been returned as an item in a list, even though there's only one current instance.
-In addition to the object information, the device server returns the links required to manage it, including *update* and *remove* options. The *subscriptions* link is of particular interest because it's used to support the CoAP *observe* function. This is covered later in *Subscribing to observations*.
+You can see that the above instance of a *location* object holds real resource data and has its own instance identifier. Note that in this object instance there are several single instance resources (InstanceID, Latitude, Longitude and Timestamp). Since the location object can have multiple instances it has been returned as an item in a list, even though there's only one current instance.
+In addition to the object information, the device server returns the links required to manage it, including *update* and *remove* options. The *subscriptions* link is of particular interest because it's used to support the CoAP *observe* function. This is covered later in *Subscribing to observations*.  
+
+An individual object instance may be retrieved by using its instance identifier:  
+
+**GET** /clients/{id}/objecttypes/{definitionid}/instances/0  
+**Authorization:** Bearer 2YotnFZFEjr1zCsicMWpAA  
+
+
+[]: [ClientsController.GetObjectInstance.Response]
+```json
+{
+    "Links": [
+        {
+            "rel": "self",
+            "href": "http://localhost:8080/clients/oFIrQFrW8EWcZ5u7eGfrkw/objecttypes/kjRafR5BX0CvBdcGWHWuiQ/instances/0"
+        },
+        {
+            "rel": "update",
+            "href": "http://localhost:8080/clients/oFIrQFrW8EWcZ5u7eGfrkw/objecttypes/kjRafR5BX0CvBdcGWHWuiQ/instances/0"
+        },
+        {
+            "rel": "remove",
+            "href": "http://localhost:8080/clients/oFIrQFrW8EWcZ5u7eGfrkw/objecttypes/kjRafR5BX0CvBdcGWHWuiQ/instances/0"
+        },
+        {
+            "rel": "subscriptions",
+            "href": "http://localhost:8080/clients/oFIrQFrW8EWcZ5u7eGfrkw/objecttypes/kjRafR5BX0CvBdcGWHWuiQ/instances/0/subscriptions"
+        },
+        {
+            "rel": "definition",
+            "href": "http://localhost:8080/objecttypes/definitions/kjRafR5BX0CvBdcGWHWuiQ"
+        }
+    ],
+    "InstanceID": "0",
+    "Manufacturer": "Open Mobile Alliance",
+    "ModelNumber": "Lightweight M2M Client",
+    "SerialNumber": "345000123",
+    "FirmwareVersion": "1.0",
+    "AvailablePowerSources": [
+        5,
+        1
+    ],
+    "PowerSourceVoltages": [
+        5000,
+        3800
+    ],
+    "PowerSourceCurrents": [
+        5000,
+        3800
+    ],
+    "BatteryLevel": 100,
+    "MemoryFree": 15,
+    "ErrorCodes": [
+        0
+    ],
+    "CurrentTime": "2016-07-07T03:43:20Z",
+    "UTCOffset": "+12:00",
+    "SupportedBindingandModes": "U"
+}
+```
+
 
 #### Creating object instances
 Because multiple instances of the above object are allowed we can create a new instance using an HTTP POST request with the new instance values in the request body content:
@@ -552,6 +612,7 @@ Because multiple instances of the above object are allowed we can create a new i
 
 Here's the body content:
 []: [ClientsController.AddObjectInstance.Request]
+
 ```json
 {
   "Locations": {
@@ -566,7 +627,38 @@ Here's the body content:
 }
 ```
 
-The device server returns a *resourceCreated* response containing a new instanceID.
+The device server returns a *application/vnd.imgtec.resourcecreated* response containing a new instanceID and management links:  
+
+[]: [ClientsController.AddObjectInstance.Response]
+
+```json
+{
+  "Links" : [
+        {
+            "rel": "self",
+            "href": "http://localhost:8080/clients/oFIrQFrW8EWcZ5u7eGfrkw/objecttypes/qvwis3pLWECc9oe3tWW_ng/instances/1"
+        },
+        {
+            "rel": "update",
+            "href": "http://localhost:8080/clients/oFIrQFrW8EWcZ5u7eGfrkw/objecttypes/qvwis3pLWECc9oe3tWW_ng/instances/1"
+        },
+        {
+            "rel": "remove",
+            "href": "http://localhost:8080/clients/oFIrQFrW8EWcZ5u7eGfrkw/objecttypes/qvwis3pLWECc9oe3tWW_ng/instances/1"
+        },
+        {
+            "rel": "subscriptions",
+            "href": "http://localhost:8080/clients/oFIrQFrW8EWcZ5u7eGfrkw/objecttypes/qvwis3pLWECc9oe3tWW_ng/instances/1/subscriptions"
+        },
+        {
+            "rel": "definition",
+            "href": "http://localhost:8080/objecttypes/definitions/qvwis3pLWECc9oe3tWW_ng"
+        }
+  ],
+  "ID":"5"
+}
+```
+
 
 #### Updating object instances
 To update an object instance use an HTTP PUT request with the updated instance values in the request body content. To do this you'll also need the target instanceID for the object that you're updating.
