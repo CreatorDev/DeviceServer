@@ -28,7 +28,7 @@ Here's an example of a GET request to retrieve the full set of organisation metr
 
 **GET** /metrics  
 **Authorization:** Bearer 2YotnFZFEjr1zCsicMWpAA  
-**Accept:** application/vnd.imgtec.metric+json  
+**Accept:** application/vnd.imgtec.metrics+json  
 
 Response:  
 ```json
@@ -126,7 +126,7 @@ To retrieve a client metric, the clientID must be known. We'll start with a requ
 
 **GET** /clients/{clientID}/metrics  
 **Authorization:** Bearer 2YotnFZFEjr1zCsicMWpAA  
-**Accept:** application/vnd.imgtec.metric+json  
+**Accept:** application/vnd.imgtec.metrics+json  
 
 Response:  
 ```json
