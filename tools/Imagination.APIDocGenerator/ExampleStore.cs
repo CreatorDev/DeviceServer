@@ -153,7 +153,7 @@ namespace Imagination.Tools.APIDocGenerator
                             }
                             else
                             {
-                                SerialisationLog.Error(string.Concat("An example already exists for ", currentExample.ClassName, ".", currentExample.MethodName, ".", currentExample.ExampleType.ToString()));
+                                SerialisationLog.Error(string.Concat("An example already exists for ", currentExample.ClassName, ".", currentExample.MethodName, ".", currentExample.ExampleType.ToString(), "files: [", currentExample.DocFilename, ", ", _Examples[key].DocFilename, "]"));
                             }
                         }
                     }
