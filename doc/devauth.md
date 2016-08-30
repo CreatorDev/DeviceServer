@@ -5,13 +5,125 @@
 
 ### Introduction
 
-Client connection to the device server CoAP interface requires that the client possesses a valid device certificate or a pre-shared key (PSK). 
+Client connection to the device server CoAP interface requires that the client possesses either a valid device certificate or a pre-shared key (PSK), collectively known as *identities*.  
 
-On installation the device server database will contain admin key and secret tokens used to generate access keys and device certificates which will be associated with your organisation.
+On installation the device server database will contain admin key and secret tokens used to generate access keys and device certificates which will be associated with your organisation.  
 
+### Retrieving a list of current identities
 
-### Obtaining device certificates
-Having logged into the device server using the admin credentials, certificates are acquired from the *identities/certificates* endpoint of the device server REST API.
+**GET** /identities  
+**Authorization:** Bearer 2YotnFZFEjr1zCsicMWpAA  
+**Accept:** application/vnd.imgtec.identities  
+
+Response:
+[]: [IdentitiesController.GetIdentities.Response]  
+
+```json
+{
+    "Links": [
+        {
+            "rel": "psk",
+            "href": "http://localhost:8080/identities/psk",
+            "type": "application/vnd.imgtec.pskidentities+json"
+        },
+        {
+            "rel": "certificate",
+            "href": "http://localhost:8080/identities/certificates",
+            "type": "application/vnd.imgtec.certificates+json"
+        }
+    ]
+}
+```
+
+From the above response all that's required is a further GET request to the relevant *psk* or *certificates* endpoint to retrieve a list of currently valid identities:  
+
+**GET** /identities/psk  
+**Authorization:** Bearer 2YotnFZFEjr1zCsicMWpAA  
+**Accept:** application/vnd.imgtec.pskidentities+json  
+
+Response:  
+[]: [IdentitiesController.GetPSKIdentities.Response]  
+
+```json
+{
+    "PageInfo": {
+        "TotalCount": 1,
+        "ItemsCount": 1,
+        "StartIndex": 0
+    },
+    "Items": [
+        {
+            "Identity": "oFIrQFrW8EWcZ5u7eGfrkw",
+            "Links": [
+                {
+                    "rel": "self",
+                    "href": "http://localhost:8080/identities/psk/oFIrQFrW8EWcZ5u7eGfrkw"
+                },
+                {
+                    "rel": "remove",
+                    "href": "http://localhost:8080/identities/psk/oFIrQFrW8EWcZ5u7eGfrkw"
+                }
+            ]
+        }
+    ],
+    "Links": [
+        {
+            "rel": "add",
+            "href": "http://localhost:8080/identities/psk"
+        }
+    ]
+}
+```
+
+Or,
+
+**GET** /identities/certificates  
+**Authorization:** Bearer 2YotnFZFEjr1zCsicMWpAA  
+**Accept:** application/vnd.imgtec.pskidentities+json  
+
+Response:  
+[]: [IdentitiesController.GetCertificates.Response]
+
+```json
+{
+    "Links": [
+        {
+            "rel": "add",
+            "href": "http://localhost:8080/identities/certificates"
+        }
+    ]
+}
+```
+
+A single identity can be retrieved by using its identifier:  
+
+**GET** /identities/psk/oFIrQFrW8EWcZ5u7eGfrkw  
+**Authorization:** Bearer 2YotnFZFEjr1zCsicMWpAA  
+**Accept:** application/vnd.imgtec.pskidentity+json  
+
+**Note** that the *Accept* MIME type is now *pskidentity* rather than *pskidentities*.  
+
+Response:  
+[]: [IdentitiesController.GetPSKIdentity.Response]
+
+```json
+{
+    "Identity": "oFIrQFrW8EWcZ5u7eGfrkw",
+    "Links": [
+        {
+            "rel": "self",
+            "href": "http://localhost:8080/identities/psk/oFIrQFrW8EWcZ5u7eGfrkw"
+        },
+        {
+            "rel": "remove",
+            "href": "http://localhost:8080/identities/psk/oFIrQFrW8EWcZ5u7eGfrkw"
+        }
+    ]
+}
+```
+
+### Obtaining a new device certificate
+Having logged into the device server using the admin credentials, certificates are acquired from the *identities/certificates* endpoint of the device server REST API using an HTTP POST request.
  
 No POST request content is required for this operation.
 
