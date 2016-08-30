@@ -1,5 +1,5 @@
 
-![](../img.png)  
+![](img.png)  
 ---
 
 # Device server metrics  
