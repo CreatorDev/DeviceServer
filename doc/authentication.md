@@ -57,9 +57,139 @@ The device server returns a user level key and secret which is associated with t
 
 **Note.** *Creating access keys as an admin level user will return keys for a new organisation. Creating keys as a logged in user will generate new keys for the organisation that the user is associated with.*
 
+## Managing access keys
+
+A list of current access keys can be retrieved using an HTTP GET request to the *accesskeys* endpoint:  
+
+**GET** /accesskeys  
+**Authorization:** Bearer 2YotnFZFEjr1zCsicMWpAA  
+**Accept:** application/vnd.imgtec.accesskeys+json  
+
+
+Response:  
+[]: [AccessKeysController.GetAccessKeys.Response]
+
+```json
+{
+    "PageInfo": {
+        "TotalCount": 3,
+        "ItemsCount": 3,
+        "StartIndex": 0
+    },
+    "Items": [
+        {
+            "Name": "Test Key 1",
+            "Key": "8H8QhabSbtoRy9GK776u_k7cj3J0ozy322LQQRrh_hsozgAAIQBxvylxmVuzrc90S8c2_Vf_oTrKFnM58oVoxA",
+            "Links": [
+                {
+                    "rel": "self",
+                    "href": "http://localhost:8080/accesskeys/8H8QhabSbtoRy9GK776u_k7cj3J0ozy322LQQRrh_hsozgAAIQBxvylxmVuzrc90S8c2_Vf_oTrKFnM58oVoxA"
+                },
+                {
+                    "rel": "update",
+                    "href": "http://localhost:8080/accesskeys/8H8QhabSbtoRy9GK776u_k7cj3J0ozy322LQQRrh_hsozgAAIQBxvylxmVuzrc90S8c2_Vf_oTrKFnM58oVoxA"
+                },
+                {
+                    "rel": "remove",
+                    "href": "http://localhost:8080/accesskeys/8H8QhabSbtoRy9GK776u_k7cj3J0ozy322LQQRrh_hsozgAAIQBxvylxmVuzrc90S8c2_Vf_oTrKFnM58oVoxA"
+                }
+            ]
+        },
+        {
+            "Name": "Test Key 2",
+            "Key": "HEiJlbaHV83boSqTHYOvJb0Zx4Vxd9fNZ-Fgxklobxw-7pFtbzFwKZBCC5DCFKoerf-R6pZGTaKLHMnVNpyd4A",
+            "Links": [
+                {
+                    "rel": "self",
+                    "href": "http://localhost:8080/accesskeys/HEiJlbaHV83boSqTHYOvJb0Zx4Vxd9fNZ-Fgxklobxw-7pFtbzFwKZBCC5DCFKoerf-R6pZGTaKLHMnVNpyd4A"
+                },
+                {
+                    "rel": "update",
+                    "href": "http://localhost:8080/accesskeys/HEiJlbaHV83boSqTHYOvJb0Zx4Vxd9fNZ-Fgxklobxw-7pFtbzFwKZBCC5DCFKoerf-R6pZGTaKLHMnVNpyd4A"
+                },
+                {
+                    "rel": "remove",
+                    "href": "http://localhost:8080/accesskeys/HEiJlbaHV83boSqTHYOvJb0Zx4Vxd9fNZ-Fgxklobxw-7pFtbzFwKZBCC5DCFKoerf-R6pZGTaKLHMnVNpyd4A"
+                }
+            ]
+        },
+        {
+            "Name": "Test Key 3",
+            "Key": "gy-5joCz-kHn1ZsPM04TmK8sg6aJ4Nm2jWzubl8VTyFpnv1d3YU4dmtEeUOk1ds9sP8WCTHEoXIUJafMkPwbPQ",
+            "Links": [
+                {
+                    "rel": "self",
+                    "href": "http://localhost:8080/accesskeys/gy-5joCz-kHn1ZsPM04TmK8sg6aJ4Nm2jWzubl8VTyFpnv1d3YU4dmtEeUOk1ds9sP8WCTHEoXIUJafMkPwbPQ"
+                },
+                {
+                    "rel": "update",
+                    "href": "http://localhost:8080/accesskeys/gy-5joCz-kHn1ZsPM04TmK8sg6aJ4Nm2jWzubl8VTyFpnv1d3YU4dmtEeUOk1ds9sP8WCTHEoXIUJafMkPwbPQ"
+                },
+                {
+                    "rel": "remove",
+                    "href": "http://localhost:8080/accesskeys/gy-5joCz-kHn1ZsPM04TmK8sg6aJ4Nm2jWzubl8VTyFpnv1d3YU4dmtEeUOk1ds9sP8WCTHEoXIUJafMkPwbPQ"
+                }
+            ]
+        }
+    ],
+    "Links": [
+        {
+            "rel": "add",
+            "href": "http://localhost:8080/accesskeys"
+        }
+    ]
+}
+```
+
+An individual access key can be retrieved using its *key* element content as an identifier. As a matter of best practice it is recommended that the *self* link is used:  
+
+**GET** /accesskeys/8H8QhabSbtoRy9GK776u_k7cj3J0ozy322LQQRrh_hsozgAAIQBxvylxmVuzrc90S8c2_Vf_oTrKFnM58oVoxA  
+**Authorization:** Bearer 2YotnFZFEjr1zCsicMWpAA  
+**Accept:** application/vnd.imgtec.accesskey+json  
+
+Response:  
+[]: [AccessKeysController.GetAccessKey.Response]
+
+```json
+{
+    "Name": "Test Key",
+    "Key": "8H8QhabSbtoRy9GK776u_k7cj3J0ozy322LQQRrh_hsozgAAIQBxvylxmVuzrc90S8c2_Vf_oTrKFnM58oVoxA",
+    "Links": [
+        {
+            "rel": "self",
+            "href": "http://localhost:8080/accesskeys/8H8QhabSbtoRy9GK776u_k7cj3J0ozy322LQQRrh_hsozgAAIQBxvylxmVuzrc90S8c2_Vf_oTrKFnM58oVoxA"
+        },
+        {
+            "rel": "update",
+            "href": "http://localhost:8080/accesskeys/8H8QhabSbtoRy9GK776u_k7cj3J0ozy322LQQRrh_hsozgAAIQBxvylxmVuzrc90S8c2_Vf_oTrKFnM58oVoxA"
+        },
+        {
+            "rel": "remove",
+            "href": "http://localhost:8080/accesskeys/8H8QhabSbtoRy9GK776u_k7cj3J0ozy322LQQRrh_hsozgAAIQBxvylxmVuzrc90S8c2_Vf_oTrKFnM58oVoxA"
+        }
+    ]
+}
+```
+
+Access key names can be updated via PUT request:  
+
+**PUT** /accesskeys/8H8QhabSbtoRy9GK776u_k7cj3J0ozy322LQQRrh_hsozgAAIQBxvylxmVuzrc90S8c2_Vf_oTrKFnM58oVoxA  
+**Authorization:** Bearer 2YotnFZFEjr1zCsicMWpAA  
+**Content-Type:** application/vnd.imgtec.accesskey+json
+
+POST request body content:  
+[]: [AccessKeysController.UpdateAccessKey.Request]
+
+```json
+{
+    "Name": "NewName"
+}
+```
+
 ## Access and refresh tokens  
 
 Here's a typical response from the device server root API which has been accessed *without authentication*:  
+
 ```json
 
 {
