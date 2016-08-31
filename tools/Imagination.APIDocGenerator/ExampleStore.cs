@@ -141,19 +141,26 @@ namespace Imagination.Tools.APIDocGenerator
                                 }
                             }
 
-                            TMessageType messageType = (TMessageType)Enum.Parse(typeof(TMessageType), parts[2]);
-                            string exampleFilename = filename.Substring(baseDirectory.Length);
-                            currentExample = new Example(exampleFilename, lastHeading, className, methodName, messageType, mimeType);
-                            currentExampleBody = new StringBuilder();
-
-                            string key = string.Concat(currentExample.ClassName, currentExample.MethodName, currentExample.ExampleType.ToString(), mimeType);
-                            if (!_Examples.ContainsKey(key))
+                            if (resourceTree.Find(className, methodName) != null)
                             {
-                                _Examples.Add(key, currentExample);
+                                TMessageType messageType = (TMessageType)Enum.Parse(typeof(TMessageType), parts[2]);
+                                string exampleFilename = filename.Substring(baseDirectory.Length);
+                                currentExample = new Example(exampleFilename, lastHeading, className, methodName, messageType, mimeType);
+                                currentExampleBody = new StringBuilder();
+
+                                string key = string.Concat(currentExample.ClassName, currentExample.MethodName, currentExample.ExampleType.ToString(), mimeType);
+                                if (!_Examples.ContainsKey(key))
+                                {
+                                    _Examples.Add(key, currentExample);
+                                }
+                                else
+                                {
+                                    SerialisationLog.Error(string.Concat("An example already exists for ", currentExample.ClassName, ".", currentExample.MethodName, ".", currentExample.ExampleType.ToString(), "files: [", currentExample.DocFilename, ", ", _Examples[key].DocFilename, "]"));
+                                }
                             }
                             else
                             {
-                                SerialisationLog.Error(string.Concat("An example already exists for ", currentExample.ClassName, ".", currentExample.MethodName, ".", currentExample.ExampleType.ToString(), "files: [", currentExample.DocFilename, ", ", _Examples[key].DocFilename, "]"));
+                                SerialisationLog.Error(string.Concat("The method ", className, ".", methodName, " in ", filename, " does not exist"));
                             }
                         }
                     }
@@ -165,7 +172,6 @@ namespace Imagination.Tools.APIDocGenerator
         {
             string xml = null;
             MethodInfo method = resourceTree.Find(currentExample.ClassName, currentExample.MethodName).Method;
-
             MethodDocumentationAttribute attribute = method.GetCustomAttributes<MethodDocumentationAttribute>().FirstOrDefault();
 
             if (attribute != null)
