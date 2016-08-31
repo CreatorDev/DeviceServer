@@ -366,16 +366,165 @@ An object is defined in terms of:
 
 
 #### Creating an object definition  
-When creating a new object definition the definition data must be structured as described by the appropriate MIME media type and passed in the body content of an HTTP POST request to the *objecttypes/definitions* link. The device server returns a *ResourceCreated* data type containing the new object definition id.
+When creating a new object definition the definition data must be structured as described by the appropriate MIME media type and passed in the body content of an HTTP POST request to the *objecttypes/definitions* link:
 
-We can retrieve an object definition by performing an HTTP GET request on the *objecttypes/definitions* link, stating the objecttype ID...  
+**POST** /objecttypes/definitions/  
+**Authorization:** Bearer 2YotnFZFEjr1zCsicMWpAA  
+**Content-Type:** application/vnd.imgtec.objectdefinition  
+
+[]: [ObjectDefinitionsController.AddObjectDefinition.Request]
+```json
+{
+    "ObjectID": "50234",
+    "Name": "DemoObject",
+    "MIMEType": "application/vnd.oma.lwm2m.ext.demoobject",
+    "SerialisationName": "DemoObject",
+    "Singleton": true,
+    "Properties": [
+        {
+            "PropertyID": "0",
+            "Name": "Button1State",
+            "DataType": "Integer",
+            "IsCollection": false,
+            "IsMandatory": false,
+            "Access": "Read",
+            "SerialisationName": "Button1State"
+        }
+    ]
+}
+```
+
+The device server returns a *ResourceCreated* data type containing the new object definition id:  
+
+[]: [ObjectDefinitionsController.AddObjectDefinition.Response]
+
+```json
+{
+    "ID": "Nws4ePaG2U-CewSxDEZT0A",
+    "Links": [
+        {
+            "rel": "self",
+            "href": "http://localhost:8080/objecttypes/definitions/Nws4ePaG2U-CewSxDEZT0A"
+        }
+    ]
+}
+```
+
+Several object definitions may be created at the same time using the *application/vnd.imgtec.objectdefinitions* content type, which presents the new definitions inside a list element called *Items*:  
+
+**POST** /objecttypes/definitions/  
+**Authorization:** Bearer 2YotnFZFEjr1zCsicMWpAA  
+**Content-Type:** application/vnd.imgtec.objectdefinitions  
+
+[]: [ObjectDefinitionsController.AddObjectDefinitions.Request]  
+
+```json
+{
+  "Items": [
+    {
+      "ObjectID": "30397",
+      "Name": "Device123",
+      "MIMEType": "application/vnd.oma.lwm2m.device",
+      "SerialisationName": "Device123",
+      "Singleton": true,
+      "Properties": [
+        {
+          "PropertyID": "0",
+          "Name": "Manufacturer",
+          "DataType": "String",
+          "IsCollection": false,
+          "IsMandatory": false,
+          "Access": "Read",
+          "SerialisationName": "Manufacturer"
+        }
+      ]
+    }
+  ]
+}
+```
+
+In this case the server returns a *ResourceCreated* data type containing identifiers for each new definition:
+
+[]: [ObjectDefinitionsController.AddObjectDefinitions.Response]
+
+```json
+{
+    "Items": [
+        {
+            "ID": "srQux22fuEiyyjJd3Md30w",
+            "Links": [
+                {
+                    "rel": "self",
+                    "href": "http://localhost:8080/objecttypes/definitions/srQux22fuEiyyjJd3Md30w"
+                }
+            ]
+        }
+    ]
+}
+```
+
+We can retrieve a list of object definitions by performing an HTTP GET request on the *objecttypes/definitions* link: 
+
+**GET** /objecttypes/definitions  
+**Authorization:** Bearer 2YotnFZFEjr1zCsicMWpAA  
+**Accept:** application/vnd.imgtec.objectdefinitions  
+
+Response:  
+
+[]: [ObjectDefinitionsController.GetObjectDefinitions.Response]
+
+```json
+{
+  "Items": [
+   {
+    "ObjectDefinitionID": "Nws4ePaG2U-CewSxDEZT0A",
+    "ObjectID": "50234",
+    "Name": "DemoObject",
+    "MIMEType": "application/vnd.oma.lwm2m.ext.demoobject",
+    "SerialisationName": "DemoObject",
+    "Singleton": true,
+    "Properties": [
+        {
+            "PropertyDefinitionID": "fI1EdLZHKEeFnnEVaX1KGQ",
+            "PropertyID": "0",
+            "Name": "Button1State",
+            "DataType": "Integer",
+            "IsCollection": false,
+            "IsMandatory": false,
+            "Access": "Read",
+            "SerialisationName": "Button1State"
+        }
+    ],
+    "Links": [
+        {
+            "rel": "self",
+            "href": "http://localhost:8080/objecttypes/definitions/Nws4ePaG2U-CewSxDEZT0A"
+        },
+        {
+            "rel": "update",
+            "href": "http://localhost:8080/objecttypes/definitions/Nws4ePaG2U-CewSxDEZT0A"
+        },
+        {
+            "rel": "remove",
+            "href": "http://localhost:8080/objecttypes/definitions/Nws4ePaG2U-CewSxDEZT0A"
+        }
+    ]
+   }
+  ]
+}
+```
+
+
+A single object definition can be retrieved by stating its *ObjectDefinitionID*:
+
 
 **GET** /objecttypes/definitions/O4a7t9cvhEuJzqR3mDIrpg  
 **Authorization:** Bearer 2YotnFZFEjr1zCsicMWpAA  
+**Accept:** application/vnd.imgtec.objectdefinition  
  
-Response:
+Response:  
+[]: [ObjectDefinitionsController.GetObjectDefinition.Response]
 
-[]: [ObjectDefinitionsController.GetObjectDefinitions.Response]
 ```json 
 
 {
@@ -486,7 +635,38 @@ Remember that while the above structure defines an object and its associated pro
 
 
 #### Updating an object definition  
-The update process is achieved by overwriting the original definition using an HTTP PUT request with the updated definition in the request body. An update request does not return any response content. Success is determined from the HTTP response code.
+The update process is achieved by overwriting the original definition using an HTTP PUT request with the updated definition in the request body:  
+
+**PUT** /objecttypes/definitions/srQux22fuEiyyjJd3Md30w  
+**Authorization:** Bearer 2YotnFZFEjr1zCsicMWpAA  
+**Content-Type:** application/vnd.imgtec.objectdefinition  
+
+Here's the request body content:  
+[]: [ObjectDefinitionsController.UpdateObjectDefinition.Request]
+
+```json
+{
+    "ObjectID": "50234",
+    "Name": "DemoObject1",
+    "MIMEType": "application/vnd.oma.lwm2m.ext.demoobject",
+    "SerialisationName": "DemoObject1",
+    "Singleton": true,
+    "Properties": [
+        {
+            "PropertyID": "0",
+            "Name": "Button1State",
+            "DataType": "Integer",
+            "IsCollection": false,
+            "IsMandatory": false,
+            "Access": "Read",
+            "SerialisationName": "Button1State"
+        }
+    ]
+}
+```
+
+
+An update request does not return any response content. Success, or otherwise, is determined from the HTTP response code.
 
 
 #### Deleting an object definition  
