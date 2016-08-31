@@ -5,7 +5,7 @@
 
 ### Introduction
 
-Client connection to the device server CoAP interface requires that the client possesses either a valid device certificate or a pre-shared key (PSK), collectively known as *identities*.  
+Client connection to the device server CoAP interface requires that the client possesses either a valid device certificate or a pre-shared key (PSK), collectively known as *identities*. Since a bootstrap service is used to allocate devices to a particular device server, a bootstrap URL will also be required. 
 
 On installation the device server database will contain admin key and secret tokens used to generate access keys and device certificates which will be associated with your organisation.  
 
@@ -211,7 +211,45 @@ In larger and more widespread applications there may be several geographically d
 
 ![](images/Bootstrap_server_process_descriptions_with_management_layer_100dpi.png)
 
-**Note.** The identity and server management layer is not provided with the Creator IoT framework.
+**Note.** The identity and server management layer is not provided with the Creator IoT framework.  
+
+### Obtaining a bootstrap server URL
+
+Device configuration information is retrieved by using an HTTP GET request to the *configuration* endpoint:  
+
+**GET** /configuration  
+**Authorization:** Bearer 2YotnFZFEjr1zCsicMWpAA  
+**Accept:** application/vnd.imgtec.configuration+json  
+
+[]: [ConfigurationController.GetConfiguration.Response]
+
+```json
+{
+    "Links": [
+        {
+            "rel": "bootstrap",
+            "href": "http://localhost:8080/configuration/bootstrap",
+            "type": "application/vnd.imgtec.bootstrap+json"
+        }
+    ]
+}
+```
+
+Now retrieve the bootstrap link and perform a further GET request:  
+
+**GET** /configuration/bootstrap  
+**Authorization:** Bearer 2YotnFZFEjr1zCsicMWpAA  
+**Accept:** application/vnd.imgtec.bootstrap+json  
+
+
+Response:  
+[]: [ConfigurationController.GetBootstrapConfiguration.Response]
+
+```json
+{
+    "Url": "coaps://localhost:15684/"
+}
+```
 
 ### Summary
 
