@@ -43,7 +43,7 @@ From the above response all that's required is a further GET request to the rele
 
 Response:  
 []: [IdentitiesController.GetPSKIdentities.Response]  
-
+[]: [!generateXml]
 ```json
 {
     "PageInfo": {
@@ -105,6 +105,7 @@ A single identity can be retrieved by using its identifier:
 
 Response:  
 []: [IdentitiesController.GetPSKIdentity.Response]
+[]: [!generateXml]
 
 ```json
 {

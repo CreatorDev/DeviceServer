@@ -68,7 +68,7 @@ A list of current access keys can be retrieved using an HTTP GET request to the 
 
 Response:  
 []: [AccessKeysController.GetAccessKeys.Response]
-
+[]: [!generateXml]
 ```json
 {
     "PageInfo": {

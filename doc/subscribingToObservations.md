@@ -101,6 +101,7 @@ A list of the current subscriptions can be retrieved using an HTTP GET request:
 
 Response:  
 []: [SubscriptionsController.GetSubscriptions.Response]
+[]: [!generateXml]
 
 ```json
 {
@@ -166,7 +167,7 @@ A single subscription can also be retrieved using the subscription identifier:
 
 Response:  
 []: [SubscriptionsController.GetSubscription.Response]
-
+[]: [!generateXml]
 ```json
 {
     "SubscriptionType": "Observation",

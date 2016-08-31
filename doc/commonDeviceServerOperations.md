@@ -372,7 +372,10 @@ When creating a new object definition the definition data must be structured as 
 **Authorization:** Bearer 2YotnFZFEjr1zCsicMWpAA  
 **Content-Type:** application/vnd.imgtec.objectdefinition  
 
-[]: [ObjectDefinitionsController.AddObjectDefinition.Request]
+[]: [ObjectDefinitionsController.AddObjectDefinitions.Request]
+[]: [ObjectDefinitionsController.AddObjectDefinitions.Request][application/vnd.imgtec.objectdefinition]
+[]: [!generateXml]
+
 ```json
 {
     "ObjectID": "50234",
@@ -396,7 +399,8 @@ When creating a new object definition the definition data must be structured as 
 
 The device server returns a *ResourceCreated* data type containing the new object definition id:  
 
-[]: [ObjectDefinitionsController.AddObjectDefinition.Response]
+[]: [ObjectDefinitionsController.AddObjectDefinitions.Response]
+[]: [ObjectDefinitionsController.AddObjectDefinitions.Response][application/vnd.imgtec.resourcecreated]
 
 ```json
 {
@@ -416,7 +420,8 @@ Several object definitions may be created at the same time using the *applicatio
 **Authorization:** Bearer 2YotnFZFEjr1zCsicMWpAA  
 **Content-Type:** application/vnd.imgtec.objectdefinitions  
 
-[]: [ObjectDefinitionsController.AddObjectDefinitions.Request]  
+[]: [ObjectDefinitionsController.AddObjectDefinitions.Request][application/vnd.imgtec.objectdefinitions]  
+[]: [!generateXml]
 
 ```json
 {
@@ -443,9 +448,9 @@ Several object definitions may be created at the same time using the *applicatio
 }
 ```
 
-In this case the server returns a *ResourceCreated* data type containing identifiers for each new definition:
+In this case the server returns a *ResourcesCreated* data type containing identifiers for each new definition:
 
-[]: [ObjectDefinitionsController.AddObjectDefinitions.Response]
+[]: [ObjectDefinitionsController.AddObjectDefinitions.Response][application/vnd.imgtec.resourcescreated]
 
 ```json
 {
@@ -472,6 +477,7 @@ We can retrieve a list of object definitions by performing an HTTP GET request o
 Response:  
 
 []: [ObjectDefinitionsController.GetObjectDefinitions.Response]
+[]: [!generateXml]
 
 ```json
 {
@@ -524,6 +530,7 @@ A single object definition can be retrieved by stating its *ObjectDefinitionID*:
  
 Response:  
 []: [ObjectDefinitionsController.GetObjectDefinition.Response]
+[]: [!generateXml]
 
 ```json 
 
@@ -643,6 +650,7 @@ The update process is achieved by overwriting the original definition using an H
 
 Here's the request body content:  
 []: [ObjectDefinitionsController.UpdateObjectDefinition.Request]
+[]: [!generateXml]
 
 ```json
 {
@@ -730,6 +738,7 @@ An individual object instance may be retrieved by using its instance identifier:
 
 
 []: [ClientsController.GetObjectInstance.Response]
+[]: [!generateXml]
 ```json
 {
     "Links": [
