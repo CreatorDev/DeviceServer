@@ -29,7 +29,7 @@ services:
       context: .
       dockerfile: docker/Dockerfile.base
     command: /bin/true
-    image: 'registry-hh.flowcloud.systems:5000/flowm2m/dotnet-mono-base:latest'
+    image: 'flowm2m/dotnet-mono-base:latest'
     networks:
       - DeviceServerNet
 
@@ -38,7 +38,7 @@ services:
       context: .
       dockerfile: docker/Dockerfile.DeviceServerBuild
     command: /bin/true
-    image: 'registry-hh.flowcloud.systems:5000/flowm2m/deviceserver-build:latest'
+    image: 'flowm2m/deviceserver-build:latest'
     networks:
       - DeviceServerNet
 # ----------------------------------------------------------------------------
@@ -47,7 +47,7 @@ services:
 # Service Discovery and routing
   consul:
     command: agent -dev -bind=172.10.0.10 -client=0.0.0.0
-    image: 'registry-hh.flowcloud.systems:5000/flowops/dockerconsul:latest'
+    image: 'flowops/dockerconsul:latest'
     depends_on:
       # force docker-compose to build base images first
       - dotnet-mono-base
@@ -88,7 +88,7 @@ services:
     environment:
       # Registrator required ENVs
       SERVICE_8443_NAME: "webservice-deviceserver-fabio" # internal load balancer
-    image: registry-hh.flowcloud.systems:5000/flowops/dockerfabio:latest
+    image: 'flowops/dockerfabio:latest'
     networks:
       - DeviceServerNet
     ports:
@@ -161,7 +161,7 @@ services:
       'ServiceConfiguration:ExternalUri': "coaps://${DEVICESERVER_HOSTNAME}:15684"
     env_file:
       - ./appsettings.env
-    image: 'registry-hh.flowcloud.systems:5000/flowm2m/deviceserver-build:latest'
+    image: 'flowm2m/deviceserver-build:latest'
     networks:
       - DeviceServerNet
     tty: true
@@ -186,7 +186,7 @@ services:
       'ServiceConfiguration:ExternalUri': "coaps://${DEVICESERVER_HOSTNAME}:15684"
     env_file:
       - ./appsettings.env
-    image: 'registry-hh.flowcloud.systems:5000/flowm2m/deviceserver-build:latest'
+    image: 'flowm2m/deviceserver-build:latest'
     networks:
       - DeviceServerNet
     tty: true
@@ -217,7 +217,7 @@ services:
     expose:
      - 15683/udp
      - 15684/udp
-    image: 'registry-hh.flowcloud.systems:5000/flowm2m/deviceserver-build:latest'
+    image: 'flowm2m/deviceserver-build:latest'
     networks:
       - DeviceServerNet
     ports:
@@ -255,7 +255,7 @@ services:
      - 5683/udp
      - 5684/udp
      - 14080 
-    image: 'registry-hh.flowcloud.systems:5000/flowm2m/deviceserver-build:latest'
+    image: 'flowm2m/deviceserver-build:latest'
     networks:
       - DeviceServerNet
     ports:
@@ -282,7 +282,7 @@ services:
       - ./appsettings.env
     expose:
      - 14050
-    image: 'registry-hh.flowcloud.systems:5000/flowm2m/deviceserver-build:latest'
+    image: 'flowm2m/deviceserver-build:latest'
     networks:
       - DeviceServerNet
     #restart: always
@@ -314,7 +314,7 @@ services:
       - ./appsettings.env
     expose:
      - 8080
-    image: 'registry-hh.flowcloud.systems:5000/flowm2m/deviceserver-build:latest'
+    image: 'flowm2m/deviceserver-build:latest'
     networks:
       - DeviceServerNet
     #restart: always
