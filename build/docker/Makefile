@@ -15,7 +15,18 @@ IMAGES= \
 
 all: build
 
+define HEADER
+	@echo
+	@echo "*********************************************************************"
+	@echo "*"
+	@echo "*   $(1)"
+	@echo "*"
+	@echo "*********************************************************************"
+	@echo
+endef
+
 base:
+	$(call HEADER,MAKE alpine-mono
 	$(MAKE) -C alpine-mono
 
 define BUILD_IMAGE
@@ -24,19 +35,23 @@ define BUILD_IMAGE
 
 build: build-$(1)
 build-$(1):
+	$(call HEADER,BUILD $(1))
 	cd ..; docker build -f docker/$(1)/Dockerfile -t $${PREFIX}/$(1):$${IMAGE_VERSION} --rm .
 
 clean: clean-$(1)
 clean-$(1):
+	$(call HEADER,CLEAN $(1))
 	docker rmi $${PREFIX}/$(1):$${IMAGE_VERSION} || echo "Not found"
 
 tag_latest: tag_latest-$(1)
 tag_latest-$(1):
+	$(call HEADER,TAG $(1))
 	@if [ "$${IMAGE_VERSION}" = "latest" ]; then echo '\nPlease set IMAGE_VERSION\n' && false; fi
 	docker tag $${PREFIX}/$(1):$${IMAGE_VERSION} $${PREFIX}/$(1):latest )
 
 release: release-$(1)
 release-$(1):
+	$(call HEADER,RELEASE $(1))
 	docker push $${PREFIX}/$(1):$${IMAGE_VERSION} && docker push $${PREFIX}/$(1):latest
 
 endef

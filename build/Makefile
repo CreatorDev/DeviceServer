@@ -12,11 +12,23 @@ BUILD_NUMBER?=1
 
 all: clean build_base nuget_pack service_publish docker
 
+define HEADER
+	@echo
+	@echo "*********************************************************************"
+	@echo "*"
+	@echo "*   $(1)"
+	@echo "*"
+	@echo "*********************************************************************"
+	@echo
+endef
+
 build_base:
+	$(call HEADER,$@)
 	docker build \
 	-t '$(SOURCE_IMAGE):latest' docker/dotnet-mono-base
 
 build_source:
+	$(call HEADER,$@)
 	docker run --rm \
 	  -v $(dir $(CURDIR)):/app \
 	  -w /app \
@@ -24,6 +36,7 @@ build_source:
 	  bash build/scripts/build_source.sh
 
 nuget_pack: build_source
+	$(call HEADER,$@)
 	docker run --rm \
 	  -v $(dir $(CURDIR)):/app \
 	  -v $(CURDIR)/scripts:/scripts \
@@ -35,6 +48,7 @@ nuget_pack: build_source
 	  bash /scripts/nuget_pack.sh
 
 nuget_push:
+	$(call HEADER,$@)
 	docker run --rm \
 	  -v $(dir $(CURDIR)):/app \
 	  -v $(CURDIR)/scripts:/scripts \
@@ -46,6 +60,7 @@ nuget_push:
 	  bash /scripts/nuget_push.sh
 
 service_publish: build_source
+	$(call HEADER,$@)
 	docker run --rm \
 	  -v $(dir $(CURDIR)):/app \
 	  -v $(CURDIR)/scripts:/scripts \
@@ -57,9 +72,11 @@ service_publish: build_source
 	  bash /scripts/service_publish.sh
 
 docker:
+	$(call HEADER,$@)
 	# be sure to check docker/Makefile input variables
 	$(MAKE) -C docker
 
 clean:
+	$(call HEADER,$@)
 	rm -frv output/
 
