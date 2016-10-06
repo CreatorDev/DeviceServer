@@ -1,4 +1,4 @@
-FROM creatordev/alpine-mono:4.2.2.30-r1
+FROM creatordev/alpine-mono
 
 COPY output/publish/Imagination.LWM2M.Server /app/
 

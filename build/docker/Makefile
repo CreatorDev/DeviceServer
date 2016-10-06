@@ -4,6 +4,8 @@ PREFIX?=${ORGANISATION}
 IMAGE_VERSION?=latest
 
 IMAGES= \
+	alpine-glibc \
+	alpine-mono \
 	ds-mono-webservice-deviceserver \
 	ds-mono-lwm2m-bootstrap \
 	ds-mono-lwm2m-server \
@@ -11,7 +13,7 @@ IMAGES= \
 	ds-mono-service-subscription \
 	ds-mono-service-webhook
 
-.PHONY: all base build tag_latest release
+.PHONY: all build tag_latest release
 
 all: build
 
@@ -24,10 +26,6 @@ define HEADER
 	@echo "*********************************************************************"
 	@echo
 endef
-
-base:
-	$(call HEADER,MAKE alpine-mono
-	$(MAKE) -C alpine-mono
 
 define BUILD_IMAGE
 

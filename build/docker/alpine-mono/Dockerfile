@@ -1,9 +1,8 @@
-FROM alpine:3.4
+FROM creatordev/alpine-glibc
 
-ARG ALPINE_MONO_VERSION
-ENV ALPINE_MONO_VERSION ${ALPINE_MONO_VERSION:-4.2.2.30-r1}
-
-RUN echo "@testing http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
-    && apk add --no-cache --update mono@testing=${ALPINE_MONO_VERSION} libuv \
-    && ln -s /usr/lib/libuv.so.1.0.0 /usr/lib/libuv.so \
-    && rm -rf /var/cache/apk/*
+RUN apk add --no-cache --virtual=.build-dependencies wget ca-certificates tar xz && \
+    wget "https://www.archlinux.org/packages/extra/x86_64/mono/download/" -O "/tmp/mono.pkg.tar.xz" && \
+    tar -xJf "/tmp/mono.pkg.tar.xz" && \
+    cert-sync /etc/ssl/certs/ca-certificates.crt && \
+    apk del .build-dependencies && \
+    rm /tmp/*

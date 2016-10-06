@@ -59,7 +59,7 @@ nuget_push:
 	  ${SOURCE_IMAGE} \
 	  bash /scripts/nuget_push.sh
 
-service_publish: build_source
+service_publish:
 	$(call HEADER,$@)
 	docker run --rm \
 	  -v $(dir $(CURDIR)):/app \
