@@ -22,36 +22,13 @@ networks:
 # ----------------------------------------------------------------------------
 
 services:
-# ============================================================================
-# Base docker images
-  dotnet-mono-base:
-    build:
-      context: .
-      dockerfile: docker/Dockerfile.base
-    command: /bin/true
-    image: 'creatordev/dotnet-mono-base:latest'
-    networks:
-      - DeviceServerNet
-
-  deviceserver-build:
-    build:
-      context: .
-      dockerfile: docker/Dockerfile.DeviceServerBuild
-    command: /bin/true
-    image: 'creatordev/deviceserver-build:latest'
-    networks:
-      - DeviceServerNet
 # ----------------------------------------------------------------------------
 
 # ============================================================================
 # Service Discovery and routing
   consul:
     command: agent -dev -bind=172.10.0.10 -client=0.0.0.0
-    image: 'registry-hh.flowcloud.systems:5000/flowops/dockerconsul:latest'
-    depends_on:
-      # force docker-compose to build base images first
-      - dotnet-mono-base
-      - deviceserver-build
+    image: 'creatordev/dockerconsul:latest'
     dns:
       - 127.0.0.1
     dns_search: .
@@ -88,19 +65,38 @@ services:
     environment:
       # Registrator required ENVs
       SERVICE_8443_NAME: "webservice-deviceserver-fabio" # internal load balancer
-    image: registry-hh.flowcloud.systems:5000/flowops/dockerfabio:latest
+    image: magiconair/fabio:1.3.3-go1.7.1
     networks:
       - DeviceServerNet
     ports:
-      - "80:9999"
-      - "443:8443"
+      - "8000:9999"
+      - "8443:8443"
       - "81:9998"
     restart: always
     volumes:
-      - ./docker/fabio:/etc/fabio
+      - ./docker/fabio:/etc/fabio:ro
       # Make sure the certs to be mapped in are named cert.pem and key.pem
       # Otherwise fabio will not work
-      - ./docker/ssl:/ssl
+      - ./docker/ssl:/ssl:ro
+
+  nginx:
+    depends_on:
+      - fabio
+    image: nginx:1.10.2
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - DeviceServerNet
+    links:
+      - fabio
+
+    restart: always
+    volumes:
+      - ./docker/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./docker/ssl:/etc/nginx/ssl:ro
+      - ./docker/dhparam.pem:/etc/ssl/certs/dhparam.pem:ro
+
 # ----------------------------------------------------------------------------
 
 # ============================================================================
@@ -115,14 +111,14 @@ services:
       SERVICE_27017_NAME: "mongo"
       SERVICE_27017_CHECK_TCP: "true"
       SERVICE_27017_CHECK_INTERVAL: "2s"
-    image: mongo
+    image: mongo:3.2.10
     networks:
       - DeviceServerNet
     ports:
       - "27017:27017"
     restart: always
     volumes:
-      - mongo:/data/db"
+      - mongo:/data/db
 
   rabbitmq:
     depends_on:
@@ -132,9 +128,11 @@ services:
       # Registrator required ENVs
       SERVICE_5672_NAME: "rabbitmq"
       # RabbitMQ Settings
-      RABBITMQ_DEFAULT_USER: 'FlowAppUser'
-      RABBITMQ_DEFAULT_PASS: 'Fl0wAppUser!'
-    image: rabbitmq:management
+      RABBITMQ_DEFAULT_USER: '${RABBITMQ_USERNAME}'
+      RABBITMQ_DEFAULT_PASS: '${RABBITMQ_PASSWORD}'
+    image: rabbitmq:3.6.5-management
+    ports:
+      - "15672:15672"
     networks:
       - DeviceServerNet
     restart: always
@@ -151,21 +149,21 @@ services:
       - webservice-deviceserver
     dns: 172.10.0.10
     dns_search: .
-    entrypoint: ["dotnet", "run", "--configuration=Release"]
     environment:
       # links
       'ServiceConfiguration:MongoConnection': "mongodb://mongo.service.consul:27017"
       'ServiceConfiguration:RabbitMQConnections:0:Uri': "amqp://rabbitmq.service.consul:5672"
+      'ServiceConfiguration:RabbitMQConnections:0:Username': "${RABBITMQ_USERNAME}"
+      'ServiceConfiguration:RabbitMQConnections:0:Password': "${RABBITMQ_PASSWORD}"
       'ServiceConfiguration:ChangeNotificationServers:0': "tcp://service-changenotification.service.consul:14050"
       'ServiceConfiguration:Hostname': "lwm2m-bootstrap.service.consul"
       'ServiceConfiguration:ExternalUri': "coaps://${DEVICESERVER_HOSTNAME}:15684"
     env_file:
       - ./appsettings.env
-    image: 'creatordev/deviceserver-build:latest'
+    image: 'creatordev/ds-mono-service-subscription:latest'
     networks:
       - DeviceServerNet
     tty: true
-    working_dir: /app/src/Imagination.Service.Subscription
 
   service-webhook:
     depends_on:
@@ -176,21 +174,21 @@ services:
       - webservice-deviceserver
     dns: 172.10.0.10
     dns_search: .
-    entrypoint: ["dotnet", "run", "--configuration=Release"]
     environment:
       # links
       'ServiceConfiguration:MongoConnection': "mongodb://mongo.service.consul:27017"
       'ServiceConfiguration:RabbitMQConnections:0:Uri': "amqp://rabbitmq.service.consul:5672"
+      'ServiceConfiguration:RabbitMQConnections:0:Username': "${RABBITMQ_USERNAME}"
+      'ServiceConfiguration:RabbitMQConnections:0:Password': "${RABBITMQ_PASSWORD}"
       'ServiceConfiguration:ChangeNotificationServers:0': "tcp://service-changenotification.service.consul:14050"
       'ServiceConfiguration:Hostname': "lwm2m-bootstrap.service.consul"
       'ServiceConfiguration:ExternalUri': "coaps://${DEVICESERVER_HOSTNAME}:15684"
     env_file:
       - ./appsettings.env
-    image: 'creatordev/deviceserver-build:latest'
+    image: 'creatordev/ds-mono-service-webhook:latest'
     networks:
       - DeviceServerNet
     tty: true
-    working_dir: /app/src/Imagination.Service.Webhook
 
   lwm2m-bootstrap:
     depends_on:
@@ -201,7 +199,6 @@ services:
       - webservice-deviceserver
     dns: 172.10.0.10
     dns_search: .
-    entrypoint: ["dotnet", "run", "--configuration=Release"]
     environment:
       # Registrator required ENVs
       SERVICE_15683_NAME: "lwm2m-bootstrap-15683/udp"
@@ -209,6 +206,8 @@ services:
       # links
       'ServiceConfiguration:MongoConnection': "mongodb://mongo.service.consul:27017"
       'ServiceConfiguration:RabbitMQConnections:0:Uri': "amqp://rabbitmq.service.consul:5672"
+      'ServiceConfiguration:RabbitMQConnections:0:Username': "${RABBITMQ_USERNAME}"
+      'ServiceConfiguration:RabbitMQConnections:0:Password': "${RABBITMQ_PASSWORD}"
       'ServiceConfiguration:ChangeNotificationServers:0': "tcp://service-changenotification.service.consul:14050"
       'ServiceConfiguration:Hostname': "lwm2m-bootstrap.service.consul"
       'ServiceConfiguration:ExternalUri': "coaps://${DEVICESERVER_HOSTNAME}:15684"
@@ -217,14 +216,15 @@ services:
     expose:
      - 15683/udp
      - 15684/udp
-    image: 'creatordev/deviceserver-build:latest'
+    image: 'creatordev/ds-mono-lwm2m-bootstrap:latest'
     networks:
       - DeviceServerNet
     ports:
       - "15683:15683/udp"
       - "15684:15684/udp"
     tty: true
-    working_dir: /app/src/Imagination.LWM2M.Bootstrap
+    volumes:
+      - ./docker/ds/LWM2MBootsrap.pem:/app/LWM2MBootsrap.pem:ro
 
   lwm2m-server:
     depends_on:
@@ -235,7 +235,6 @@ services:
       - lwm2m-bootstrap
     dns: 172.10.0.10
     dns_search: .
-    entrypoint: ["dotnet", "run", "--configuration=Release"]
     environment:
       # Registrator required ENVs
       SERVICE_5683_NAME: "lwm2m-server-5683/udp"
@@ -246,23 +245,26 @@ services:
       # links
       'ServiceConfiguration:MongoConnection': "mongodb://mongo.service.consul:27017"
       'ServiceConfiguration:RabbitMQConnections:0:Uri': "amqp://rabbitmq.service.consul:5672"
+      'ServiceConfiguration:RabbitMQConnections:0:Username': "${RABBITMQ_USERNAME}"
+      'ServiceConfiguration:RabbitMQConnections:0:Password': "${RABBITMQ_PASSWORD}"
       'ServiceConfiguration:ChangeNotificationServers:0': "tcp://service-changenotification.service.consul:14050"
       'ServiceConfiguration:Hostname': "lwm2m-server.service.consul"
-      'ServiceConfiguration:ExternalUri': "coaps://${DEVICESERVER_HOSTNAME}:5684"
+      'ServiceConfiguration:ExternalUri': "coaps://${DEVICESERVER_HOSTNAME}:5684/"
     env_file:
       - ./appsettings.env
     expose:
      - 5683/udp
      - 5684/udp
      - 14080
-    image: 'creatordev/deviceserver-build:latest'
+    image: 'creatordev/ds-mono-lwm2m-server:latest'
     networks:
       - DeviceServerNet
     ports:
       - "5683:5683/udp"
       - "5684:5684/udp"
     tty: true
-    working_dir: /app/src/Imagination.LWM2M.Server
+    volumes:
+      - ./docker/ds/LWM2MServer.pem:/app/LWM2MServer.pem:ro
 
   service-changenotification:
     depends_on:
@@ -271,7 +273,6 @@ services:
       - rabbitmq
     dns: 172.10.0.10
     dns_search: .
-    entrypoint: ["dotnet", "run", "--configuration=Release"]
     environment:
       # Registrator required ENVs
       SERVICE_14050_NAME: "service-changenotification"
@@ -282,12 +283,11 @@ services:
       - ./appsettings.env
     expose:
      - 14050
-    image: 'creatordev/deviceserver-build:latest'
+    image: 'creatordev/ds-mono-service-changenotification:latest'
     networks:
       - DeviceServerNet
-    #restart: always
+    restart: always
     tty: true
-    working_dir: /app/src/Imagination.Service.ChangeNotification
 
   webservice-deviceserver:
     depends_on:
@@ -297,7 +297,6 @@ services:
       - service-changenotification
     dns: 172.10.0.10
     dns_search: .
-    entrypoint: ["dotnet", "run", "--configuration=Release"]
     environment:
       # Registrator required ENVs
       SERVICE_8080_NAME: "webservice-deviceserver"
@@ -307,6 +306,8 @@ services:
       # links
       'ServiceConfiguration:MongoConnection': "mongodb://mongo.service.consul:27017"
       'ServiceConfiguration:RabbitMQConnections:0:Uri': "amqp://rabbitmq.service.consul:5672"
+      'ServiceConfiguration:RabbitMQConnections:0:Username': "${RABBITMQ_USERNAME}"
+      'ServiceConfiguration:RabbitMQConnections:0:Password': "${RABBITMQ_PASSWORD}"
       'ServiceConfiguration:ChangeNotificationServers:0': "tcp://service-changenotification.service.consul:14050"
       'ServiceConfiguration:ExternalUri': "https://${DEVICESERVER_HOSTNAME}"
       lwm2m-server: lwm2m-server.service.consul
@@ -314,9 +315,11 @@ services:
       - ./appsettings.env
     expose:
      - 8080
-    image: 'creatordev/deviceserver-build:latest'
+    image: 'creatordev/ds-mono-webservice-deviceserver:latest'
     networks:
       - DeviceServerNet
-    #restart: always
+    restart: always
     tty: true
-    working_dir: /app/src/Imagination.WebService.DeviceServer
+    volumes:
+      - ./docker/ds/IMGCA.pem:/app/IMGCA.pem:ro
+      - ./docker/ds/IMGRootCA.pem:/app/IMGRootCA.pem:ro
