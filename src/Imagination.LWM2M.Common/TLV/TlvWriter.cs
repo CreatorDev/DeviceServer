@@ -190,8 +190,9 @@ namespace Imagination.LWM2M
 		{
 			//need IEEE-754 format which C# uses
 			byte[] buffer = BitConverter.GetBytes(value);
-            if (BitConverter.IsLittleEndian)
-                buffer.Reverse();
+       		if (BitConverter.IsLittleEndian) {
+				Array.Reverse(buffer);
+			}
             Write(typeIdentifier, identifier, buffer);
 		}
 
@@ -199,8 +200,9 @@ namespace Imagination.LWM2M
 		{
 			//need IEEE-754 format which C# uses
 			byte[] buffer = BitConverter.GetBytes(value);
-            if (BitConverter.IsLittleEndian)
-                buffer.Reverse();
+			if (BitConverter.IsLittleEndian) {
+				Array.Reverse(buffer); 
+			}
             Write(typeIdentifier, identifier, buffer);
 		}
 		
