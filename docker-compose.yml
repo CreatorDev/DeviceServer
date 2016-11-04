@@ -224,7 +224,7 @@ services:
       - "15684:15684/udp"
     tty: true
     volumes:
-      - ./docker/ds/LWM2MBootsrap.pem:/app/LWM2MBootsrap.pem:ro
+      - ./docker/ds/LWM2MBootstrap.pem:/app/LWM2MBootstrap.pem:ro
 
   lwm2m-server:
     depends_on:
@@ -321,5 +321,5 @@ services:
     restart: always
     tty: true
     volumes:
-      - ./docker/ds/IMGCA.pem:/app/IMGCA.pem:ro
-      - ./docker/ds/IMGRootCA.pem:/app/IMGRootCA.pem:ro
+      - ./docker/ds/CA.pem:/app/CA.pem:ro
+      - ./docker/ds/Root.pem:/app/Root.pem:ro

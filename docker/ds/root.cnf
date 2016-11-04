@@ -1,0 +1,27 @@
+[ ca ]
+default_ca      = CA_default            # The default ca section
+
+[ CA_default ]
+
+dir            	= ./root               	# top dir
+database       	= $dir/index.txt  	# index file.
+new_certs_dir	= $dir	        # new certs dir
+
+certificate    	= ./Root.crt     	# The CA cert
+serial         	= $dir/serial          	# serial no file
+private_key    	= ./Root.key		# CA private key
+RANDFILE       	= $dir/.rand 		# random number file
+
+default_days   	= 3650                  # how long to certify for
+default_crl_days= 30	                # how long before next CRL
+default_md     	= sha256                # md to use
+
+policy         = policy_any            # default policy
+
+[ policy_any ]
+countryName            = supplied
+stateOrProvinceName    = optional
+organizationName       = optional
+organizationalUnitName = optional
+commonName             = supplied
+emailAddress           = optional

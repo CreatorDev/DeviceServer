@@ -5,6 +5,5 @@
 *
 # Except this file
 !.gitignore
-!*.cnf
-!root
-!int
+!index.txt
+!serial
