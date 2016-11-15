@@ -26,26 +26,26 @@ export RABBITMQ_PASSWORD=<nice random password>
 In order to generate certificates the device server needs a certificate authority. Below are the commands to create this.
 From the `docker/ds` directory
 ```
-openssl ec -genkey -name prime256v1 -out Root.key
+openssl ecparam -genkey -name prime256v1 -out Root.key
 openssl req -new -sha256 -key Root.key -out csr.csr
 openssl req -x509 -sha256 -days 3650 -key Root.key -in csr.csr -out Root.crt
 ```
 ```
-openssl ec -genkey -name prime256v1 -out CA.key
+openssl ecparam -genkey -name prime256v1 -out CA.key
 openssl req -new -sha256 -key CA.key -out CA.csr
 openssl ca -config root.cnf -notext -md sha256 -days 3650 -in CA.csr -out CA.crt
 ```
 ```
-openssl ec -genkey -name prime256v1 -out LWM2MBootstrap.key
+openssl ecparam -genkey -name prime256v1 -out LWM2MBootstrap.key
 openssl req -new -sha256 -key LWM2MBootstrap.key -out bootstrap.csr
 openssl ca -config intermediate.cnf -notext -md sha256 -days 730 -in bootstrap.csr -out LWM2MBootstrap.crt
 openssl ec -in LWM2MBootstrap.key -pubout -out LWM2MBootstrap.pub
 ```
 ```
-openssl ec -genkey -name prime256v1 -out LWM2MServer.key
+openssl ecparam -genkey -name prime256v1 -out LWM2MServer.key
 openssl req -new -sha256 -key LWM2MServer.key -out server.csr
 openssl ca -config intermediate.cnf -notext -md sha256 -days 730 -in server.csr -out LWM2MServer.crt
-openssl ec -in LWM2MServer.key -pubout -out LWM2MServer.pub
+openssl ecparam -in LWM2MServer.key -pubout -out LWM2MServer.pub
 ```
 The following pem files are the ones actually used by the device server
 ```
