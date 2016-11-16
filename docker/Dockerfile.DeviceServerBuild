@@ -1,9 +1,13 @@
 
-FROM registry-hh.flowcloud.systems:5000/flowm2m/dotnet-mono-base
+FROM flowm2m/dotnet-mono-base
 
 COPY . /app
 
 WORKDIR /app
+
+RUN mv /app/DTLS.Net/src/DTLS.Net /app/src
+RUN mv /app/DTLS.Net/test/TestClient /app/test
+RUN mv /app/DTLS.Net/test/TestServer /app/test
 
 RUN dotnet restore && \
   dotnet build --configuration=Release src/*
