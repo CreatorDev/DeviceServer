@@ -24,7 +24,7 @@ export RABBITMQ_PASSWORD=<nice random password>
 
 
 In order to generate certificates the device server needs a certificate authority. Below are the commands to create this.
-From the `docker/ds` directory
+Run the following commands from the `docker/ds` directory (note that CSR generation will require some interactive input):
 ```
 openssl ecparam -genkey -name prime256v1 -out Root.key
 openssl req -new -sha256 -key Root.key -out csr.csr
@@ -45,7 +45,7 @@ openssl ec -in LWM2MBootstrap.key -pubout -out LWM2MBootstrap.pub
 openssl ecparam -genkey -name prime256v1 -out LWM2MServer.key
 openssl req -new -sha256 -key LWM2MServer.key -out server.csr
 openssl ca -config intermediate.cnf -notext -md sha256 -days 730 -in server.csr -out LWM2MServer.crt
-openssl ecparam -in LWM2MServer.key -pubout -out LWM2MServer.pub
+openssl ec -in LWM2MServer.key -pubout -out LWM2MServer.pub
 ```
 The following pem files are the ones actually used by the device server
 ```
@@ -63,7 +63,7 @@ The device server rest api sits behind nginx which should be setup with an SSL c
 
 If you can, use  https://letsencrypt.org or use an existing certificate for the hostname you are using. If not generate a self signed certificate in the following directory
 ```
-openssl dhparam -out dhparam.pem 2048`
+openssl dhparam -out dhparam.pem 2048
 ```
 ```
 docker/dhparam.pem
