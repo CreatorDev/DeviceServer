@@ -60,19 +60,19 @@ namespace Imagination.LWM2M
 
                 int port = 5683;
                 bool secureOnly = true;
-                IConfigurationSection section = configuration.GetSection("LWM2MServer");
-                if (section != null)
+                IConfigurationSection sectionServer = configuration.GetSection("LWM2MServer");
+                if (sectionServer != null)
                 {
-                    section = section.GetSection("Port");
-                    if (section != null)
+                    IConfigurationSection sectionPort = sectionServer.GetSection("Port");
+                    if (sectionPort != null)
                     {
-                        if (!int.TryParse(section.Value, out port))
+                        if (!int.TryParse(sectionPort.Value, out port))
                             port = 5683;
                     }
-                    section = section.GetSection("SecureOnly");
-                    if (section != null)
+                    IConfigurationSection sectionSecure = sectionServer.GetSection("SecureOnly");
+                    if (sectionSecure != null)
                     {
-                        if (!bool.TryParse(section.Value, out secureOnly))
+                        if (!bool.TryParse(sectionSecure.Value, out secureOnly))
                             secureOnly = true;
                     }
                 }
@@ -94,6 +94,7 @@ namespace Imagination.LWM2M
                 Server server = new Server();
                 //server.PSKIdentities.LoadFromFile("PSKIdentities.xml");
                 server.Port = port;
+                server.SecureOnly = secureOnly;
                 server.Start();
                 _ShutdownEvent = new ManualResetEvent(false);
                 Console.CancelKeyPress += delegate (object sender, ConsoleCancelEventArgs e)
