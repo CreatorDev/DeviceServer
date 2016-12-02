@@ -73,6 +73,7 @@ namespace Imagination.DataAccess.MongoDB
                         objectDefinition.OrganisationID = null;
                     objectDefinition.Name = BsonHelper.GetString(item, "Name");
                     objectDefinition.MIMEType = BsonHelper.GetString(item, "MIMEType");
+                    objectDefinition.Description = BsonHelper.GetString(item, "Description");
                     objectDefinition.SerialisationName = BsonHelper.GetString(item, "SerialisationName");
                     objectDefinition.Singleton = BsonHelper.GetBoolean(item, "Singleton");
                     if (item.Contains("Properties"))
@@ -89,6 +90,7 @@ namespace Imagination.DataAccess.MongoDB
                                 property.PropertyDefinitionID = BsonHelper.GetGuid(propertyItem, "_id");
                                 property.PropertyID = BsonHelper.GetString(propertyItem, "PropertyID");
                                 property.Name = BsonHelper.GetString(propertyItem, "Name");
+                                property.Description = BsonHelper.GetString(propertyItem, "Description");
                                 property.DataType = (TPropertyDataType)propertyItem["DataType"].AsInt32;
                                 if (propertyItem.Contains("DataTypeLength"))
                                     property.DataTypeLength = propertyItem["DataTypeLength"].AsInt32;
@@ -139,6 +141,7 @@ namespace Imagination.DataAccess.MongoDB
                     BsonHelper.SetValue(doc, "Name", item.Name);
 					BsonHelper.SetValue(doc, "MIMEType", item.MIMEType);
 					BsonHelper.SetValue(doc, "SerialisationName", item.SerialisationName);
+                    BsonHelper.SetValue(doc, "Description", item.Description);
 					BsonHelper.SetValue(doc, "Singleton", item.Singleton);
 					if ((item.Properties != null) && item.Properties.Count > 0)
 					{
@@ -151,6 +154,7 @@ namespace Imagination.DataAccess.MongoDB
 							BsonHelper.SetValue(propertyDoc, "_id", property.PropertyDefinitionID);
 							BsonHelper.SetValue(propertyDoc, "PropertyID", property.PropertyID);
 							BsonHelper.SetValue(propertyDoc, "Name", property.Name);
+							BsonHelper.SetValue(propertyDoc, "Description", property.Description);
 							BsonHelper.SetValue(propertyDoc, "DataType", (int)property.DataType);
 							BsonHelper.SetValue(propertyDoc, "DataTypeLength", property.DataTypeLength);
 							BsonHelper.SetValue(propertyDoc, "MIMEType", property.MIMEType);

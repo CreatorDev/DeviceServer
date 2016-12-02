@@ -34,6 +34,7 @@ namespace Imagination.Model
         public string ObjectID { get; set; }
         public string Name { get; set; }
 		public string MIMEType { get; set; }
+		public string Description { get; set; }
 		public string SerialisationName { get; set; }
 		public bool Singleton { get; set; }
 		public List<PropertyDefinition> Properties { get; set; }

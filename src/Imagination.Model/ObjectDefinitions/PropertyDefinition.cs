@@ -32,6 +32,7 @@ namespace Imagination.Model
 		public Guid PropertyDefinitionID { get; set; }
 		public string PropertyID { get; set; }
 		public string Name { get; set; }
+		public string Description { get; set; }
 		public TPropertyDataType DataType { get; set; }
 		public int? DataTypeLength { get; set; }
 		public string MIMEType { get; set; }

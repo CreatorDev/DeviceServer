@@ -37,6 +37,8 @@ namespace Imagination.ServiceModels
         public string Name { get; set; }
 
         public string MIMEType { get; set; }
+        
+        public string Description { get; set; }
 
         public string SerialisationName { get; set; }
 
@@ -56,6 +58,7 @@ namespace Imagination.ServiceModels
             ObjectID = objectMetadata.ObjectID;
             Name = objectMetadata.Name;
             MIMEType = objectMetadata.MIMEType;
+            Description = objectMetadata.Description;
             SerialisationName = objectMetadata.SerialisationName;
             Singleton = objectMetadata.Singleton;
             if (objectMetadata.Properties != null)
@@ -77,6 +80,7 @@ namespace Imagination.ServiceModels
                 result.ObjectDefinitionID = StringUtils.GuidDecode(ObjectDefinitionID);
             result.ObjectID = ObjectID;
             result.Name = Name;
+            result.Description = Description;
             result.MIMEType = MIMEType;
             result.SerialisationName = SerialisationName;
             result.Singleton = Singleton;
@@ -100,6 +104,8 @@ namespace Imagination.ServiceModels
                 item.Name = Name;
             if (!string.IsNullOrEmpty(MIMEType))
                 item.MIMEType = MIMEType;
+            if (!string.IsNullOrEmpty(Description))
+                item.Description = Description;
             if (!string.IsNullOrEmpty(SerialisationName))
                 item.SerialisationName = SerialisationName;
             item.Singleton = Singleton;
