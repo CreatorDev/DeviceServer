@@ -12,11 +12,11 @@
         products derived from this software without specific prior written permission.
 
  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
- INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
- DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+ INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
- WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE 
+ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
  USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ***********************************************************************************************************************/
 
@@ -72,7 +72,7 @@ namespace Imagination.LWM2M
 
         public BootstrapServer()
 		{
-            _PSKIdentities = new PSKIdentities();            
+            _PSKIdentities = new PSKIdentities();
 			_Port = Spec.Default.DefaultPort;
 			_CoapServer.MessageDeliverer = this;
             SecureOnly = true;
@@ -115,7 +115,7 @@ namespace Imagination.LWM2M
 				throw new ArgumentException("Request should not be empty.", "exchange");
 			exchange.Request.Response = response;
 		}
-                
+
 		private void ProcessRequests()
 		{
 			while (!_Terminate)
@@ -171,9 +171,9 @@ namespace Imagination.LWM2M
             if (!SecureOnly)
 			    _CoapServer.AddEndPoint(new CoAPEndPoint(new FlowChannel(_Port), CoapConfig.Default));
             FlowSecureChannel secure = new FlowSecureChannel(_Port+1);
-            if (System.IO.File.Exists("LWM2MBootsrap.pem"))
+            if (System.IO.File.Exists("LWM2MBootstrap.pem"))
             {
-                secure.CertificateFile = "LWM2MBootsrap.pem";
+                secure.CertificateFile = "LWM2MBootstrap.pem";
             }
             secure.PSKIdentities = _PSKIdentities;
             secure.SupportedCipherSuites.Add(TCipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_CCM_8);

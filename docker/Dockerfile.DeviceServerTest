@@ -1,4 +1,4 @@
-FROM registry-hh.flowcloud.systems:5000/flowm2m/dotnet-mono-base
+FROM creatordev/dotnet-mono-base
 
 COPY . /app
 

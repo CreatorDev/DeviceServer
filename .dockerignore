@@ -7,3 +7,4 @@ src/*/bin
 src/*/obj
 src/artifacts
 artifacts
+build

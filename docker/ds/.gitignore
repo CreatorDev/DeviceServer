@@ -1,0 +1,10 @@
+# Create your certs and store them in this directory!
+# But don't worry.. You won't be able to commit them!
+
+# Ignore everything in this directory
+*
+# Except this file
+!.gitignore
+!*.cnf
+!root
+!int

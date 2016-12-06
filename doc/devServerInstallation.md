@@ -6,120 +6,108 @@
 
 The aim of this guide is to describe the installation processes for the Creator device server.
 
-The Creator device server has been provided both as a complete open source project and as a set of Docker containers. 
+The Creator device server has been provided both as a complete open source project and as a set of Docker images.
 
 ### Installation using Docker
 
 
-**We've assumed that you already have Docker installed and ready to go and that you have some background knowledge regarding its use. If not, go [here](https://www.docker.com/) for details.**
+The simplest installation method is use `docker-compose` to deploy the public docker images
 
-
-The simplest installation method is to *pull* the current device server Docker containers, in which case you only need to download the relevant Docker compose file, [docker-compose.yaml](https://gitlab.flowcloud.systems/FlowM2M/DeviceServer/raw/master/docker-compose.yml) into a local working directory.
-
-
-If you're planning to build a device server Docker image from source you'll need to locally clone the [device server GitHub repository](git@gitlab.flowcloud.systems:FlowM2M/DeviceServer.git). 
-
-
-### Setting up a domain for https
-
-On your workstation you'll also need a domain which resolves to the IP address of the machine that's running Docker. We suggest DNS hi-jacking `deviceserver.mymachine.com`.
-
-The Docker *compose* command references the *DEVICESERVER_HOSTNAME* environment variable to determine its 
-domain name so you'll need to assign this...
-```
-export DEVICESERVER_HOSTNAME=deviceserver.mymachine.com  
-```
-
-Alternatively you can create a more permanent hostname assignment by creating a `.env` file with the following content:   
+You will need to setup the following environment variables
 
 ```
-DEVICESERVER_HOSTNAME=deviceserver.mymachine.com
+export DEVICESERVER_HOSTNAME=<resolvable hostname of server>
+export RABBITMQ_USERNAME=<any old username>
+export RABBITMQ_PASSWORD=<nice random password>
 ```
+### Setting up the certificates
 
-If you're using Linux you'll need to edit */etc/host* to resolve the *deviceserver.mymachine.com* domain by adding...
 
-
+In order to generate certificates the device server needs a certificate authority. Below are the commands to create this.
+Run the following commands from the `docker/ds` directory (note that CSR generation will require some interactive input):
 ```
-127.0.0.1       localhost deviceserver.mymachine.com
+openssl ecparam -genkey -name prime256v1 -out Root.key
+openssl req -new -sha256 -key Root.key -out csr.csr
+openssl req -x509 -sha256 -days 3650 -key Root.key -in csr.csr -out Root.crt
 ```
-
-If you're using Windows you'll need to use the IP address of your virtual machine. In your Docker terminal use *docker-machine inspect* to find this...
-
 ```
-$ docker-machine inspect
-{
-    "ConfigVersion": 3,
-    "Driver": {
-        "IPAddress": "192.168.99.100",
-	(...)
-}
+openssl ecparam -genkey -name prime256v1 -out CA.key
+openssl req -new -sha256 -key CA.key -out CA.csr
+openssl ca -config root.cnf -notext -md sha256 -days 3650 -in CA.csr -out CA.crt
 ```
-
-Then open Notepad as an administrator and edit `C:\Windows\System32\drivers\etc\hosts` to include the new IP address...
-
 ```
-192.168.99.100 deviceserver.mymachine.com
+openssl ecparam -genkey -name prime256v1 -out LWM2MBootstrap.key
+openssl req -new -sha256 -key LWM2MBootstrap.key -out bootstrap.csr
+openssl ca -config intermediate.cnf -notext -md sha256 -days 730 -in bootstrap.csr -out LWM2MBootstrap.crt
+openssl ec -in LWM2MBootstrap.key -pubout -out LWM2MBootstrap.pub
 ```
-
-### SSL certification
-
-The device server includes a *Fabio* load balancer which terminates HTTPs connections and which requires an SSL certificate to operate.
-
-
-
-
-You can produce a self-signed certificate from scratch, or use an existing Private Key and CSR if you have one. For either option you'll need to have openssl installed, if you are using Windows the docker quickstart terminal, (usually installed with docker) or git bash will provide this.
-
-**To generate self-signed certification for `*.mymachine.com`**
-
-**Note.** When using a self-signed certificate you will need to tell your browser, or other client, to ignore that these certificates are not signed by a trusted authority.
-
-
-Generate a Private Key and a CSR...
 ```
-mkdir -p docker/ssl
-COMMON_NAME=*.mymachine.com
-openssl req -newkey rsa:2048 -nodes -keyout docker/ssl/domain_key.pem -subj "/CN=${COMMON_NAME}" -out docker/ssl/domain_csr.pem
+openssl ecparam -genkey -name prime256v1 -out LWM2MServer.key
+openssl req -new -sha256 -key LWM2MServer.key -out server.csr
+openssl ca -config intermediate.cnf -notext -md sha256 -days 730 -in server.csr -out LWM2MServer.crt
+openssl ec -in LWM2MServer.key -pubout -out LWM2MServer.pub
 ```
+The following pem files are the ones actually used by the device server
+```
+cat Root.key Root.crt > Root.pem
+cat CA.key CA.crt > CA.pem
+cat LWM2MBootstrap.key LWM2MBootstrap.pub LWM2MBootstrap.crt > LWM2MBootstrap.pem
+cat LWM2MServer.key LWM2MServer.pub LWM2MServer.crt > LWM2MServer.pem
+```
+Verify the bootstrap and server certificates
+```
+openssl verify -verbose -CAfile <(cat Root.pem CA.pem) LWM2MServer.pem
+openssl verify -verbose -CAfile <(cat Root.pem CA.pem) LWM2MBootstrap.pem
+```
+The device server rest api sits behind nginx which should be setup with an SSL certificate
 
-Then generate a self-signed certificate from the Private Key and CSR...
+If you can, use  https://letsencrypt.org or use an existing certificate for the hostname you are using. If not generate a self signed certificate in the following directory
 ```
-openssl x509 -signkey docker/ssl/domain_key.pem -in docker/ssl/domain_csr.pem -req -days 365 -out docker/ssl/domain_cert.pem
+openssl dhparam -out dhparam.pem 2048
 ```
-
-Load the certificate into a temporary docker volume...
-  
-
 ```
-docker volume create --name certs
-docker run -d --name certstool -v certs:/ssl alpine /bin/true
-docker cp docker/ssl/domain_cert.pem certstool:/ssl/cert.pem
-docker cp docker/ssl/domain_key.pem certstool:/ssl/key.pem
-docker rm certstool
+docker/dhparam.pem
+docker/ssl/key.pem
+docker/ssl/cert.pem
 ```
 
 
-You can now download the docker images and launch the docker stack...
+### Deploying
+
+You can now bring up the docker stack...
 ```
-docker-compose pull
 docker-compose up -d
 ```
-###Building a Docker image from the device server source code
+Check the output of `docker ps` to make sure the status of all the containers is up
 
+### Setup an initial key and secret
 
-If you want to build from source code, or implement additions to device server functionality, you'll need to rebuild the docker image. Clone the Git repository and navigate to the local *DeviceServer* directory, then run the following:
-
+Generate a couple of nice long random strings to use as a key and secret, for example
 ```
-docker-compose build deviceserver-build
-docker-compose up -d
+2Jy6bdbSNlf7XgO441PM8Z1FRV5IoVhu01KEbyvtVJb6FSOEIz7w49zQ3bsW0LCAUdEeVq7q324xqW029ehOkz
+jWS9lH6U695311I052p5i03977l9R29rV6VnvAd06Xl6p1U8PCLPaJlzw1pLhQgS83j5L62Xl4n339HJjI5279
 ```
-
+Insert these into the mongo database
+```
+    docker exec deviceserver_mongo_1 mongo localhost/Organisations --eval \
+        'db.AccessKey.insert({"_id":"XXX", "OrganisationID": NumberInt(0), "Name": "admin", "Secret": "YYY"})'
+```
+Where XXX and YYY are your new key/secret
 
 ### Test the service
 
 
-[https://deviceserver.mymachine.com](https://deviceserver.mymachine.com)  
+`https://<resolvable hostname of server>`
 
+### Building the Docker images from the device server source code
+
+
+If you want to build from source code, or implement additions to device server functionality, you'll need to rebuild the docker images
+```
+cd build
+make
+docker images
+```
 
 
 ----
