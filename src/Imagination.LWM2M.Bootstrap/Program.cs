@@ -61,19 +61,19 @@ namespace Imagination.LWM2M
 
                 int port = 15683;
                 bool secureOnly = true;
-                IConfigurationSection section = configuration.GetSection("LWM2MBootstrap");
-                if (section != null)
+                IConfigurationSection sectionBootstrap = configuration.GetSection("LWM2MBootstrap");
+                if (sectionBootstrap != null)
                 {
-                    section = section.GetSection("Port");
-                    if (section != null)
+                    IConfigurationSection sectionPort = sectionBootstrap.GetSection("Port");
+                    if (sectionPort != null)
                     {
-                        if (!int.TryParse(section.Value, out port))
+                        if (!int.TryParse(sectionPort.Value, out port))
                             port = 15683;
                     }
-                    section = section.GetSection("SecureOnly");
-                    if (section != null)
+                    IConfigurationSection sectionSecure = sectionBootstrap.GetSection("SecureOnly");
+                    if (sectionSecure != null)
                     {
-                        if (!bool.TryParse(section.Value, out secureOnly))
+                        if (!bool.TryParse(sectionSecure.Value, out secureOnly))
                             secureOnly = true;
                     }
                 }

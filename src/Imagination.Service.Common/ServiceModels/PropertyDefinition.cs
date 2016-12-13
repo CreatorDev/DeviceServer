@@ -37,6 +37,8 @@ namespace Imagination.ServiceModels
 
         public string Name { get; set; }
 
+        public string Description { get; set; }
+
         public string DataType { get; set; }
 
         public int? DataTypeLength { get; set; }
@@ -71,6 +73,7 @@ namespace Imagination.ServiceModels
             PropertyDefinitionID = StringUtils.GuidEncode(property.PropertyDefinitionID);
             PropertyID = property.PropertyID;
             Name = property.Name;
+            Description = property.Description;
             DataType = property.DataType.ToString();
             DataTypeLength = property.DataTypeLength;
             MIMEType = property.MIMEType;
@@ -92,6 +95,7 @@ namespace Imagination.ServiceModels
                 result.PropertyDefinitionID = StringUtils.GuidDecode(PropertyDefinitionID);
             result.PropertyID = PropertyID;
             result.Name = Name;
+            result.Description = Description;
             Model.TPropertyDataType dataType;
             if (Enum.TryParse(DataType, true, out dataType))
                 result.DataType = dataType;
@@ -119,6 +123,8 @@ namespace Imagination.ServiceModels
                 item.PropertyID = PropertyID;
             if (!string.IsNullOrEmpty(Name))
                 item.Name = Name;
+            if (!string.IsNullOrEmpty(Description))
+                item.Description = Description;
             if (!string.IsNullOrEmpty(DataType))
             {
                 Model.TPropertyDataType dataType;
