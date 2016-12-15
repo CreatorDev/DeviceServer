@@ -12,7 +12,7 @@ The device server acts as a bridge between CoAP/LWM2M on the device network side
 ## Contents
 
 * [Introduction](devServer.md)  
-* [Installation and deployment](Docker.md)  
+* [Installation and deployment](devServerInstallation.md)  
 * [The device server REST API](DSRESTindex.md)  
     * [Client authentication](authentication.md)  
 	* [Device authentication](devauth.md)  
