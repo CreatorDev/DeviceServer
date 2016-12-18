@@ -5,7 +5,13 @@ RUN apt-get update \
 	&& apt-get install -y curl wget \
 	&& rm -rf /var/lib/apt/lists/*
 
-RUN apt-key adv --keyserver pgp.mit.edu --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+
+# This can hang on some systems ...
+#RUN apt-key adv --keyserver pgp.mit.edu --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+
+# ... so we do this instead:
+ADD key.txt /tmp
+RUN cat /tmp/key.txt | apt-key add -
 
 RUN echo "deb http://download.mono-project.com/repo/debian wheezy main" > /etc/apt/sources.list.d/mono-xamarin.list \
         && echo "deb http://download.mono-project.com/repo/debian wheezy-libjpeg62-compat main" | tee -a /etc/apt/sources.list.d/mono-xamarin.list \
