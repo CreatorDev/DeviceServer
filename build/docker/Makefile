@@ -45,7 +45,7 @@ tag_latest: tag_latest-$(1)
 tag_latest-$(1):
 	$(call HEADER,TAG $(1))
 	@if [ "$${IMAGE_VERSION}" = "latest" ]; then echo '\nPlease set IMAGE_VERSION\n' && false; fi
-	docker tag $${PREFIX}/$(1):$${IMAGE_VERSION} $${PREFIX}/$(1):latest )
+	docker tag $${PREFIX}/$(1):latest $${PREFIX}/$(1):$${IMAGE_VERSION}
 
 release: release-$(1)
 release-$(1):
