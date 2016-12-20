@@ -15,7 +15,7 @@ namespace Imagination.BusinessLogic
 {
     internal class Subscriptions
     {
-        private const int MAX_POST_ATTEMPTS = 0;
+        private const int MAX_POST_ATTEMPTS = 10;
         private const string ACCEPT_TYPE = "*/*";
         public Subscriptions()
         {
