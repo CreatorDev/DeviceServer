@@ -16,7 +16,7 @@
 
   "dependencies": {
     "CoAP": "1.1.0",
-    "DTLS.Net": "1.0.18",
+    "DTLS.Net": "1.0.21",
     "Imagination.Common": "1.0.4-*",
     "Imagination.Service.Common": "1.0.0-*",
     "Imagination.Model": "1.0.3-*"
