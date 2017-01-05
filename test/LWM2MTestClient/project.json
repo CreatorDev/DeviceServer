@@ -6,7 +6,7 @@
 
   "dependencies": {
     "CoAP": "1.1.0",
-    "DTLS.Net": "1.0.18",
+    "DTLS.Net": "1.0.21",
     "Imagination.LWM2M.Common": "1.0.5-*",
     "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.0.0-rc2-final",
     "Microsoft.Extensions.Configuration.Json": "1.0.0-rc2-final",
