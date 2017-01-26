@@ -8,7 +8,7 @@
 # LWM2M device management server
 ----
 
-The device server is a LWM2M management server designed to be implemented alongside third party cloud services to integrate M2M capability into an IoT application. The device server exposes two secure interfaces; REST API/HTTPs and LWM2M/CoAP, and implements DTLS.  
+The Creator device server is a LWM2M management server designed to be implemented alongside third party cloud services to integrate M2M capability into an IoT application. The device server exposes two secure interfaces; REST API/HTTPs and LWM2M/CoAP, and implements DTLS and provides the application interface portion of the Creator IoT framework. A top level view of the Creator IoT framework is available on our [docs site](https://docs.creatordev.io/deviceserver/guides/iot-framework/).
 
 ![](doc/images/Awa_LWM2M_device_server_positioning_150dpi.png)
 
@@ -34,9 +34,11 @@ The CoAP *Observe* verb is supported by registering (subscribing to) an observat
 
 ##  Getting started
 
+A publicly available instance of the Creator device server is online at deviceserver.creatordev.io, you'll find a management console at [console.creatordev.io](http://console.creatordev.io) and examples that combine the use of the Creator device server with the AwaLWM2M client libraries at [docs.creatordev.io](https://docs.creatordev.io/ci40/iotkit/workshop-1-switchcounter/).
+
 ### User guide
 
-For an introduction to the device server, installation details, use of the REST API, client/device authentication and examples of common operations, see our [user guide.](doc/userGuide.md) 
+For an introduction to the device server, stand-alone installation details, use of the REST API, client/device authentication and examples of common operations, see our [user guide.](doc/userGuide.md) 
 
 ----
 
@@ -56,6 +58,9 @@ Special thanks to the [DTLS.Net](https://github.com/CreatorDev/DTLS.Net) team.
 
 A list of ongoing development tasks can be seen [here](doc/tasks.md).
 
+## Creator IoT framework
+* [The CreatorDev forum](https://forum.creatordev.io/)  
+* [CreatorDev online documentation](https://docs.creatordev.io/wifire)  
 
 ----
 
