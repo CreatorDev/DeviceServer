@@ -60,7 +60,7 @@ A list of ongoing development tasks can be seen [here](doc/tasks.md).
 
 ## Creator IoT framework
 * [The CreatorDev forum](https://forum.creatordev.io/)  
-* [CreatorDev online documentation](https://docs.creatordev.io/wifire)  
+* [CreatorDev online documentation](https://docs.creatordev.io)  
 
 ----
 
