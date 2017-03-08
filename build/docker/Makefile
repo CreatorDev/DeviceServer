@@ -3,9 +3,18 @@ PREFIX?=${ORGANISATION}
 
 IMAGE_VERSION?=latest
 
-IMAGES= \
+IMAGES=\
 	alpine-glibc \
 	alpine-mono \
+	ubuntu-mono \
+	ds-mono-webservice-deviceserver \
+	ds-mono-lwm2m-bootstrap \
+	ds-mono-lwm2m-server \
+	ds-mono-service-changenotification \
+	ds-mono-service-subscription \
+	ds-mono-service-webhook
+
+UBUNTU_IMAGES=\
 	ds-mono-webservice-deviceserver \
 	ds-mono-lwm2m-bootstrap \
 	ds-mono-lwm2m-server \
@@ -54,5 +63,33 @@ release-$(1):
 
 endef
 
+define BUILD_UBUNTU
+.PHONY: build-ubuntu-$(1) clean-ubuntu-$(1) tag_latest-ubuntu-$(1) release-ubuntu-$(1)
+
+build: build-ubuntu-$(1)
+build-ubuntu-$(1):
+	$(call HEADER,BUILD $(1) (ubuntu))
+	cat $(1)/Dockerfile | sed 's,alpine,ubuntu,g' > $(1)/Dockerfile.ubuntu
+	cd ..; docker build -f docker/$(1)/Dockerfile.ubuntu -t $${PREFIX}/$(1):ubuntu-$${IMAGE_VERSION} --rm .
+
+clean: clean-ubuntu-$(1)
+clean-ubuntu-$(1):
+	$(call HEADER,CLEAN $(1) (ubuntu))
+	docker rmi $${PREFIX}/$(1):ubuntu-$${IMAGE_VERSION} || echo "Not found"
+
+tag_latest: tag_latest-ubuntu-$(1)
+tag_latest-ubuntu-$(1):
+	$(call HEADER,TAG $(1) (ubuntu))
+	@if [ "$${IMAGE_VERSION}" = "latest" ]; then echo '\nPlease set IMAGE_VERSION\n' && false; fi
+	docker tag $${PREFIX}/$(1):ubuntu $${PREFIX}/$(1):ubuntu-$${IMAGE_VERSION}
+
+release: release-ubuntu-$(1)
+release-ubuntu-$(1):
+	$(call HEADER,RELEASE $(1) (ubuntu))
+	docker push $${PREFIX}/$(1):ubuntu-$${IMAGE_VERSION} && docker push $${PREFIX}/$(1):ubuntu
+
+endef
+
 $(foreach image,$(IMAGES),$(eval $(call BUILD_IMAGE,$(image))))
+$(foreach image,$(UBUNTU_IMAGES),$(eval $(call BUILD_UBUNTU,$(image))))
 

@@ -17,6 +17,11 @@ dotnet restore
 
 for p in ${SERVICES}
 do
+  echo "=================================================="
+  echo "*"
+  echo "*  PUBLISH $p"
+  echo "*"
+  echo "=================================================="
   dotnet publish --configuration Release --output /output/publish/${p}${SUFFIX_OPTION} ./$p
   cp -f /app/src/$p/appsettings.json /output/publish/${p}/
 done
