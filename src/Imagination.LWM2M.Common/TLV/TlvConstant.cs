@@ -31,8 +31,8 @@ namespace Imagination.LWM2M
 	{
 
 		public const int CONTENT_TYPE_PLAIN = 1541; 		
-		public const int CONTENT_TYPE_TLV = 1542;
-		public const int CONTENT_TYPE_JSON = 1543;
+		public const int CONTENT_TYPE_TLV = 11542;
+		public const int CONTENT_TYPE_JSON = 11543;
 
 		internal const int RESOURCE_WITH_VALUE = 0xC0;
 		internal const int MULTIPLE_RESOURCES = 0x80;
